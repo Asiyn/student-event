@@ -1,0 +1,78 @@
+.navbar {
+    position: absolute;
+    top: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: 80%;
+    border-radius: 100px;
+    height: fit-content;
+
+    padding: 1.2rem 3rem;
+
+    background-color: color-mix(in srgb, var(--nav-background) 60%, transparent);
+    border: 1px solid var(--border);
+
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    background-clip: padding-box;
+    box-shadow: 0 1px 10px color-mix(in srgb, var(--border) 60%, transparent);;
+}
+
+.logo {
+    position: relative;
+    height: 48px;
+    width: auto;
+}
+
+.nav-img {
+    object-fit: contain;
+    height: 50px;
+    width: auto;
+    filter: hue-rotate(-139deg);
+}
+
+.nav-buttons-container {
+    display: flex;
+    gap: 25px;
+
+    width: fit-content;
+
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+
+    display: inline-block;
+    position: relative;
+}
+
+.nav-link.active {
+    color: var(--primary);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1.5px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--text);
+  transform-origin: right;
+  transition: transform 0.25s ease-out;
+}
+
+.nav-link.active::after {
+    background-color: var(--primary);
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
