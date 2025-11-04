@@ -1,0 +1,53 @@
+.warn-button{
+    all: unset;
+
+    background-color: var(--warning);
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+
+    color: var(--background);
+    font-weight: 600;
+    border: 2px solid transparent;
+
+    cursor: pointer;
+
+    transition: all 0.05s ease-out;
+}
+
+.warn-button:hover {
+    background-color: color-mix(in srgb, var(--warning) 80%, transparent);
+}
+
+.warn-button:focus {
+    border: 2px solid transparent;
+    outline: 1px solid var(--text);
+    outline-offset: 2px;
+}
+
+.confirm-button {
+    all: unset;
+
+    background-color: var(--success);
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+
+    color: var(--background);
+    font-weight: 600;
+    border: 2px solid transparent;
+
+    cursor: pointer;
+
+    transition: all 0.05s ease-out;
+}
+
+.confirm-button:hover {
+    background-color: color-mix(in srgb, var(--success) 85%, transparent);
+}
+
+.confirm-button:focus {
+    border: 2px solid transparent;
+    outline: 1px solid var(--text);
+    outline-offset: 2px;
+}

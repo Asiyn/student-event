@@ -15,7 +15,14 @@
     --accent: #8a20f8;
     --nav-background: #010d25;
     --border: #1f283b;
+    --warning: #7a191e;
+    --success: #16932b;
   }
+}
+
+::selection {
+  background: color-mix(in srgb, var(--primary) 50%, transparent);
+  color: var(--background);
 }
 
 html,

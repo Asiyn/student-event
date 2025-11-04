@@ -1,15 +1,17 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Navbar from "./components/navbar";
+import ActionButton from "./components/ActionButtons";
 
 export default function Home() {
   return (
+    <>
+    <Navbar />
+
     <div className={styles.page}>
-
-      <Navbar />
-
       <main className={styles.main}>
         <h1>Student Event</h1>
+        <ActionButton text="Confirm" type='confirm' />
         <ol>
           <li>
             Get started by editing <code>src/app/page.tsx</code>.
@@ -88,5 +90,6 @@ export default function Home() {
         </a>
       </footer>
     </div>
+    </>
   );
 }

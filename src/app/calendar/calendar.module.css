@@ -1,0 +1,70 @@
+.calendar-container {
+  width: 60%;
+  position: relative;
+  justify-self: center;
+  grid-row-start: 3;
+}
+
+
+
+/* FullCalendar core 
+.fc {
+  font-family: "General Sans", sans-serif;
+  color: #e0e0e0;
+  --fc-border-color: rgba(255, 255, 255, 0.08);
+  --fc-button-bg-color: rgba(255, 255, 255, 0.05);
+  --fc-button-text-color: #fff;
+  --fc-button-border-color: rgba(255, 255, 255, 0.1);
+  --fc-today-bg-color: rgba(255, 255, 255, 0.06);
+}
+
+
+.fc .fc-toolbar-title {
+  font-weight: 600;
+  color: #fff;
+}
+
+.fc-button {
+  border-radius: 8px !important;
+  backdrop-filter: blur(12px);
+  transition: all 0.2s ease;
+}
+
+.fc-button:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+
+
+.fc-event {
+  border: none !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+  padding: 2px 6px !important;
+  font-weight: 500;
+  box-shadow: 0 0 8px rgba(0, 191, 165, 0.3);
+}
+
+
+.fc-event:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 16px rgba(0, 191, 165, 0.5);
+  transition: all 0.15s ease-in-out;
+}
+
+
+.fc-day-today {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-radius: 10px;
+}
+
+
+.fc-daygrid-day-number {
+  color: #b0b0b0;
+}
+
+
+.fc-list {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+*/

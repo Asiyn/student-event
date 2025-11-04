@@ -7,11 +7,11 @@
   --button-secondary-hover: #f2f2f2;
 
   display: grid;
-  grid-template-rows: 20px 1fr 20px;
+  grid-template-rows: 1fr 1fr;
   align-items: center;
   justify-items: center;
   min-height: 100svh;
-  padding: 38px 0;
+  padding: 150px 0;
   font-family: var(--font-geist-sans);
 }
 
@@ -28,6 +28,7 @@
 
 .main {
   display: flex;
+  position: relative;
   flex-direction: column;
   gap: 32px;
   grid-row-start: 2;
