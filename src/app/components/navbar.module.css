@@ -9,7 +9,7 @@
     border-radius: 100px;
     height: fit-content;
 
-    padding: 1.2rem 3rem;
+    padding: 1rem 3rem;
 
     background-color: color-mix(in srgb, var(--nav-background) 60%, transparent);
     border: 1px solid var(--border);
@@ -46,13 +46,21 @@
     text-decoration: none;
     font-weight: 500;
     font-size: 1.1rem;
+    opacity: 0.5;
 
     display: inline-block;
     position: relative;
+
+    transition: all 0.25s ease-out;
+}
+
+.nav-link:hover {
+    opacity: 1;
 }
 
 .nav-link.active {
     color: var(--primary);
+    opacity: 0.9;
 }
 
 .nav-link::after {
