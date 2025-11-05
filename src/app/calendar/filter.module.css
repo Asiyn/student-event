@@ -32,58 +32,77 @@
     gap: 0.5rem;
 }
 
-.filter-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+.select-wrapper {
+  position: relative;
+  width: 100%; /* ensures icon aligns with select width */
 }
 
 .filter-dropdown {
-    /* Remove all: unset to keep native select styling */
-    appearance: none; /* Custom arrow */
-    -webkit-appearance: none;
-    -moz-appearance: none;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
+  padding: 0.5rem 2.2rem 0.5rem 1rem; /* right padding leaves space for icon */
+  border-radius: 6px;
 
-    background-color: color-mix(in srgb, var(--nav-background) 50%, transparent);
-    border: 1px solid var(--border);
-    /* Add custom arrow */
-    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23999%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E");
-    background-repeat: no-repeat;
-    background-position: right 0.7rem top 50%;
-    background-size: 0.65rem auto;
-    padding-right: 2.5rem;
+  background-color: color-mix(in srgb, var(--nav-background) 50%, transparent);
+  border: 1px solid var(--border);
 
-    color: var(--text);
-    font-size: 1rem;
-    font-family: inherit;
+  color: var(--text);
+  font-size: 1rem;
+  font-family: inherit;
 
-    cursor: pointer;
-    transition: all 0.1s ease-out;
+  cursor: pointer;
+  transition: all 0.1s ease-out;
 }
 
+.dropdown-icon {
+    position: absolute;
+    right: 0.7rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--text);
+    font-size: 0.875rem;
+}
+
+/* Submit button */
+
 .submit-filter {
-    all: unset;
+  all: unset;
 
-    position: relative;
-    justify-self: end;
-    align-self: end;
+  justify-self: end;
+  align-self: end;
+  grid-column: 5;
 
-    grid-column: 5;
+  background-color: var(--primary);
+  color: var(--background);
 
-    background-color: var(--primary);
-    width: fit-content;
-    height: fit-content;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
+  font-weight: 600;
+  text-align: center;
 
-    color: var(--background);
-    font-weight: 600;
-    border: 2px solid transparent;
+  padding: 0.6rem 1.3rem;
+  border-radius: 6px;
+  border: 2px solid transparent;
 
-    cursor: pointer;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 50%, transparent);
+}
 
-    transition: all 0.05s ease-out;
+/* 🔥 Hover and focus effects */
+.submit-filter:hover,
+.submit-filter:focus-visible {
+  transform: translateY(-2px);
+  box-shadow:
+    0 -5px 15px color-mix(in srgb, var(--primary) 60%, transparent),
+    0 0 25px color-mix(in srgb, var(--primary) 30%, transparent);
+  background-color: color-mix(in srgb, var(--primary) 90%, white 10%);
+}
+
+/* Optional: subtle click effect */
+.submit-filter:active {
+  transform: translateY(1px);
+  opacity: 0.9;
 }

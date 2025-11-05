@@ -1,9 +1,13 @@
 :root {
-  --text: #280201;
-  --background: #fedcdd;
-  --primary: #940505;
-  --secondary: #fab752;
-  --accent: #dfb707;
+  --text: #010d28;
+  --background: #ecf1fe;
+  --primary: #053294;
+  --secondary: #7b99e0;
+  --accent: #6f07df;
+  --nav-background: #010d25;
+  --border: #1f283b;
+  --warning: #7a191e;
+  --success: #16932b;
 }
 
 @media (prefers-color-scheme: dark) {
