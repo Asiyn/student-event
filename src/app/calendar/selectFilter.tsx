@@ -1,6 +1,7 @@
 import styles from "./filter.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // Import the macro
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import Select from "react-select";
 
 type Option = {
   value?: string;
@@ -20,40 +21,105 @@ export default function SelectFilter({
   id,
   options,
 }: SelectFilterProps) {
+  const formattedOptions = options.map((opt) =>
+    opt.optgroup
+      ? {
+          label: opt.optgroup,
+          options: opt.items?.map((item) => ({
+            value: item.value,
+            label: item.label,
+          })),
+        }
+      : { value: opt.value, label: opt.label }
+  );
+
   return (
     <div className={styles["filter-group"]}>
       <label className={styles["filter-label"]} htmlFor={id}>
         {label}
       </label>
-      <div className={styles["select-wrapper"]}>
-        <select
-          className={styles["filter-dropdown"]}
-          id={id}
-          name={id}
-          multiple
-          size={1}
-        >
-          {options.map((opt) =>
-            opt.optgroup ? (
-              <optgroup key={opt.optgroup} label={opt.optgroup}>
-                {opt.items?.map((item) => (
-                  <option key={item.value} value={item.value}>
-                    {item.label}
-                  </option>
-                ))}
-              </optgroup>
-            ) : (
-              <option key={opt.value} value={opt.value}>
-                {opt.label}
-              </option>
-            )
-          )}
-        </select>
-        <FontAwesomeIcon
-          icon={faCaretDown}
-          className={styles["dropdown-icon"]}
-        />
-      </div>
+
+      <Select
+  inputId={id}
+  isMulti
+  options={formattedOptions}
+  classNamePrefix="rs"
+  placeholder="Välj..."
+  menuPlacement="auto"
+  styles={{
+    control: (base, state) => ({
+      ...base,
+      backgroundColor: "color-mix(in srgb, var(--nav-background) 60%, transparent)",
+      borderColor: state.isFocused ? "var(--primary)" : "var(--border)",
+      boxShadow: state.isFocused
+        ? "0 0 6px color-mix(in srgb, var(--primary) 40%, transparent)"
+        : "none",
+      borderRadius: "6px",
+      color: "var(--text)",
+      cursor: "pointer",
+      minHeight: "38px",
+      transition: "all 0.15s ease-out",
+      "&:hover": {
+        borderColor: "var(--primary)",
+      },
+    }),
+    placeholder: (base) => ({
+      ...base,
+      color: "color-mix(in srgb, var(--text) 60%, transparent)",
+    }),
+    multiValue: (base) => ({
+      ...base,
+      backgroundColor: "color-mix(in srgb, var(--primary) 25%, transparent)",
+      borderRadius: "4px",
+    }),
+    multiValueLabel: (base) => ({
+      ...base,
+      color: "var(--text)",
+      fontWeight: 500,
+    }),
+    multiValueRemove: (base) => ({
+      ...base,
+      color: "var(--text)",
+      ":hover": {
+        backgroundColor: "color-mix(in srgb, var(--primary) 40%, transparent)",
+        color: "var(--background)",
+      },
+    }),
+    singleValue: (base) => ({
+      ...base,
+      color: "var(--text)",
+    }),
+    menu: (base) => ({
+      ...base,
+      backgroundColor: "color-mix(in srgb, var(--nav-background) 80%, transparent)",
+      border: "1px solid var(--border)",
+      borderRadius: "6px",
+      zIndex: 10,
+    }),
+    option: (base, { isFocused, isSelected }) => ({
+      ...base,
+      backgroundColor: isSelected
+        ? "color-mix(in srgb, var(--primary) 60%, transparent)"
+        : isFocused
+        ? "color-mix(in srgb, var(--primary) 20%, transparent)"
+        : "transparent",
+      color: "var(--text)",
+      cursor: "pointer",
+    }),
+    dropdownIndicator: (base, state) => ({
+      ...base,
+      color: state.isFocused ? "var(--primary)" : "var(--text)",
+      transition: "color 0.15s ease",
+      ":hover": {
+        color: "var(--primary)",
+      },
+    }),
+    input: (base) => ({
+      ...base,
+      color: "var(--text)",
+    }),
+  }}
+/>
     </div>
   );
 }
