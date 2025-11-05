@@ -68,8 +68,10 @@
     all: unset;
 
     position: relative;
-    justify-self: center;
+    justify-self: end;
     align-self: end;
+
+    grid-column: 5;
 
     background-color: var(--primary);
     width: fit-content;

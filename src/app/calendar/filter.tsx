@@ -1,6 +1,59 @@
 import styles from "./filter.module.css";
+import SelectFilter from "./selectFilter";
 
 export default function Filter() {
+  const fakultetOptions = [
+    { value: "lintek", label: "LinTek" },
+    { value: "stuff", label: "Stuff" },
+    { value: "consensus", label: "Consensus" },
+  ];
+
+  const sektionerOptions = [
+    {
+      optgroup: "LinTek",
+      items: [
+        { value: "mt", label: "Medieteknik" },
+        { value: "gdk", label: "Grafisk Design" },
+        { value: "bygg", label: "Bygg" },
+      ],
+    },
+    { optgroup: "Stuff", items: [] },
+    { optgroup: "Consensus", items: [] },
+  ];
+
+  const festeriOptions = [
+    {
+      optgroup: "LinTek",
+      items: [
+        { value: "3cant", label: "3cant" },
+        { value: "tryckbar", label: "Tryckbar" },
+        { value: "festn", label: "Fest-n" },
+      ],
+    },
+    { optgroup: "Stuff", items: [] },
+    { optgroup: "Consensus", items: [] },
+  ];
+
+  const fadderiOptions = [
+    {
+      optgroup: "LinTek",
+      items: [
+        { value: "legionen", label: "Legionen" },
+        { value: "skurkeriet", label: "Skurkeriet" },
+        { value: "kretsn", label: "Kretsn" },
+        { value: "familjen", label: "Familjen" },
+        { value: "nphadderiet", label: "N-phadderiet" },
+      ],
+    },
+    { optgroup: "Stuff", items: [] },
+    { optgroup: "Consensus", items: [] },
+  ];
+
+  const foreningOptions = [
+    { value: "stubinen", label: "Stubinen" },
+    { value: "vargtass", label: "Vargtass" },
+  ];
+
   return (
     <div className={styles["filter-container"]}>
       <div>
@@ -8,69 +61,38 @@ export default function Filter() {
         <p>Välj vilka event som ska visas i kalendern.</p>
       </div>
 
-      <form action="" className={styles["filters"]}>
-        <div className={styles["filter-group"]}>
-          <label className={styles["filter-label"]} htmlFor="fakultet">
-            Välj fakultet:
-          </label>
-          <select
-            className={styles["filter-dropdown"]}
-            name="fakultet"
-            id="fakultet"
-            multiple
-            size={1}
-          >
-            <option value="lintek">LinTek</option>
-            <option value="stuff">Stuff</option>
-            <option value="consensus">Consensus</option>
-          </select>
-        </div>
+      <form className={styles.filters}>
+        <SelectFilter
+          label="Välj fakultet:"
+          id="fakultet"
+          options={fakultetOptions}
+        />
+        <SelectFilter
+          label="Välj sektion:"
+          id="sektion"
+          options={sektionerOptions}
+        />
+        <SelectFilter
+          label="Välj festeri:"
+          id="festeri"
+          options={festeriOptions}
+        />
+        <SelectFilter
+          label="Välj phadderi:"
+          id="fadderi"
+          options={fadderiOptions}
+        />
+        <SelectFilter
+          label="Välj förening:"
+          id="forening"
+          options={foreningOptions}
+        />
 
-        <div className={styles["filter-group"]}>
-          <label className={styles["filter-label"]} htmlFor="festeri">
-            Välj Festeri:
-          </label>
-          <select
-            className={styles["filter-dropdown"]}
-            name="festeri"
-            id="festeri"
-            multiple
-            size={1}
-          >
-            <optgroup label="LinTek">
-              <option value="3cant">3cant</option>
-              <option value="tryckbar">Tryckbar</option>
-              <option value="festn">Fest-n</option>
-            </optgroup>
-            <optgroup label="Stuff"></optgroup>
-            <optgroup label="Consensus"></optgroup>
-          </select>
-        </div>
-
-        <div className={styles["filter-group"]}>
-          <label className={styles["filter-label"]} htmlFor="fadderi">
-            Välj Fadderi:
-          </label>
-          <select
-            className={styles["filter-dropdown"]}
-            name="festeri"
-            id="festeri"
-            multiple
-            size={1}
-          >
-            <optgroup label="LinTek">
-              <option value="legionen">Legionen</option>
-              <option value="skurkeriet">Skurkeriet</option>
-              <option value="kretsn">Kretsn</option>
-              <option value="familjen">Familjen</option>
-              <option value="nphadderiet">N-phadderiet</option>
-            </optgroup>
-            <optgroup label="Stuff"></optgroup>
-            <optgroup label="Consensus"></optgroup>
-          </select>
-        </div>
-
-        <input className={styles['submit-filter']} type="submit" value="Tillämpa filtrering" />
+        <input
+          className={styles["submit-filter"]}
+          type="submit"
+          value="Filtrera"
+        />
       </form>
     </div>
   );
