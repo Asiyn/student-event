@@ -1,71 +1,71 @@
 .navbar {
-    z-index: 1000;
-    position: fixed;
-    top: 2rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    justify-self: center;
+  z-index: 1000;
+  position: fixed;
+  top: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  justify-self: center;
 
-    width: 70%;
-    border-radius: 100px;
-    height: fit-content;
+  width: 70%;
+  border-radius: 100px;
+  height: fit-content;
 
-    padding: 0.75rem 3rem;
+  padding: 0.75rem 3rem;
 
-    background-color: color-mix(in srgb, var(--nav-background) 60%, transparent);
-    border: 1px solid var(--border);
+  background-color: color-mix(in srgb, var(--nav-background) 60%, transparent);
+  border: 1px solid var(--border);
 
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    background-clip: padding-box;
-    box-shadow: 0 1px 10px color-mix(in srgb, var(--border) 60%, transparent);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  background-clip: padding-box;
+  box-shadow: 0 1px 10px color-mix(in srgb, var(--border) 60%, transparent);
 }
 
 .logo {
-    position: relative;
-    width: auto;
+  position: relative;
+  width: auto;
 }
 
 .nav-img {
-    object-fit: contain;
-    height: 40px;
-    width: auto;
-    filter: hue-rotate(-139deg);
+  object-fit: contain;
+  height: 40px;
+  width: auto;
+  filter: hue-rotate(-139deg);
 }
 
 .nav-buttons-container {
-    display: flex;
-    gap: 25px;
+  display: flex;
+  gap: 25px;
 
-    width: fit-content;
+  width: fit-content;
 
-    align-items: center;
+  align-items: center;
 }
 
 .nav-link {
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1.1rem;
-    opacity: 0.5;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  opacity: 0.5;
 
-    display: inline-block;
-    position: relative;
+  display: inline-block;
+  position: relative;
 
-    transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
 }
 
 .nav-link:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 .nav-link.active {
-    color: var(--primary);
-    opacity: 0.9;
+  color: var(--primary);
+  opacity: 0.9;
 }
 
 .nav-link::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   transform: scaleX(0);
@@ -78,10 +78,10 @@
 }
 
 .nav-link.active::after {
-    background-color: var(--primary);
+  background-color: var(--primary);
 }
 
 .nav-link:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
+  transform: scaleX(1);
+  transform-origin: left;
 }

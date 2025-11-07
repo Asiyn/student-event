@@ -21,38 +21,38 @@ export default function Filter() {
     { optgroup: "Consensus", items: [] },
   ];
 
-  const festeriOptions = [
-    {
-      optgroup: "LinTek",
-      items: [
-        { value: "3cant", label: "3cant" },
-        { value: "tryckbar", label: "Tryckbar" },
-        { value: "festn", label: "Fest-n" },
-      ],
-    },
-    { optgroup: "Stuff", items: [] },
-    { optgroup: "Consensus", items: [] },
-  ];
+  // const festeriOptions = [
+  //   {
+  //     optgroup: "LinTek",
+  //     items: [
+  //       { value: "3cant", label: "3cant" },
+  //       { value: "tryckbar", label: "Tryckbar" },
+  //       { value: "festn", label: "Fest-n" },
+  //     ],
+  //   },
+  //   { optgroup: "Stuff", items: [] },
+  //   { optgroup: "Consensus", items: [] },
+  // ];
 
-  const fadderiOptions = [
-    {
-      optgroup: "LinTek",
-      items: [
-        { value: "legionen", label: "Legionen" },
-        { value: "skurkeriet", label: "Skurkeriet" },
-        { value: "kretsn", label: "Kretsn" },
-        { value: "familjen", label: "Familjen" },
-        { value: "nphadderiet", label: "N-phadderiet" },
-      ],
-    },
-    { optgroup: "Stuff", items: [] },
-    { optgroup: "Consensus", items: [] },
-  ];
+  // const fadderiOptions = [
+  //   {
+  //     optgroup: "LinTek",
+  //     items: [
+  //       { value: "legionen", label: "Legionen" },
+  //       { value: "skurkeriet", label: "Skurkeriet" },
+  //       { value: "kretsn", label: "Kretsn" },
+  //       { value: "familjen", label: "Familjen" },
+  //       { value: "nphadderiet", label: "N-phadderiet" },
+  //     ],
+  //   },
+  //   { optgroup: "Stuff", items: [] },
+  //   { optgroup: "Consensus", items: [] },
+  // ];
 
-  const foreningOptions = [
-    { value: "stubinen", label: "Stubinen" },
-    { value: "vargtass", label: "Vargtass" },
-  ];
+  // const foreningOptions = [
+  //   { value: "stubinen", label: "Stubinen" },
+  //   { value: "vargtass", label: "Vargtass" },
+  // ];
 
   return (
     <div className={styles["filter-container"]}>
@@ -71,21 +71,6 @@ export default function Filter() {
           label="Välj sektion:"
           id="sektion"
           options={sektionerOptions}
-        />
-        <SelectFilter
-          label="Välj festeri:"
-          id="festeri"
-          options={festeriOptions}
-        />
-        <SelectFilter
-          label="Välj phadderi:"
-          id="fadderi"
-          options={fadderiOptions}
-        />
-        <SelectFilter
-          label="Välj förening:"
-          id="forening"
-          options={foreningOptions}
         />
 
         <input

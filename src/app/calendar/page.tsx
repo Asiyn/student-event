@@ -16,7 +16,6 @@ import svLocale from "@fullcalendar/core/locales/sv"; // svensk kalender
 import Filter from "./filter";
 
 export default function CalendarPage() {
-  
   useEffect(() => {
     document.title = "Kalender | StudentEvent";
   }, []);
@@ -46,6 +45,11 @@ export default function CalendarPage() {
             weekNumbers={true}
             weekText="v."
             events={[
+              {
+                title: "MTEDK",
+                start: "2025-11-03T18:00:00",
+                color: "#613325ff",
+              },
               {
                 title: "Team Meeting",
                 start: "2025-11-05T10:00:00",
