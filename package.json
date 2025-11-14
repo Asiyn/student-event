@@ -24,10 +24,12 @@
     "@fullcalendar/multimonth": "6.1.19",
     "@fullcalendar/react": "^6.1.19",
     "@fullcalendar/timegrid": "6.1.19",
+    "@tailwindcss/vite": "^4.1.17",
     "next": "15.5.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "react-select": "^5.10.2"
+    "react-select": "^5.10.2",
+    "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
