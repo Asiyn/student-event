@@ -4,7 +4,6 @@ import { useEffect } from "react";
 
 import Navbar from "../components/navbar";
 import styles from "../page.module.css";
-import calStyles from "./calendar.module.css";
 
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -13,7 +12,10 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 //import { EventInput } from "@fullcalendar/core";
 import svLocale from "@fullcalendar/core/locales/sv"; // svensk kalender
+
 import Filter from "./filter";
+
+import calStyles from "./calendar.module.css";
 
 export default function CalendarPage() {
   useEffect(() => {

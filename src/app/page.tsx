@@ -3,6 +3,8 @@ import styles from "./page.module.css";
 import Navbar from "./components/navbar";
 import ActionButton from "./components/ActionButtons";
 
+import RotatingText from './components/RotatingText';
+
 export default function Home() {
   return (
     <>
@@ -11,6 +13,7 @@ export default function Home() {
     <div className={styles.page}>
       <main className={styles.main}>
         <h1>Student Event</h1>
+
         <ActionButton text="Confirm" type='confirm' />
         <ol>
           <li>

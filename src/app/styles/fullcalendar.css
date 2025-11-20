@@ -1,0 +1,176 @@
+* {
+    color: var(--back);
+}
+
+:disabled {
+    cursor: not-allowed !important;
+}
+
+.fc {
+    background-color: color-mix(in srgb, var(--nav-background) 60%, transparent);
+    border: 1px solid var(--border);
+
+    padding: 1rem;
+    border-radius: 10px;
+
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    background-clip: padding-box;
+    box-shadow: 0 1px 10px color-mix(in srgb, var(--border) 60%, transparent);
+}
+
+/* TITLE BAR*/
+.fc-toolbar-title {
+    text-transform: capitalize;
+}
+
+/* BUTTONS */
+.fc-toolbar .fc-toolbar-chunk .fc-button {
+    /*all: unset;*/
+
+    background-color: var(--primary);
+    color: var(--background);
+
+    font-weight: 600;
+    text-align: center;
+
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    border: 2px solid transparent;
+
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 50%, transparent);
+
+    transition: 0.25s all ease;
+}
+
+.fc-toolbar .fc-toolbar-chunk .fc-button:hover {
+    filter: brightness(0.9);
+
+}
+
+.fc-toolbar .fc-toolbar-chunk .fc-button.fc-button-active, .fc-toolbar .fc-toolbar-chunk .fc-button.fc-button-active:focus:hover {
+    background-color: var(--secondary);
+    color: var(--background);
+
+    font-weight: 600;
+    text-align: center;
+
+    padding: 0.6rem 1rem;
+    border: 2px solid transparent;
+
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 50%, transparent);
+
+    cursor: not-allowed
+}
+
+.fc-toolbar .fc-toolbar-chunk .fc-button[disabled],
+.fc-toolbar .fc-toolbar-chunk .fc-button:disabled {
+    transition: 0.25s all ease !important;
+    opacity: 0.5;
+}
+
+.fc-toolbar .fc-toolbar-chunk .fc-button:disabled:active {
+    transition: 0.25s all ease !important;
+    opacity: 0.4;
+}
+
+.fc-toolbar .fc-toolbar-chunk .fc-button:active {
+    opacity: 0.8;
+    color: var(--background);
+    background-color: var(--primary);
+    border: 2px solid transparent;
+}
+
+.fc-toolbar .fc-toolbar-chunk .fc-button.fc-button-active:active {
+    opacity: 0.8;
+    background-color: var(--secondary);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 50%, transparent);
+}
+
+.fc-toolbar .fc-toolbar-chunk .fc-button.fc-button-active:focus {
+    box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 50%, transparent);
+}
+
+/* DAY SPECIFIC */
+.fc .fc-day-today {
+    background-color: color-mix(in srgb, var(--secondary) 40%, transparent) !important;
+}
+
+.fc table {
+    border-radius: 6px !important;
+    border: 1px solid var(--border);
+    border-collapse: collapse;
+    background-color: color-mix(in srgb, var(--secondary) 5%, transparent) !important;
+}
+
+.fc table .fc-day {
+    border: 1px solid var(--border);
+}
+
+.fc-view {
+    border-radius: 6px !important;
+}
+
+.fc-theme-standard .fc-scrollgrid {
+  border: 1px solid var(--border) !important;
+  border-radius: 8px;
+}
+
+/* all inner cell borders (headers + day cells) */
+.fc-theme-standard .fc-scrollgrid td,
+.fc-theme-standard .fc-scrollgrid th {
+  border-left: 0px solid var(--border) !important;
+  border-right: 1px solid var(--border) !important;
+  border-bottom: none;
+  border-radius: 0px;
+}
+
+.fc-theme-standard .fc-scrollgrid td:last-child,
+.fc-theme-standard .fc-scrollgrid th:last-child {
+    border-right: 0px !important;
+    border-bottom: 0px !important;
+}
+
+/* just in case something weird on columns */
+.fc-theme-standard .fc-scrollgrid colgroup,
+.fc-theme-standard .fc-scrollgrid col {
+  border: 0 !important;
+}
+
+.fc-daygrid-week-number.fc-daygrid-week-number {
+    background-color: var(--primary);
+    color: var(--background);
+}
+
+/* PROGRAM */
+
+.fc-list {
+    background-color: color-mix(in srgb, var(--secondary) 5%, transparent) !important;
+    border-color: var(--border) !important;
+}
+
+.fc-list > * {
+    border-radius: inherit;
+}
+
+.fc-list tr {
+    color: var(--text);
+}
+
+.fc-list .fc-cell-shaded {
+    background: transparent !important;
+}
+
+tbody .fc-event:hover {
+    cursor: pointer !important;
+}
+
+:root {
+    --fc-list-event-hover-bg-color: color-mix(in srgb, var(--primary) 50%, transparent);
+    --fc-page-bg-color: color-mix(in srgb, var(--primary) 10%, transparent);
+    --fc-border-color: var(--border);
+}

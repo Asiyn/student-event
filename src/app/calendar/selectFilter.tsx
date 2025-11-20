@@ -5,7 +5,7 @@ import Select from "react-select";
 // import { useState } from "react";
 
 const customStyles = {
-  control: (base, state) => ({
+  control: (base: any, state: { isFocused: any; }) => ({
     ...base,
     backgroundColor: "color-mix(in srgb, var(--nav-background) 60%, transparent)",
     borderColor: state.isFocused ? "var(--primary)" : "var(--border)",
@@ -21,21 +21,21 @@ const customStyles = {
       borderColor: "var(--primary)",
     },
   }),
-  placeholder: (base) => ({
+  placeholder: (base: any) => ({
     ...base,
     color: "color-mix(in srgb, var(--text) 60%, transparent)",
   }),
-  multiValue: (base) => ({
+  multiValue: (base: any) => ({
     ...base,
     backgroundColor: "color-mix(in srgb, var(--primary) 25%, transparent)",
     borderRadius: "4px",
   }),
-  multiValueLabel: (base) => ({
+  multiValueLabel: (base: any) => ({
     ...base,
     color: "var(--text)",
     fontWeight: 500,
   }),
-  multiValueRemove: (base) => ({
+  multiValueRemove: (base: any) => ({
     ...base,
     color: "var(--text)",
     ":hover": {
@@ -43,18 +43,18 @@ const customStyles = {
       color: "var(--background)",
     },
   }),
-  singleValue: (base) => ({
+  singleValue: (base: any) => ({
     ...base,
     color: "var(--text)",
   }),
-  menu: (base) => ({
+  menu: (base: any) => ({
     ...base,
     backgroundColor: "color-mix(in srgb, var(--nav-background) 80%, transparent)",
     border: "1px solid var(--border)",
     borderRadius: "6px",
     zIndex: 10,
   }),
-  option: (base, { isFocused, isSelected }) => ({
+  option: (base: any, { isFocused, isSelected }: any) => ({
     ...base,
     backgroundColor: isSelected
       ? "color-mix(in srgb, var(--primary) 60%, transparent)"
@@ -64,7 +64,7 @@ const customStyles = {
     color: "var(--text)",
     cursor: "pointer",
   }),
-  dropdownIndicator: (base, state) => ({
+  dropdownIndicator: (base: any, state: { isFocused: any; }) => ({
     ...base,
     color: state.isFocused ? "var(--primary)" : "var(--text)",
     transition: "color 0.15s ease",
@@ -72,7 +72,7 @@ const customStyles = {
       color: "var(--primary)",
     },
   }),
-  input: (base) => ({
+  input: (base: any) => ({
     ...base,
     color: "var(--text)",
   }),
