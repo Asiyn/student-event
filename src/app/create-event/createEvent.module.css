@@ -1,17 +1,76 @@
 .grid {
   display: grid;
-  height: 100vh;   /* optional — fills page */
-  width: 100%;     /* optional — full width */
+  height: 80vh;
+  width: 100%;
 
-  grid-template-columns: 1fr 3fr 1fr;
-  grid-template-rows: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(11, 1fr);
 
-  padding: 0 40px; /* optional side padding */
-  padding-top: 15%;
-  padding-bottom: 10%;
+  padding: 10px 10px;
+
   box-sizing: border-box;
 }
 
-.box {
+.headFlex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bodyFlex {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  padding-right: 1%;
+}
+.bodyFlexRHS {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding-right: 1%;
+}
+.descFlex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 1%;
+}
+
+.headText {
+  border-radius: 7px;
+  border: 2px solid var(--border);
+  font-size: x-large;
+  font-weight: bold;
+  background-color: black;
+  padding: 5px;
+}
+.bodyText {
+  border-radius: 7px;
+  border: 2px solid var(--border);
+  font-size: medium;
+  background-color: black;
+  padding: 5px;
+}
+
+.container {
   border: 1px solid #ccc; /* optional — shows the grid boxes */
+  width: 90%;
+  margin-top: 20%;
+
+  position: relative;
+  justify-self: center;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  /*padding: 1rem;*/
+  border-radius: 10px;
+
+  background-color: color-mix(in srgb, var(--nav-background) 60%, transparent);
+  border: 1px solid var(--border);
+
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  background-clip: padding-box;
+  box-shadow: 0 1px 10px color-mix(in srgb, var(--border) 60%, transparent);
 }
