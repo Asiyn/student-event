@@ -1,12 +1,18 @@
 .container {
+position: fixed;
+
   margin-top: 3%;
-  width: 60%;
+  width: 100%;
+  max-width: 700px;
   position: relative;
   justify-self: center;
 
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
+
+
   border-radius: 30px;
 
   background-color: color-mix(in srgb, var(--nav-background) 60%, transparent);
@@ -15,14 +21,14 @@
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
   background-clip: padding-box;
-  box-shadow: 0 1px 10px color-mix(in srgb, var(--border) 60%, transparent);
+  box-shadow: 0 1px 5px color-mix(in srgb, var(--border) 10%, transparent);
   margin-bottom: 10%;
   animation: glowPulse 2s infinite ease-in-out;
 }
 
 .grid {
   display: grid;
-  height: 80vh;
+  height: 100%;
   width: 100%;
 
   grid-template-columns: 1fr 1fr;
@@ -39,104 +45,89 @@
   align-items: center;
   justify-content: center;
 }
+
 .bodyFlex {
   display: flex;
   align-items: center;
   justify-content: right;
-  padding-right: 2%;
-  background-color: var(--background);
+
+  padding-right: 5%;
+
+
 }
+
 .bodyFlexRHS {
   display: flex;
   align-items: center;
   justify-content: left;
-  padding-left: 2%;
-  width: 200px;
-  background-color: var(--background);
+
+  padding-left: 5%;
+  width: 100%;
+
 }
+
 .descFlex {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-right: 1%;
-  background-color: var(--background);
 }
+
+.descFlexInputText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+
 
 .headText {
   font-family: Arial, Helvetica, sans-serif;
   font-size: x-large;
   font-weight: bold;
-  border-radius: 60px;
+
+  border-radius: 15px;
+  border: 1px solid var(--border);
   background-color: var(--nav-background);
-  border: var(--border);
+
   width: 300px;
   padding: 10px;
   color: var(--text);
   text-align: center;
 }
 
+
 .bodyText {
   font-family: Arial, Helvetica, sans-serif;
-  padding: 2px 4px;
-  font-weight: 600;
+
   border-radius: 7px;
-  border: 2px solid var(--background);
   padding: 5px;
-  box-shadow:
-    0 0 10px var(--border),
-    0 0 20px var(--border),
-    0 0 40px var(--border);
+  width: 50%;
+  text-align: center;
+
+  background-color: var(--nav-background);
+  color: var(--text);
+  border: 2px solid var(--border);
+
 }
 
 .bodyTextRHS {
   font-family: Arial, Helvetica, sans-serif;
-  padding: 2px 4px;
+
   font-weight: 600;
   border-radius: 7px;
   padding: 5px;
-  color: var(--primary);
-  background: var(--gray-alpha-100);
-  border: 2px solid var(--secondary);
-  box-shadow:
-    0 0 10px var(--border),
-    0 0 20px var(--border),
-    0 0 40px var(--border);
-}
+  width: 50%;
+  text-align: center;
 
-.bodyText {
-  font-family: Arial, Helvetica, sans-serif;
-  padding: 2px 4px;
-  font-weight: 600;
-  border-radius: 7px;
-  border: 2px solid var(--border);
   background-color: var(--primary);
-  padding: 5px;
+  color: var(--text);
+  border: 2px solid var(--border);
 
   box-shadow:
     0 0 10px var(--border),
-    0 0 20px var(--border),
-    0 0 40px var(--border);
-  color: var(--text);
-}
-
-.descInputText {
-  font-family: Arial, Helvetica, sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  height: 100px;
-  width: 200px;
-  background-color: white;
-  border-radius: 5px;
-  border-style: none;
-  caret-color: blue;
-
-  box-sizing: border-box;
-  overflow-wrap: break-word;
-  resize: none;
-  outline: none;
-  border: 1px solid var(--background);
+    0 0 30px var(--border),
+    0 0 50px var(--border);
 }
 
 .textInput {
@@ -145,19 +136,73 @@
   box-sizing: border-box;
   font-size: 14px;
   border-radius: 3px;
-  border: 1px solid #cfd8dc;
-  background: white;
-  color: var(--text); /*fungerar ej pga inheritence*/
-  caret-color: blue;
 
-  overflow-wrap: break-word; /* tror något fel med rad 130 och rad 131, därför textrutorna får två stycken rader*/
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  color: black;
+  text-align: left;
+
+  overflow-wrap: break-word;
   resize: none;
 }
+.descText{
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 7px;
+  padding: 5px;
+  width: fit-content;
+  text-align: center;
+
+  background-color: var(--nav-background);
+  color: var(--text);
+  border: 2px solid var(--border);
+
+}
+
+.descInputText {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 100px;
+  width: 100%;
+  background: var(--primary);
+  border-radius: 5px;
+  text-align: left;
+  color: black;
+  outline: 2px solid var(--primary);
+
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  resize: none;
+
+  border: 1px solid var(--primary);
+}
+
+
 .textInput:focus {
   outline: none;
-  box-shadow: 0 0 0 4px rgba(107, 152, 250, 0.12);
-  border-color: inherit;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 20%, transparent);
+  border-color: var(--primary);
 }
+
+.descInputText:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 20%, transparent);
+  border-color: var(--primary);
+}
+
+.bodyFlexRHS > .bodyText {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.bodyFlexRHS > .bodyText input {
+  text-align: left;
+}
+
 
 @keyframes glowPulse {
   0% {
