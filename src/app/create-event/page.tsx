@@ -1,6 +1,8 @@
 import Navbar from "../components/navbar";
 import styles from "./createEvent.module.css";
 
+import formBuilder from "../components/formBuilder";
+
 export const metadata = {
   title: "Skapa Event | StudentEvent",
 };
@@ -9,9 +11,10 @@ export default function CreateEvent() {
   return (
     <>
       <Navbar />
-      <div className={styles.headFlex}>
-        <p className={styles.headText}>Skapa ditt event här:</p>
-      </div>
+           <div
+            className={styles.headFlex}>
+            <p className={styles.headText}>Skapa ditt event här</p>
+          </div>
       <div className={styles.container}>
         <div className={styles.grid}>
           <div
@@ -48,7 +51,7 @@ export default function CreateEvent() {
             className={styles.descFlex}
             style={{ gridRow: "6", gridColumn: "1 /span 2" }}
           >
-            <p className={styles.bodyText}>Beskrivning:</p>
+            <p className={styles.descText}>Beskrivning:</p>
           </div>
           <div
             className={styles.bodyFlex}
@@ -94,11 +97,13 @@ export default function CreateEvent() {
                 maxLength={10}
               />
             </p>
+
           </div>
           <div
             className={styles.bodyFlexRHS}
             style={{ gridRow: "3", gridColumn: "2" }}
           >
+
             <p className={styles.bodyText}>
               <textarea
                 className={styles.textInput}
@@ -106,11 +111,13 @@ export default function CreateEvent() {
                 rows={1}
               />
             </p>
+
           </div>
           <div
             className={styles.bodyFlexRHS}
             style={{ gridRow: "4", gridColumn: "2" }}
           >
+
             <p className={styles.bodyText}>
               <textarea
                 className={styles.textInput}
@@ -118,11 +125,13 @@ export default function CreateEvent() {
                 rows={1}
               />
             </p>
+
           </div>
           <div
             className={styles.bodyFlexRHS}
             style={{ gridRow: "5", gridColumn: "2" }}
           >
+
             <p className={styles.bodyText}>
               <textarea
                 className={styles.textInput}
@@ -130,11 +139,13 @@ export default function CreateEvent() {
                 rows={1}
               />
             </p>
+
           </div>
           <div
-            className={styles.descFlex}
+            className={styles.descFlexInputText}
             style={{ gridRow: "7", gridColumn: "1 /span 2" }}
           >
+
             <p className={styles.bodyText}>
               <textarea
                 className={styles.descInputText}
@@ -142,11 +153,13 @@ export default function CreateEvent() {
                 maxLength={250}
               />
             </p>
+
           </div>
           <div
             className={styles.bodyFlexRHS}
             style={{ gridRow: "8", gridColumn: "2" }}
           >
+
             <p className={styles.bodyText}>
               <textarea
                 className={styles.textInput}
@@ -154,11 +167,13 @@ export default function CreateEvent() {
                 rows={1}
               />
             </p>
+
           </div>
           <div
             className={styles.bodyFlexRHS}
             style={{ gridRow: "9", gridColumn: "2" }}
           >
+
             <p className={styles.bodyText}>
               <textarea
                 className={styles.textInput}
@@ -167,6 +182,7 @@ export default function CreateEvent() {
               />
             </p>
           </div>{" "}
+
           <div
             className={styles.bodyFlexRHS}
             style={{ gridRow: "10", gridColumn: "2" }}
@@ -178,6 +194,7 @@ export default function CreateEvent() {
                 rows={1}
               />
             </p>
+
           </div>
         </div>
       </div>
