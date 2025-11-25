@@ -6,12 +6,12 @@
 
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
 
     padding: 1rem;
     border-radius: 10px;
 
-    background-color: color-mix(in srgb, var(--nav-background) 60%, transparent);
+    background-color: var(--component-background);
     border: 1px solid var(--border);
 
     -webkit-backdrop-filter: blur(5px);
@@ -45,6 +45,8 @@
 
   padding: 0.5rem 2.2rem 0.5rem 1rem; /* right padding leaves space for icon */
   border-radius: 6px;
+
+  z-index: 1000;
 
   background-color: color-mix(in srgb, var(--nav-background) 50%, transparent);
   border: 1px solid var(--border);
@@ -91,7 +93,6 @@
   box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 50%, transparent);
 }
 
-/* 🔥 Hover and focus effects */
 .submit-filter:hover,
 .submit-filter:focus-visible {
   transform: translateY(-2px);

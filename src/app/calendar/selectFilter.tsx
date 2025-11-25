@@ -49,10 +49,17 @@ const customStyles = {
   }),
   menu: (base: any) => ({
     ...base,
-    backgroundColor: "color-mix(in srgb, var(--nav-background) 80%, transparent)",
+    backgroundColor: "color-mix(in srgb, var(--nav-background) 85%, transparent)",
     border: "1px solid var(--border)",
     borderRadius: "6px",
-    zIndex: 10,
+    zIndex: 1000,
+    backdropFilter: "blur(10px)",
+    WebkitBackdropFilter: "blur(10px)",
+  }),
+  menuList: (base: any) => ({
+    ...base,
+    zIndex: 1000,
+    backdropFilter: "blur(20px)",
   }),
   option: (base: any, { isFocused, isSelected }: any) => ({
     ...base,

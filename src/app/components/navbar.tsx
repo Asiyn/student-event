@@ -6,7 +6,7 @@ import styles from "./navbar.module.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function Navbar() {
   const pathName = usePathname();
