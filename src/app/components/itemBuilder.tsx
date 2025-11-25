@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./create-event/createEvent.module.css";
 
+<<<<<<< Updated upstream
 export default function formBuilder(row: string, label: string) {
   return (
     <div
@@ -8,6 +9,27 @@ export default function formBuilder(row: string, label: string) {
       style={{ gridRow: row, gridColumn: "1" }}
     >
       <p className={styles.bodyText}>{label}</p>
+=======
+interface ItemBuilderProps {
+  row: number;
+  rhs: boolean;
+  text: string;
+}
+
+export default function ItemBuilder(props: ItemBuilderProps) {
+  const { row, rhs, text } = props;
+  const column = rhs ? 2 : 1;
+  const style = rhs ? styles.bodyFlexRHS : styles.bodyFlex;
+  const flextype = rhs ? styles.bodyTextRHS : styles.bodyText;
+
+  return (
+    <div className={style} style={{ gridRow: row, gridColumn: column }}>
+      {rhs ? (
+        <textarea className={styles.textInput} placeholder={text} rows={1} />
+      ) : (
+        <div className={styles.bodyText}>{text}</div>
+      )}
+>>>>>>> Stashed changes
     </div>
   );
 }
