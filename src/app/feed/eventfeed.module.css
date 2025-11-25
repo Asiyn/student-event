@@ -1,16 +1,16 @@
 .feed-container {
-    width: 50%;
+    width: 70%;
     height: fit-content;
 
-    max-height: 35rem;
+    /* max-height: 35rem;
     overflow-y: scroll;
-    scrollbar-color: var(--primary) var(--component-background);
+    scrollbar-color: var(--primary) var(--component-background); */
 
     position: relative;
     justify-content: center;
     
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 2rem;
 
     padding: 2rem;
