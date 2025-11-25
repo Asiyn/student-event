@@ -11,10 +11,6 @@ export const metadata = {
 export default function CreateEvent() {
   return (
     <>
-           <div
-            className={styles.headFlex}>
-            <p className={styles.headText}>Skapa ditt event här</p>
-          </div>
       <div className={styles.headFlex}>
         <p className={styles.headText}>Skapa ditt event här</p>
       </div>
