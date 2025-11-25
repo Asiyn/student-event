@@ -1,7 +1,5 @@
 .container {
-position: fixed;
-
-  margin-top: 3%;
+  position: fixed;
   width: 100%;
   max-width: 700px;
   position: relative;
@@ -10,9 +8,7 @@ position: fixed;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-
-
-
+  margin-top: 5px;
   border-radius: 30px;
 
   background-color: color-mix(in srgb, var(--nav-background) 60%, transparent);
@@ -39,21 +35,32 @@ position: fixed;
   box-sizing: border-box;
 }
 
+.grid2 {
+  display: grid;
+  height: 100%;
+  width: 100%;
+
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  box-sizing: border-box;
+}
+
 .headFlex {
-  padding-top: 13%;
+  margin-top: 130px;
+  margin-bottom: 2%;
+  height: fit-content;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  justify-self: center;
 }
 
 .bodyFlex {
   display: flex;
   align-items: center;
   justify-content: right;
-
   padding-right: 5%;
-
-
 }
 
 .bodyFlexRHS {
@@ -63,7 +70,6 @@ position: fixed;
 
   padding-left: 5%;
   width: 100%;
-
 }
 
 .descFlex {
@@ -79,14 +85,12 @@ position: fixed;
   width: 100%;
 }
 
-
-
 .headText {
   font-family: Arial, Helvetica, sans-serif;
   font-size: x-large;
   font-weight: bold;
 
-  border-radius: 15px;
+  border-radius: 20px;
   border: 1px solid var(--border);
   background-color: var(--nav-background);
 
@@ -95,7 +99,6 @@ position: fixed;
   color: var(--text);
   text-align: center;
 }
-
 
 .bodyText {
   font-family: Arial, Helvetica, sans-serif;
@@ -108,7 +111,6 @@ position: fixed;
   background-color: var(--nav-background);
   color: var(--text);
   border: 2px solid var(--border);
-
 }
 
 .bodyTextRHS {
@@ -145,7 +147,7 @@ position: fixed;
   overflow-wrap: break-word;
   resize: none;
 }
-.descText{
+.descText {
   font-family: Arial, Helvetica, sans-serif;
   border-radius: 7px;
   padding: 5px;
@@ -155,7 +157,6 @@ position: fixed;
   background-color: var(--nav-background);
   color: var(--text);
   border: 2px solid var(--border);
-
 }
 
 .descInputText {
@@ -180,7 +181,6 @@ position: fixed;
   border: 1px solid var(--primary);
 }
 
-
 .textInput:focus {
   outline: none;
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 20%, transparent);
@@ -202,7 +202,6 @@ position: fixed;
 .bodyFlexRHS > .bodyText input {
   text-align: left;
 }
-
 
 @keyframes glowPulse {
   0% {
