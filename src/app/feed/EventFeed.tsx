@@ -3,11 +3,18 @@
 
 import { useState } from "react";
 import styles from "./eventfeed.module.css";
-
 import FeedItem, { EventFeedItem } from "./FeedItem";
 import EventModal from "./EventModal";
-
 import halloween from "@/images/halloween.jpg";
+
+const defaultEvent: EventFeedItem = {
+  host: "<missing>",
+  event: "<missing>",
+  month: "Januari",
+  day: 1,
+  img: undefined,
+  id: undefined,
+};
 
 export default function EventFeed() {
   const [selectedEvent, setSelectedEvent] = useState<EventFeedItem | null>(null);
@@ -28,7 +35,7 @@ export default function EventFeed() {
           {...mainEvent}
           onClick={() => setSelectedEvent(mainEvent)}
         />
-        <FeedItem onClick={() => setSelectedEvent({ host: "Host", event: "Event" })} />
+        <FeedItem onClick={() => setSelectedEvent({ ...defaultEvent })} />
         <FeedItem />
         <FeedItem />
         <FeedItem />

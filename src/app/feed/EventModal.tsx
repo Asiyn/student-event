@@ -31,21 +31,19 @@ export default function EventModal({ event, onClose }: EventModalProps) {
     <div className={styles.backdrop} onClick={onClose}>
       <div
         className={styles.modal}
-        onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+        onClick={(e) => e.stopPropagation()}
       >
         <button className={styles.closeButton} onClick={onClose}>
           <FontAwesomeIcon icon={faXmark} />
         </button>
 
-        <h2>{event.event}</h2>
+        <h2 className="h2">{event.event}</h2>
         <p>
-          <strong>Host:</strong> {event.host}
+          <strong>Av:</strong> {event.host}
         </p>
         <p>
-          <strong>Date:</strong> {event.day} {event.month}
+          <strong>Datum:</strong> {event.day} {event.month}
         </p>
-
-        {/* Later you can add more fields from the DB here */}
       </div>
     </div>
   );

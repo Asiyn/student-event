@@ -16,10 +16,10 @@ type FeedItemProps = EventFeedItem & {
 };
 
 export default function FeedItem({
-  month,
-  day,
-  host,
-  event,
+  month = 'Janurai',
+  day = 1,
+  host = '<missing>',
+  event = '<missing>',
   img,
   // id,
   onClick,
@@ -35,13 +35,13 @@ export default function FeedItem({
       tabIndex={0}
     >
       <div className={styles["text-container"]}>
-        <p className={styles["text-host"]}>{host ?? "Host"}</p>
-        <p className={styles["text-event"]}>{event ?? "Event"}</p>
+        <p className={styles["text-host"]}>{host ?? "<missing>"}</p>
+        <p className={styles["text-event"]}>{event ?? "<missing>"}</p>
       </div>
 
       <div className={styles["date"]}>
         <p className={styles["date-day"]}>{day ?? 1}</p>
-        <p className={styles["date-month"]}>{formatWord(month) ?? "Jan"}</p>
+        <p className={styles["date-month"]}>{formatWord(month) ?? "<>"}</p>
       </div>
 
       <Image
