@@ -1,6 +1,10 @@
 .feed-container {
     width: 50%;
-    height: 10vh;
+    height: fit-content;
+
+    max-height: 35rem;
+    overflow-y: scroll;
+    scrollbar-color: var(--primary) var(--component-background);
 
     position: relative;
     justify-content: center;
@@ -20,6 +24,8 @@
 
     background-color: var(--component-background);
 }
+
+
 
  /* width: 60%;
 

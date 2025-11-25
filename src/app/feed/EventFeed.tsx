@@ -9,6 +9,10 @@ export default function EventFeed() {
 
         <FeedItem />
         <FeedItem />
+        <FeedItem />
+        <FeedItem />
+        <FeedItem />
+        <FeedItem />
 
       </div>
     </>
