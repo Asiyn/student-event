@@ -1,6 +1,12 @@
 // EventModal.tsx
-import {EventFeedItem} from "./FeedItem";
+"use client";
+
+import { EventFeedItem } from "./FeedItem";
 import styles from "./eventmodal.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+
+import { useEffect } from "react";
 
 type EventModalProps = {
   event: EventFeedItem;
@@ -8,6 +14,19 @@ type EventModalProps = {
 };
 
 export default function EventModal({ event, onClose }: EventModalProps) {
+  useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+
+    html.classList.add("no-scroll");
+    body.classList.add("no-scroll");
+
+    return () => {
+      html.classList.remove("no-scroll");
+      body.classList.remove("no-scroll");
+    };
+  }, []);
+
   return (
     <div className={styles.backdrop} onClick={onClose}>
       <div
@@ -15,7 +34,7 @@ export default function EventModal({ event, onClose }: EventModalProps) {
         onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
       >
         <button className={styles.closeButton} onClick={onClose}>
-          ✕
+          <FontAwesomeIcon icon={faXmark} />
         </button>
 
         <h2>{event.event}</h2>

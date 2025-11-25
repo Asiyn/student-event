@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import "./styles/fullcalendar.css";
 import "./styles/globals.css";
 
-import favicon from "../images/favicon2.ico";
+import favicon from "../images/student_event_logo_2.png";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
