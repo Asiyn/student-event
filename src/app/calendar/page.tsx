@@ -24,7 +24,6 @@ export default function CalendarPage() {
 
   return (
     <>
-      <Navbar />
       <div className={styles.page}>
         <Filter />
 

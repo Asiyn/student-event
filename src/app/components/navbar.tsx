@@ -36,7 +36,7 @@ export default function Navbar() {
         <Link href="/calendar" className={getLinkClass("/calendar")}>
           Kalender
         </Link>
-        <Link href="/create-event" className={getLinkClass("/create-event")}>
+        <Link href="/create-event-2" className={getLinkClass("/create-event-2")}>
           Skapa Event
         </Link>
       </div>

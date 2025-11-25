@@ -11,11 +11,14 @@ export const metadata = {
 export default function CreateEvent() {
   return (
     <>
-      <Navbar />
            <div
             className={styles.headFlex}>
             <p className={styles.headText}>Skapa ditt event här</p>
           </div>
+      <div className={styles.headFlex}>
+        <p className={styles.headText}>Skapa ditt event här</p>
+      </div>
+      {/*kan chilla här*/}
       <div className={styles.container}>
         <div className={styles.grid}>
           <div
