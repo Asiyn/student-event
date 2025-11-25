@@ -21,7 +21,7 @@ export default function FeedItem({
   host,
   event,
   img,
-  id,
+  // id,
   onClick,
 }: FeedItemProps) {
   const formatWord = (word?: string) =>

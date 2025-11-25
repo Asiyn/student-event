@@ -1,7 +1,6 @@
 import Navbar from "../components/navbar";
 import styles from "./createEvent.module.css";
-import { ItemBuilder } from "../components/itemBuilder";
-import { truncate } from "fs";
+import ItemBuilder from "../components/itemBuilder";
 
 export const metadata = {
   title: "Skapa Event | StudentEvent",
