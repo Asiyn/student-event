@@ -5,6 +5,7 @@ import "./styles/fullcalendar.css";
 import "./styles/globals.css";
 
 import favicon from "../images/student_event_logo_2.png";
+import Navbar from "./components/navbar";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({
   return (
     <html lang="sv">
       <body>
+        <Navbar />
         {children}
       </body>
     </html>

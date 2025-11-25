@@ -10,8 +10,6 @@ import EventFeed from "./feed/EventFeed";
 export default function Home() {
   return (
     <>
-    <Navbar />
-
     <div className={`${styles.page} ${feedStyles.page}`}>
         <h1>Student Event</h1>
 
