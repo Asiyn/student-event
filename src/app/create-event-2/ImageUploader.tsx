@@ -35,7 +35,7 @@ export default function ImageUploader() {
     }
 
     if (!ALLOWED_TYPES.includes(file.type)) {
-      setError("Only JPG, PNG, WEBP and GIF are allowed.");
+      setError("Endast JPG, PNG, WEBP och GIF är tillåtna.");
       setPreview(null);
       return;
     }
