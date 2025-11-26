@@ -17,7 +17,9 @@ const defaultEvent: EventFeedItem = {
 };
 
 export default function EventFeed() {
-  const [selectedEvent, setSelectedEvent] = useState<EventFeedItem | null>(null);
+  const [selectedEvent, setSelectedEvent] = useState<EventFeedItem | null>(
+    null
+  );
 
   const mainEvent: EventFeedItem = {
     id: 1,
@@ -31,15 +33,12 @@ export default function EventFeed() {
   return (
     <>
       <div className={styles["feed-container"]}>
-        <FeedItem
-          {...mainEvent}
-          onClick={() => setSelectedEvent(mainEvent)}
-        />
+        <FeedItem {...mainEvent} onClick={() => setSelectedEvent(mainEvent)} />
         <FeedItem onClick={() => setSelectedEvent({ ...defaultEvent })} />
-        <FeedItem />
-        <FeedItem />
-        <FeedItem />
-        <FeedItem />
+        <FeedItem onClick={() => setSelectedEvent({ ...defaultEvent })} />
+        <FeedItem onClick={() => setSelectedEvent({ ...defaultEvent })} />
+        <FeedItem onClick={() => setSelectedEvent({ ...defaultEvent })} />
+        <FeedItem onClick={() => setSelectedEvent({ ...defaultEvent })} />
       </div>
 
       {selectedEvent && (

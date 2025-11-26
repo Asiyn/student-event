@@ -4,7 +4,6 @@
     gap: 2rem;
     width: 90%;
     justify-self: center;
-    align-items: center;
     position: relative;
     height: fit-content;
 }
@@ -111,6 +110,10 @@
     font-weight: 500;
 }
 
+.upload:hover {
+    text-decoration: underline;
+}
+
 .upload input[type="file"] {
   display: none;
 }
@@ -139,4 +142,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.upload-sub-container p {
+    position: absolute;
+    pointer-events: none;
 }

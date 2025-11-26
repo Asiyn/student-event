@@ -4,10 +4,11 @@ import styles from "./filter.module.css";
 import Select from "react-select";
 // import { useState } from "react";
 
-const customStyles = {
-  control: (base: any, state: { isFocused: any; }) => ({
+export const customStyles = {
+  control: (base: any, state: { isFocused: any }) => ({
     ...base,
-    backgroundColor: "color-mix(in srgb, var(--nav-background) 60%, transparent)",
+    backgroundColor:
+      "color-mix(in srgb, var(--nav-background) 60%, transparent)",
     borderColor: state.isFocused ? "var(--primary)" : "var(--border)",
     boxShadow: state.isFocused
       ? "0 0 6px color-mix(in srgb, var(--primary) 40%, transparent)"
@@ -49,7 +50,8 @@ const customStyles = {
   }),
   menu: (base: any) => ({
     ...base,
-    backgroundColor: "color-mix(in srgb, var(--nav-background) 85%, transparent)",
+    backgroundColor:
+      "color-mix(in srgb, var(--nav-background) 85%, transparent)",
     border: "1px solid var(--border)",
     borderRadius: "6px",
     zIndex: 1000,
@@ -58,6 +60,8 @@ const customStyles = {
   }),
   menuList: (base: any) => ({
     ...base,
+    maxHeight: "200px",
+    overflowY: "auto",
     zIndex: 1000,
     backdropFilter: "blur(20px)",
   }),
@@ -66,12 +70,12 @@ const customStyles = {
     backgroundColor: isSelected
       ? "color-mix(in srgb, var(--primary) 60%, transparent)"
       : isFocused
-      ? "color-mix(in srgb, var(--primary) 20%, transparent)"
-      : "transparent",
+        ? "color-mix(in srgb, var(--primary) 20%, transparent)"
+        : "transparent",
     color: "var(--text)",
     cursor: "pointer",
   }),
-  dropdownIndicator: (base: any, state: { isFocused: any; }) => ({
+  dropdownIndicator: (base: any, state: { isFocused: any }) => ({
     ...base,
     color: state.isFocused ? "var(--primary)" : "var(--text)",
     transition: "color 0.15s ease",
@@ -98,7 +102,11 @@ type SelectFilterProps = {
   options: Option[];
 };
 
-export default function SelectFilter({ label, id, options }: SelectFilterProps) {
+export default function SelectFilter({
+  label,
+  id,
+  options,
+}: SelectFilterProps) {
   const formattedOptions = options.map((opt) =>
     opt.optgroup
       ? {

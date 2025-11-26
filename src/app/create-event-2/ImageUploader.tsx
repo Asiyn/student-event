@@ -8,6 +8,8 @@ import styles from "./createevent2.module.css";
 
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
 
+const MAX_SIZE_MB = 5;
+
 export default function ImageUploader() {
   const [preview, setPreview] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -26,7 +28,12 @@ export default function ImageUploader() {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // 1) Check MIME type
+    if (file.size > MAX_SIZE_MB * 1024 * 1024) {
+      setError(`Filen är för stor! Max är ${MAX_SIZE_MB} MB.`);
+      setPreview(null);
+      return;
+    }
+
     if (!ALLOWED_TYPES.includes(file.type)) {
       setError("Only JPG, PNG, WEBP and GIF are allowed.");
       setPreview(null);
@@ -63,14 +70,14 @@ export default function ImageUploader() {
 
       {preview && (
         <>
-        <div className={styles['preview-img-wrapper']}>
-          <Image
-            src={preview}
-            alt="Preview"
-            fill
-            className={styles["preview-img"]}
-            onClick={removeImage}
-          />
+          <div className={styles["preview-img-wrapper"]}>
+            <Image
+              src={preview}
+              alt="Preview"
+              fill
+              className={styles["preview-img"]}
+              onClick={removeImage}
+            />
           </div>
         </>
       )}

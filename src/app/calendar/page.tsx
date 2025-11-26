@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 
-import Navbar from "../components/navbar";
 import styles from "../page.module.css";
 
 import FullCalendar from "@fullcalendar/react";

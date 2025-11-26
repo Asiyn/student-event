@@ -1,4 +1,3 @@
-import Navbar from "../components/navbar";
 import styles from "./createEvent.module.css";
 import FormBuilder from "../components/formBuilder";
 
