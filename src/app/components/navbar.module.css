@@ -32,7 +32,8 @@
   object-fit: contain;
   height: 40px;
   width: auto;
-  filter: hue-rotate(-139deg);
+  max-width: 20rem;
+  /* filter: hue-rotate(-139deg); */
 }
 
 .nav-buttons-container {

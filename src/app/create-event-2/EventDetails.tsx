@@ -13,7 +13,7 @@ export default function EventDetails() {
 
   return (
     <form method="POST" className={styles["form"]}>
-      <h2>Om er</h2>
+      <h2>Skapa event</h2>
 
       <CreateField
         label="Arrangör"
@@ -38,9 +38,9 @@ export default function EventDetails() {
 
       <CreateField label="Tid" name="time" inputType="time" dropdown={false} />
 
-      <CreateField label="Evenemang" name="event" inputType="text"></CreateField>
+      <CreateField label="Namn på event" name="event" inputType="text"></CreateField>
 
-      <CreateField label="Beskrivning" name="beskrivning" inputType="textarea"></CreateField>
+      {/* <CreateField label="Beskrivning" name="beskrivning" inputType="textarea"></CreateField> */}
     </form>
   );
 }

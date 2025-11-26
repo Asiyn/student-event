@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import logo from "../../images/student_event_logo_1.png";
+import logo from "../../images/LIGGANDE_LOGO.png";
 import styles from "./navbar.module.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

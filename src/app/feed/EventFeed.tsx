@@ -25,7 +25,7 @@ export default function EventFeed() {
     id: 1,
     month: "November",
     day: 1,
-    host: "3CANT",
+    host: "Hejjagheteraxeljakobssohejehej",
     event: "Halloweensittningen",
     img: halloween,
   };

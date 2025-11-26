@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Select, { SingleValue, GroupBase, OptionsOrGroups } from "react-select";
+import Select, { GroupBase, OptionsOrGroups } from "react-select";
 import { customStyles } from "../calendar/selectFilter";
 import styles from "./eventdetails.module.css";
 

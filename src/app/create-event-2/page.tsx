@@ -7,8 +7,12 @@ import styles from "./createevent2.module.css";
 
 import ImageUploader from "./ImageUploader";
 import EventDetails from "./EventDetails";
+import { useEffect } from "react";
 
 export default function CreateEventPage() {
+  useEffect(() => {
+      document.title = "Skapa Event | StudentEvent";
+    }, []);
   return (
     <>
       <div className={styles["form-container"]}>
