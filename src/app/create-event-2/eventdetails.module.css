@@ -1,47 +1,61 @@
 .form {
-    display: grid;
-    grid-template-columns: 2;
-    column-gap: 2rem;
-    row-gap: 1rem;
+  display: grid;
+  grid-template-columns: 2;
+  column-gap: 2rem;
+  row-gap: 1rem;
 }
 
 .form h2 {
-    height: fit-content;
-    width: fit-content;
-    text-wrap-mode: nowrap;
+  height: fit-content;
+  width: fit-content;
+  text-wrap-mode: nowrap;
 }
 
 /* Create Field styles */
 .field-container {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    position: relative;
-    width: 15rem;
-    height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+  width: 15rem;
+  height: fit-content;
 }
 
 .field-container label {
-    font-weight: 500;
-    font-size: 1rem;
+  font-weight: 500;
+  font-size: 1rem;
 }
 
-.field-container input {
-    all: unset;
+.field-container input,
+.field-container textarea {
+  all: unset;
 
-    border: 1px solid var(--border);
-    border-radius: 0.25rem;
-    padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  padding: 0.5rem;
 
-    color: var(--text);
-    background-color: color-mix(in srgb, var(--component-background) 50%, transparent);
+  color: var(--text);
+  background-color: color-mix(
+    in srgb,
+    var(--component-background) 50%,
+    transparent
+  );
+
+  overflow-wrap: break-word;
+
+  transition: 0.2s all ease-in-out;
 }
 
 .field-container input:focus {
-    border-color: var(--primary);
-    box-shadow: var(--box-shadow);
+  border-color: var(--primary);
+  box-shadow: var(--box-shadow);
 }
 
 .field-container input::placeholder {
-    color: color-mix(in srgb, var(--text) 60%, transparent);
+  color: color-mix(in srgb, var(--text) 60%, transparent);
+}
+
+.field-container input:hover, .field-container textarea:hover {
+  cursor: pointer;
+  border-color: var(--primary);
 }

@@ -47,7 +47,7 @@ export const fakultetDef: Option[] = [
 export const buildGroupedOptions = (
   groups: OptionGroupDef[],
   allowCustom = false,
-  customLabel = "Annan (skriv själv)…"
+  customLabel = "Annan (skriv själv)"
 ) => {
   const mapped = groups.map((g) => ({
     label: g.optgroup,

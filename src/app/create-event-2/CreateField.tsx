@@ -13,7 +13,7 @@ export type Option = {
 type EventDetailsProps = {
   label: string;
   name: string;
-  inputType?: "text" | "date" | "time" | "color";
+  inputType?: "text" | "date" | "time" | "color" | "textarea"; 
   dropdown?: boolean;
   dropdownOptions?: OptionsOrGroups<Option, GroupBase<Option>>;
   placeholder?: string;
@@ -27,25 +27,59 @@ export default function CreateField({
   dropdownOptions = [],
   placeholder,
 }: EventDetailsProps) {
-  const [selected, setSelected] = useState<SingleValue<Option>>(null);
-  const [customValue, setCustomValue] = useState("");
+  const [color, setColor] = useState("#ffffff");
 
-  const handleChange = (option: SingleValue<Option>) => {
-    setSelected(option);
-
-    // Reset custom value when switching away
-    if (option?.value !== "__custom__") {
-      setCustomValue("");
-    }
+  const onColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setColor(e.target.value);
   };
 
-  const isCustom = selected?.value === "__custom__";
+  const isColorInput = !dropdown && inputType === "color";
+  const isTextarea = !dropdown && inputType === "textarea";
 
   return (
     <div className={styles["field-container"]}>
       <label htmlFor={name}>{label}</label>
 
-      {!dropdown && (
+      {/* ---------- TEXTAREA ---------- */}
+      {isTextarea && (
+        <textarea
+          id={name}
+          name={name}
+          rows={4}
+          className={styles["textarea"]}
+          placeholder={placeholder ?? label}
+        />
+      )}
+
+      {/* ---------- COLOR PICKER ---------- */}
+      {isColorInput && (
+        <div className={styles["color-field"]}>
+          <div
+            className={styles["color-preview"]}
+            style={{ backgroundColor: color }}
+          />
+
+          <input
+            type="text"
+            className={styles["color-text"]}
+            value={color}
+            onChange={(e) => setColor(e.target.value)}
+            maxLength={7}
+          />
+
+          <input
+            type="color"
+            id={name}
+            name={name}
+            value={color}
+            onChange={onColorChange}
+            className={styles["color-hidden"]}
+          />
+        </div>
+      )}
+
+      {/* ---------- NORMAL INPUTS ---------- */}
+      {!dropdown && !isColorInput && !isTextarea && (
         <input
           type={inputType}
           id={name}
@@ -54,28 +88,15 @@ export default function CreateField({
         />
       )}
 
+      {/* ---------- DROPDOWN ---------- */}
       {dropdown && (
-        <>
-          <Select
-            inputId={name}
-            name={name}
-            options={dropdownOptions}
-            value={selected}
-            onChange={handleChange}
-            placeholder={placeholder ?? label}
-            styles={customStyles}
-          />
-
-          {isCustom && (
-            <input
-              type="text"
-              className={styles["custom-input"]}
-              placeholder="Skriv eget alternativ…"
-              value={customValue}
-              onChange={(e) => setCustomValue(e.target.value)}
-            />
-          )}
-        </>
+        <Select
+          inputId={name}
+          name={name}
+          options={dropdownOptions}
+          placeholder={placeholder ?? label}
+          styles={customStyles}
+        />
       )}
     </div>
   );
