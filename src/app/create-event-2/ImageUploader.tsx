@@ -8,7 +8,7 @@ import styles from "./createevent2.module.css";
 
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
 
-const MAX_SIZE_MB = 5;
+const MAX_SIZE_MB = 10;
 
 export default function ImageUploader() {
   const [preview, setPreview] = useState<string | null>(null);

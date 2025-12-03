@@ -1,8 +1,8 @@
 .item {
     position: relative;
-    height: 25rem;
+    /* height: 25rem; */
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 9 / 16;
 
     border-radius: var(--border-radius);
     overflow: hidden;
@@ -94,3 +94,4 @@
     font-size: 1rem;
     font-weight: 600;
 }
+

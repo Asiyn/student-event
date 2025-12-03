@@ -1,5 +1,8 @@
 export default function Loader() {
   return (
-    <span className="loader"></span>
+    <div className="loader-overlay">
+  <span className="loader"></span>
+</div>
+
   );
 }

@@ -25,7 +25,11 @@
     background-color: var(--component-background);
 }
 
-
+@media (min-width: 1600px) {
+    .feed-container {
+        width: 50%;
+    }
+}
 
  /* width: 60%;
 
