@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Select, { GroupBase, OptionsOrGroups } from "react-select";
+import CreatableSelect from "react-select/creatable";
 import { customStyles } from "../calendar/selectFilter";
 import styles from "./eventdetails.module.css";
 
