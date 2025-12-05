@@ -21,7 +21,11 @@
     --accent: #8a20f8;
     --nav-background: #010d25;
 
-    --component-background: color-mix(in srgb, var(--nav-background) 60%, transparent);
+    --component-background: color-mix(
+      in srgb,
+      var(--nav-background) 60%,
+      transparent
+    );
     --border: #1f283b;
     --box-shadow: 0 1px 10px color-mix(in srgb, var(--border) 60%, transparent);
 
@@ -43,7 +47,8 @@ body {
   /* scrollbar-gutter: stable; */
 }
 
-html.no-scroll, body.no-scroll {
+html.no-scroll,
+body.no-scroll {
   overflow: hidden;
 }
 
@@ -81,11 +86,11 @@ a {
 
 .loader-overlay {
   position: fixed;
-  inset: 0;               /* top:0; right:0; bottom:0; left:0 */
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;          /* above everything */
+  z-index: 9999; /* above everything */
   background: rgba(0, 0, 0, 0.3); /* optional dim */
 }
 
@@ -99,13 +104,12 @@ a {
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
 
-  position: fixed;        /* instead of absolute */
+  position: fixed; /* instead of absolute */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 9999;          /* on top of everything */
+  z-index: 9999; /* on top of everything */
 }
-
 
 @keyframes rotation {
   0% {
@@ -114,4 +118,8 @@ a {
   100% {
     transform: rotate(360deg);
   }
-} 
+}
+
+.required-star {
+  color: var(--accent);
+}

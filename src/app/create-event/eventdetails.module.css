@@ -1,8 +1,9 @@
 .form {
   display: grid;
-  grid-template-columns: 2;
+  grid-template-columns: 1fr 1fr;
   column-gap: 2rem;
   row-gap: 1rem;
+  height: fit-content;
 }
 
 .form h2 {
@@ -19,6 +20,7 @@
   position: relative;
   width: 15rem;
   height: fit-content;
+  width: 100%;
 }
 
 .field-container label {
@@ -42,16 +44,17 @@
   );
 
   overflow-wrap: break-word;
+  /* width: 100%; */
 
   transition: 0.2s all ease-in-out;
 }
 
-.field-container input:focus {
+.field-container input:focus, .field-container textarea:focus {
   border-color: var(--primary);
   box-shadow: var(--box-shadow);
 }
 
-.field-container input::placeholder {
+.field-container input::placeholder, .field-container textarea::placeholder {
   color: color-mix(in srgb, var(--text) 60%, transparent);
 }
 

@@ -6,6 +6,7 @@ import "./styles/globals.css";
 
 import favicon from "../images/student_event_logo_2.png";
 import Navbar from "./components/navbar";
+import Footer from "./components/footer";
 
 export const metadata: Metadata = {
   description: "Alla evenemang på ett ställe för studenter vid LiU",
@@ -32,6 +33,7 @@ export default function RootLayout({
       <body>
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

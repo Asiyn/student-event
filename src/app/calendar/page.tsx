@@ -40,29 +40,29 @@ export default function CalendarPage() {
             headerToolbar={{
               left: "prev,next today",
               center: "title",
-              right: "dayGridMonth,timeGridWeek,listWeek",
+              right: "dayGridMonth,listWeek",
             }}
             weekNumbers={true}
             weekText="v."
             events={[
               {
-                title: "MTEDK",
-                start: "2025-11-03T18:00:00",
+                title: "MT<3GDK",
+                start: "2025-12-03T18:00:00",
                 color: "#613325ff",
               },
               {
-                title: "Team Meeting",
-                start: "2025-11-05T10:00:00",
+                title: "Möte",
+                start: "2025-12-05T10:00:00",
                 color: "#00bfa5",
               },
               {
-                title: "UI Review",
-                start: "2025-11-07T14:00:00",
+                title: "Rapportskrivning",
+                start: "2025-12-07T14:00:00",
                 color: "#4fc3f7",
               },
               {
-                title: "Weekend Hackathon",
-                start: "2025-11-09",
+                title: "Centurion",
+                start: "2025-12-09",
                 end: "2025-11-10",
                 color: "#ce93d8",
               },

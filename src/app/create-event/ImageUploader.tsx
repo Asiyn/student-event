@@ -10,7 +10,11 @@ const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
 
 const MAX_SIZE_MB = 10;
 
-export default function ImageUploader() {
+type ImageUploaderProps = {
+  onFileChange?: (file: File | null) => void;
+};
+
+export default function ImageUploader({ onFileChange }: ImageUploaderProps) {
   const [preview, setPreview] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -18,6 +22,7 @@ export default function ImageUploader() {
   const removeImage = () => {
     setPreview(null);
     setError(null);
+    onFileChange?.(null);
 
     if (fileInputRef.current) {
       fileInputRef.current.value = ""; // allow selecting same file again
@@ -45,6 +50,7 @@ export default function ImageUploader() {
     // 2) Preview (optional)
     const url = URL.createObjectURL(file);
     setPreview(url);
+    onFileChange?.(file);
 
     // 3) Here you can upload `file` to your server / API / FormData
   };

@@ -1,36 +1,65 @@
-import styles from "./createEvent.module.css";
-import FormBuilder from "../components/formBuilder";
+// app/create-event-2/page.tsx
+"use client";
 
-export default function CreateEvent() {
+import styles from "./createevent2.module.css";
+import ImageUploader from "./ImageUploader";
+import EventDetails from "./EventDetails";
+import { FormEvent, useEffect, useState } from "react";
+
+export type EventFormData = {
+  sektion: string;
+  fakultet: string;
+  date: string;
+  time: string;
+  event: string;
+  // etc...
+};
+
+export default function CreateEventPage() {
+  const [imageFile, setImageFile] = useState<File | null>(null);
+
+  useEffect(() => {
+    document.title = "Skapa Event | StudentEvent";
+  }, []);
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+
+    const payload: EventFormData = {
+      sektion: String(formData.get("sektion") ?? ""),
+      fakultet: String(formData.get("fakultet") ?? ""),
+      date: String(formData.get("date") ?? ""),
+      time: String(formData.get("time") ?? ""),
+      event: String(formData.get("event") ?? ""),
+    };
+
+    console.log("Form payload", payload);
+    console.log("Image file", imageFile);
+  };
+
   return (
     <>
-      <div className={styles.headFlex}>
-        <p className={styles.headText}>Skapa ditt event här</p>
-      </div>
-      {/*kan chilla här*/}
-      <div className={styles.container}>
-        <div className={styles.grid}>
-          <FormBuilder />
-
-          <div className={styles.bodyFlexRHS} style={{ gridRow: "8", gridColumn: "2" }}>
-            <p className={styles.bodyTextRHS}>
-              <textarea className={styles.textInput} placeholder="Ladda upp omslag/affish här" rows={1} />
-            </p>
-          </div>
-
-          <div className={styles.bodyFlexRHS} style={{ gridRow: "9", gridColumn: "2" }}>
-            <p className={styles.bodyTextRHS}>
-              <textarea className={styles.textInput} placeholder="Faktultet Lintek/Stuff..." rows={1} />
-            </p>
-          </div>
-
-          <div className={styles.bodyFlexRHS} style={{ gridRow: "10", gridColumn: "2" }}>
-            <p className={styles.bodyTextRHS}>
-              <textarea className={styles.textInput} placeholder="Sektion N/MT/GDK..." rows={1} />
-            </p>
-          </div>
+      <form
+        className={styles["form-container"]}
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+      >
+        <div className={styles["upload-container"]}>
+          <ImageUploader onFileChange={setImageFile} />
         </div>
-      </div>
+
+        <div className={styles["detail-submission"]}>
+          <EventDetails />
+          <button type="submit" className={styles["submit-btn"]}>
+            Skicka in
+          </button>
+          <p className={styles["notice"]}><i><span className={"required-star"}>*</span> Obligatoriskt att fylla i</i></p>
+        </div>
+
+        {/* <div className={styles["preview"]}></div> */}
+      </form>
     </>
   );
 }

@@ -1,0 +1,16 @@
+.footer {
+    height: 5rem;
+    margin-top: 3rem;
+
+    /* background-color: var(--component-background); */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-text {
+    color: color-mix(in srgb, var(--text) 80%, transparent);
+    font-size: 0.9rem;
+    font-style: italic;
+}
