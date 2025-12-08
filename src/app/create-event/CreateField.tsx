@@ -13,14 +13,12 @@ export type Option = {
 type EventDetailsProps = {
   label: string;
   name: string;
-  inputType?: "text" | "date" | "time" | "color" | "textarea" |"url";
+  inputType?: "text" | "date" | "time" | "color" | "textarea" | "url";
   dropdown?: boolean;
   dropdownOptions?: OptionsOrGroups<Option, GroupBase<Option>>;
   placeholder?: string;
   required?: boolean;
   fullWidth?: boolean;
-  min?: string;
-  nowTime?: string;
 };
 
 const today = new Date().toISOString().split("T")[0];
@@ -62,7 +60,7 @@ export default function CreateField({
         {required && <span className={"required-star"}> *</span>}
       </label>
 
-      {/* ---------- TEXTAREA ---------- */}
+      {/* TEXTAREA */}
       {isTextarea && (
         <textarea
           id={name}
@@ -74,14 +72,13 @@ export default function CreateField({
         />
       )}
 
-      {/* ---------- COLOR PICKER ---------- */}
+      {/* COLOR PICKER */}
       {isColorInput && (
         <div className={styles["color-field"]}>
           <div
             className={styles["color-preview"]}
             style={{ backgroundColor: color }}
           />
-
           <input
             type="text"
             className={styles["color-text"]}
@@ -89,33 +86,31 @@ export default function CreateField({
             onChange={(e) => setColor(e.target.value)}
             maxLength={7}
           />
-
           <input
             type="color"
             id={name}
             name={name}
             value={color}
             onChange={onColorChange}
-            required={required} // <-- REQUIRED SUPPORT
+            required={required}
             className={styles["color-hidden"]}
           />
         </div>
       )}
 
-      {/* ---------- NORMAL INPUT ---------- */}
+      {/* VANLIGA INPUTS */}
       {!dropdown && !isColorInput && !isTextarea && (
         <input
           type={inputType}
           id={name}
           name={name}
-          required={required} // <-- REQUIRED SUPPORT
+          required={required}
           placeholder={placeholder ?? label}
           min={inputType === "date" ? today : undefined}
-          // step={inputType === "time" ? 900 : undefined}
         />
       )}
 
-      {/* ---------- DROPDOWN ---------- */}
+      {/* DROPDOWN */}
       {dropdown && (
         <>
           <Select
@@ -127,13 +122,13 @@ export default function CreateField({
             onChange={handleSelectChange}
           />
 
-          {/* If custom selected → use text input */}
+          {/* (valfri) custom text om värdet är "__custom__" */}
           {isCustom && (
             <input
               type="text"
               id={name}
               name={name}
-              required={required} // <-- REQUIRED SUPPORT
+              required={required}
               placeholder="Skriv eget namn…"
               value={customText}
               onChange={(e) => setCustomText(e.target.value)}
@@ -141,12 +136,12 @@ export default function CreateField({
             />
           )}
 
-          {/* Hidden input → required works for dropdown */}
+          {/* Hidden input så att required funkar när man väljer i Select */}
           {!isCustom && (
             <input
               type="hidden"
               name={name}
-              required={required} // <-- REQUIRED VALIDATION
+              required={required}
               value={selectedOption?.value ?? ""}
             />
           )}

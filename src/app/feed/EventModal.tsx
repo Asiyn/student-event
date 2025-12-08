@@ -1,11 +1,10 @@
 // EventModal.tsx
 "use client";
 
-import { EventFeedItem } from "./FeedItem";
+import type { EventFeedItem } from "./FeedItem";
 import styles from "./eventmodal.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-
 import { useEffect } from "react";
 
 type EventModalProps = {
@@ -29,10 +28,7 @@ export default function EventModal({ event, onClose }: EventModalProps) {
 
   return (
     <div className={styles.backdrop} onClick={onClose}>
-      <div
-        className={styles.modal}
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <button className={styles.closeButton} onClick={onClose}>
           <FontAwesomeIcon icon={faXmark} />
         </button>

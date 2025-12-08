@@ -5,7 +5,6 @@ import { useState } from "react";
 import styles from "./eventfeed.module.css";
 import FeedItem, { EventFeedItem } from "./FeedItem";
 import EventModal from "./EventModal";
-import halloween from "@/images/halloween.jpg";
 
 const defaultEvent: EventFeedItem = {
   host: "<missing>",
@@ -16,29 +15,27 @@ const defaultEvent: EventFeedItem = {
   id: undefined,
 };
 
-export default function EventFeed() {
+type EventFeedProps = {
+  items?: EventFeedItem[]; // gärna optional
+};
+
+export default function EventFeed({ items = [] }: EventFeedProps) {
   const [selectedEvent, setSelectedEvent] = useState<EventFeedItem | null>(
     null
   );
 
-  const mainEvent: EventFeedItem = {
-    id: 1,
-    month: "November",
-    day: 1,
-    host: "Hejjagheteraxeljakobssohejehej",
-    event: "Halloweensittningen",
-    img: halloween,
-  };
+  const displayItems = items.length > 0 ? items : [defaultEvent];
 
   return (
     <>
       <div className={styles["feed-container"]}>
-        <FeedItem {...mainEvent} onClick={() => setSelectedEvent(mainEvent)} />
-        <FeedItem onClick={() => setSelectedEvent({ ...defaultEvent })} />
-        <FeedItem onClick={() => setSelectedEvent({ ...defaultEvent })} />
-        <FeedItem onClick={() => setSelectedEvent({ ...defaultEvent })} />
-        <FeedItem onClick={() => setSelectedEvent({ ...defaultEvent })} />
-        <FeedItem onClick={() => setSelectedEvent({ ...defaultEvent })} />
+        {displayItems.map((item, index) => (
+          <FeedItem
+            key={item.id ?? index}
+            {...item}
+            onClick={() => setSelectedEvent(item)}
+          />
+        ))}
       </div>
 
       {selectedEvent && (

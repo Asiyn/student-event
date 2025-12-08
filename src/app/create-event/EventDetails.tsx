@@ -8,8 +8,8 @@ import {
 } from "../components/dropdownHelper";
 
 export default function EventDetails() {
-  const sektionerOptions = buildGroupedOptions(sektionerDef, true); // enable custom
-  const fakultetOptions = buildFlatOptions(fakultetDef, false); // no custom
+  const sektionerOptions = buildGroupedOptions(sektionerDef, true);
+  const fakultetOptions = buildFlatOptions(fakultetDef, false);
 
   return (
     <>
@@ -20,7 +20,7 @@ export default function EventDetails() {
           name="event"
           inputType="text"
           required
-        ></CreateField>
+        />
 
         <CreateField
           label="Arrangör"
@@ -30,21 +30,9 @@ export default function EventDetails() {
           required
         />
 
-        {/* Tid */}
+        <CreateField label="Datum" name="date" inputType="date" required />
 
-        <CreateField
-          label="Datum"
-          name="date"
-          inputType="date"
-          required
-        />
-
-        {/* Plats */}
-        <CreateField
-          label="Plats"
-          name="place"
-          inputType="text"
-        />
+        <CreateField label="Plats" name="place" inputType="text" />
 
         <CreateField
           label="Starttid"
@@ -55,14 +43,12 @@ export default function EventDetails() {
 
         <CreateField label="Sluttid" name="endTime" inputType="time" required />
 
-        {/*  */}
-
         <CreateField
           label="Beskrivning"
           name="beskrivning"
           inputType="textarea"
           fullWidth={true}
-        ></CreateField>
+        />
 
         <CreateField
           label="Fakultet"
