@@ -1,5 +1,5 @@
 import Image, { StaticImageData } from "next/image";
-import placeholderImg from "../../images/halloween.jpg";
+import placeholderImg from "../../images/img_err.png";
 import styles from "./feeditem.module.css";
 
 export type EventFeedItem = {
