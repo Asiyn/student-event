@@ -18,6 +18,7 @@ interface ItemBuilderProps {
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 export default function ItemBuilder(props: ItemBuilderProps) {
   const { row, rhs, text } = props;
   const column = rhs ? 2 : 1;
@@ -43,6 +44,16 @@ export default function ItemBuilder({
   const column = rhs ? 2 : 1;
   const style = rhs ? styles.bodyFlexRHS : styles.bodyFlex;
 >>>>>>> Stashed changes
+=======
+export default function ItemBuilder({
+  row,
+  rhs,
+  text,
+  placeholder,
+}: ItemBuilderProps) {
+  const column = rhs ? 2 : 1;
+  const style = rhs ? styles.bodyFlexRHS : styles.bodyFlex;
+>>>>>>> Stashed changes
   const inner = rhs ? styles.bodyTextRHS : styles.bodyText;
 >>>>>>> Stashed changes
   return (
@@ -58,8 +69,11 @@ export default function ItemBuilder({
 <<<<<<< Updated upstream
 }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 }
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
