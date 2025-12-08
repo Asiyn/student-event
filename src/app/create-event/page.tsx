@@ -346,6 +346,9 @@ export default function CreateEventPage() {
         </button>
       </div>
     </form>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   );
 }
