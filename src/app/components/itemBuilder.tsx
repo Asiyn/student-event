@@ -16,12 +16,24 @@ interface ItemBuilderProps {
   text: string;
 }
 
+<<<<<<< Updated upstream
 export default function ItemBuilder(props: ItemBuilderProps) {
   const { row, rhs, text } = props;
   const column = rhs ? 2 : 1;
   const style = rhs ? styles.bodyFlexRHS : styles.bodyFlex;
   const flextype = rhs ? styles.bodyTextRHS : styles.bodyText;
 
+=======
+export default function ItemBuilder({
+  row,
+  rhs,
+  text,
+  placeholder,
+}: ItemBuilderProps) {
+  const column = rhs ? 2 : 1;
+  const style = rhs ? styles.bodyFlexRHS : styles.bodyFlex;
+  const inner = rhs ? styles.bodyTextRHS : styles.bodyText;
+>>>>>>> Stashed changes
   return (
     <div className={style} style={{ gridRow: row, gridColumn: column }}>
       {rhs ? (
@@ -32,4 +44,8 @@ export default function ItemBuilder(props: ItemBuilderProps) {
 >>>>>>> Stashed changes
     </div>
   );
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes
