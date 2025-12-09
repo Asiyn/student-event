@@ -7,11 +7,10 @@ import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
 import styles from "./createevent2.module.css";
 
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
-
 const MAX_SIZE_MB = 10;
 
 type ImageUploaderProps = {
-  onFileChange?: (file: File | null) => void;
+  onFileChange?: (file: File | null, dataUrl: string | null) => void;
 };
 
 export default function ImageUploader({ onFileChange }: ImageUploaderProps) {
@@ -22,10 +21,10 @@ export default function ImageUploader({ onFileChange }: ImageUploaderProps) {
   const removeImage = () => {
     setPreview(null);
     setError(null);
-    onFileChange?.(null);
+    onFileChange?.(null, null);
 
     if (fileInputRef.current) {
-      fileInputRef.current.value = ""; // allow selecting same file again
+      fileInputRef.current.value = "";
     }
   };
 
@@ -36,23 +35,27 @@ export default function ImageUploader({ onFileChange }: ImageUploaderProps) {
     if (file.size > MAX_SIZE_MB * 1024 * 1024) {
       setError(`Filen är för stor! Max är ${MAX_SIZE_MB} MB.`);
       setPreview(null);
+      onFileChange?.(null, null);
       return;
     }
 
     if (!ALLOWED_TYPES.includes(file.type)) {
       setError("Endast JPG, PNG, WEBP och GIF är tillåtna.");
       setPreview(null);
+      onFileChange?.(null, null);
       return;
     }
 
     setError(null);
 
-    // 2) Preview (optional)
-    const url = URL.createObjectURL(file);
-    setPreview(url);
-    onFileChange?.(file);
-
-    // 3) Here you can upload `file` to your server / API / FormData
+    // Läs in som data-URL (kan sparas i storage + användas som <Image src>)
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const result = reader.result as string;
+      setPreview(result);
+      onFileChange?.(file, result);
+    };
+    reader.readAsDataURL(file);
   };
 
   return (
@@ -68,6 +71,7 @@ export default function ImageUploader({ onFileChange }: ImageUploaderProps) {
           Ladda upp bild
           <input
             type="file"
+            ref={fileInputRef}
             accept=".jpg,.jpeg,.png,.webp,.gif,image/jpeg,image/png,image/webp,image/gif"
             onChange={handleFileChange}
           />
@@ -75,17 +79,15 @@ export default function ImageUploader({ onFileChange }: ImageUploaderProps) {
       )}
 
       {preview && (
-        <>
-          <div className={styles["preview-img-wrapper"]}>
-            <Image
-              src={preview}
-              alt="Preview"
-              fill
-              className={styles["preview-img"]}
-              onClick={removeImage}
-            />
-          </div>
-        </>
+        <div className={styles["preview-img-wrapper"]}>
+          <Image
+            src={preview}
+            alt="Preview"
+            fill
+            className={styles["preview-img"]}
+            onClick={removeImage}
+          />
+        </div>
       )}
     </div>
   );

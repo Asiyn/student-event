@@ -1,3 +1,4 @@
+// EventDetails.tsx
 import CreateField from "./CreateField";
 import styles from "./eventdetails.module.css";
 import {
@@ -15,48 +16,28 @@ export default function EventDetails() {
     <>
       <h2>Skapa event</h2>
       <div className={styles["form"]}>
-        <CreateField
-          label="Namn på event"
-          name="event"
-          inputType="text"
-          required
-        />
-
+        <CreateField label="Namn på event" name="event" inputType="text" />
         <CreateField
           label="Arrangör"
           name="arrangor"
-          dropdown={true}
+          dropdown
           dropdownOptions={sektionerOptions}
-          required
         />
-
-        <CreateField label="Datum" name="date" inputType="date" required />
-
+        <CreateField label="Datum" name="date" inputType="date" />
         <CreateField label="Plats" name="place" inputType="text" />
-
-        <CreateField
-          label="Starttid"
-          name="startTime"
-          inputType="time"
-          required
-        />
-
-        <CreateField label="Sluttid" name="endTime" inputType="time" required />
-
+        <CreateField label="Starttid" name="startTime" inputType="time" />
+        <CreateField label="Sluttid" name="endTime" inputType="time" />
         <CreateField
           label="Beskrivning"
           name="beskrivning"
           inputType="textarea"
-          fullWidth={true}
         />
-
         <CreateField
           label="Fakultet"
           name="fakultet"
-          dropdown={true}
+          dropdown
           dropdownOptions={fakultetOptions}
         />
-
         <CreateField
           label="Länk till arrangörens sida"
           name="organizerURL"

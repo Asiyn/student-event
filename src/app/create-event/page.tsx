@@ -8,41 +8,22 @@ import { FormEvent, useEffect, useState } from "react";
 import EventFeed from "../feed/EventFeed";
 import type { EventFeedItem } from "../feed/FeedItem";
 
-export type EventFormData = {
-  event: string;
-  arrangor: string;
-  date: string;
-  place: string;
-  startTime: string;
-  endTime: string;
-  fakultet: string;
-  beskrivning: string;
-  organizerURL: string;
-};
-
-const STORAGE_KEY = "studentevent-events";
+import type { EventFormData } from "../lib/eventTypes";
+import { saveEvent, loadEvents } from "../lib/eventStorage";
 
 export default function CreateEventPage() {
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imageData, setImageData] = useState<string | null>(null);
   const [events, setEvents] = useState<EventFormData[]>([]);
 
   useEffect(() => {
     document.title = "Skapa Event | StudentEvent";
   }, []);
 
-  // 🔹 Läs in tidigare sparade event från localStorage när sidan öppnas
+  // 🔹 Läs in tidigare sparade event via helpern när sidan öppnas
   useEffect(() => {
-    try {
-      const raw =
-        typeof window !== "undefined"
-          ? localStorage.getItem(STORAGE_KEY)
-          : null;
-      if (!raw) return;
-      const saved = JSON.parse(raw) as EventFormData[];
-      setEvents(saved);
-    } catch (err) {
-      console.error("Kunde inte läsa events från localStorage", err);
-    }
+    const saved = loadEvents();
+    setEvents(saved);
   }, []);
 
   useEffect(() => {
@@ -65,6 +46,7 @@ export default function CreateEventPage() {
       fakultet: String(formData.get("fakultet") ?? ""),
       beskrivning: String(formData.get("beskrivning") ?? ""),
       organizerURL: String(formData.get("organizerURL") ?? ""),
+      imageData: imageData ?? null,
     };
 
     // 1) uppdatera lokalt state (preview-kolumnen)
@@ -74,21 +56,15 @@ export default function CreateEventPage() {
       return updated;
     });
 
-    // 2) skriv till localStorage så feed-sidan kan läsa samma lista
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      const previous = raw ? (JSON.parse(raw) as EventFormData[]) : [];
-      const updated = [...previous, payload];
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
-      console.log("Sparade i localStorage:", updated);
-    } catch (err) {
-      console.error("Kunde inte spara event i localStorage", err);
-    }
+    // 2) spara via helpern (sessionStorage)
+    saveEvent(payload);
 
     console.log("Form payload (enstaka event):", payload);
     console.log("Image file:", imageFile);
 
     e.currentTarget.reset();
+    setImageFile(null);
+    setImageData(null);
   };
 
   // Bygg items till preview-feeden till höger
@@ -124,7 +100,7 @@ export default function CreateEventPage() {
       event: ev.event || "<missing>",
       month,
       day,
-      img: undefined,
+      img: ev.imageData ?? undefined,
     };
   });
 
@@ -135,9 +111,13 @@ export default function CreateEventPage() {
       encType="multipart/form-data"
     >
       <div className={styles["upload-container"]}>
-        <ImageUploader onFileChange={setImageFile} />
+        <ImageUploader
+          onFileChange={(file, dataUrl) => {
+            setImageFile(file);
+            setImageData(dataUrl);
+          }}
+        />
       </div>
-
       <div className={styles["detail-submission"]}>
         <EventDetails />
         <p className={styles["notice"]}>
