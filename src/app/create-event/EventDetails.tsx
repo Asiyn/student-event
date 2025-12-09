@@ -16,17 +16,18 @@ export default function EventDetails() {
     <>
       <h2>Skapa event</h2>
       <div className={styles["form"]}>
-        <CreateField label="Namn på event" name="event" inputType="text" />
+        <CreateField label="Namn på event" name="event" inputType="text" required />
         <CreateField
           label="Arrangör"
           name="arrangor"
           dropdown
           dropdownOptions={sektionerOptions}
+          required
         />
-        <CreateField label="Datum" name="date" inputType="date" />
+        <CreateField label="Datum" name="date" inputType="date" required />
         <CreateField label="Plats" name="place" inputType="text" />
-        <CreateField label="Starttid" name="startTime" inputType="time" />
-        <CreateField label="Sluttid" name="endTime" inputType="time" />
+        <CreateField label="Starttid" name="startTime" inputType="time" required />
+        <CreateField label="Sluttid" name="endTime" inputType="time" required />
         <CreateField
           label="Beskrivning"
           name="beskrivning"

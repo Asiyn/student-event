@@ -26,7 +26,7 @@ export default function CalendarPage() {
     document.title = "Kalender | StudentEvent";
   }, []);
 
-  // 🔹 Läs in event från storage när kalendersidan laddas
+  // Läs in event från storage när kalendersidan laddas
   useEffect(() => {
     const saved: EventFormData[] = loadEvents();
     console.log("Läste events till kalendern:", saved);
