@@ -25,12 +25,11 @@ type EventFormData = {
 export default function Home() {
   const [items, setItems] = useState<EventFeedItem[]>([]);
 
-  // sätt bara titel
   useEffect(() => {
     document.title = "StudentEvent";
   }, []);
 
-  // 🔹 läs in events från localStorage när startsidan laddas
+  // läs in events från localStorage när startsidan laddas
   useEffect(() => {
     try {
       if (typeof window === "undefined") return;

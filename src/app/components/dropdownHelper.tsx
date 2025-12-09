@@ -1,5 +1,3 @@
-// src/helpers/dropdownHelpers.ts
-
 export type Option = {
   value: string;
   label: string;
