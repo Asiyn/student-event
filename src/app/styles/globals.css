@@ -90,8 +90,8 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999; /* above everything */
-  background: rgba(0, 0, 0, 0.3); /* optional dim */
+  z-index: 999; /* above everything */
+  background: var(--background); /* optional dim */
 }
 
 .loader {
@@ -108,7 +108,7 @@ a {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 9999; /* on top of everything */
+  z-index: 999; /* on top of everything */
 }
 
 @keyframes rotation {
