@@ -11,6 +11,8 @@ const defaultEvent: EventFeedItem = {
   event: "<missing>",
   month: "Januari",
   day: 1,
+  startTime: "00:00",
+  endTime: "01:00",
   img: undefined,
   id: undefined,
 };

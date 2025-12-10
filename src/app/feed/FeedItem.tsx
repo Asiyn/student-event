@@ -5,8 +5,14 @@ import styles from "./feeditem.module.css";
 export type EventFeedItem = {
   month?: string;
   day?: number;
+  year?: number;
+  startTime?: string;
+  endTime?: string;
   host?: string;
   event?: string;
+  beskrivning?: string;
+  organizerURL?: string;
+  place?: string;
   img?: string | StaticImageData;
   id?: number;
 };

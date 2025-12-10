@@ -5,8 +5,6 @@ import styles from "./createevent2.module.css";
 import ImageUploader from "./ImageUploader";
 import EventDetails from "./EventDetails";
 import { FormEvent, useEffect, useState } from "react";
-import EventFeed from "../feed/EventFeed";
-import type { EventFeedItem } from "../feed/FeedItem";
 
 import type { EventFormData } from "../lib/eventTypes";
 import { saveEvent, loadEvents } from "../lib/eventStorage";
@@ -67,43 +65,6 @@ export default function CreateEventPage() {
     setImageData(null);
   };
 
-  // Bygg items till preview-feeden till höger
-  const feedItems: EventFeedItem[] = events.map((ev, index) => {
-    let month = "Okänd";
-    let day = 1;
-
-    if (ev.date) {
-      const parsed = new Date(ev.date);
-      if (!Number.isNaN(parsed.getTime())) {
-        const months = [
-          "Januari",
-          "Februari",
-          "Mars",
-          "April",
-          "Maj",
-          "Juni",
-          "Juli",
-          "Augusti",
-          "September",
-          "Oktober",
-          "November",
-          "December",
-        ];
-        month = months[parsed.getMonth()];
-        day = parsed.getDate();
-      }
-    }
-
-    return {
-      id: index,
-      host: ev.arrangor || "<missing>",
-      event: ev.event || "<missing>",
-      month,
-      day,
-      img: ev.imageData ?? undefined,
-    };
-  });
-
   return (
     <form
       className={styles["form-container"]}
@@ -122,8 +83,8 @@ export default function CreateEventPage() {
         <EventDetails />
         <p className={styles["notice"]}>
           <i>
-            <span className={"required-star"}>*</span> Obligatoriskt att fylla
-            dessa fält i
+            <span className={"required-star"}>*</span> Obligatoriskt att fylla i
+            dessa fält
           </i>
         </p>
         <button type="submit" className={styles["submit-btn"]}>
@@ -131,9 +92,9 @@ export default function CreateEventPage() {
         </button>
       </div>
 
-      <div className={styles["preview"]}>
+      {/* <div className={styles["preview"]}>
         <EventFeed items={feedItems} />
-      </div>
+      </div> */}
     </form>
   );
 }
