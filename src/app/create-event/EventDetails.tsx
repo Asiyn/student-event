@@ -7,10 +7,23 @@ import {
   sektionerDef,
   fakultetDef,
 } from "../components/dropdownHelper";
+import { useEffect, useState } from "react";
 
-export default function EventDetails() {
+type Props = {
+  resetKey?: number;
+}
+
+export default function EventDetails({ resetKey }: Props) {
   const sektionerOptions = buildGroupedOptions(sektionerDef, true);
   const fakultetOptions = buildFlatOptions(fakultetDef, false);
+
+  const [arrangor, setArrangor] = useState("");
+  const [fakultet, setFakultet] = useState("");
+
+  useEffect(() => {
+    setArrangor("");
+    setFakultet("");
+  }, [resetKey]);
 
   return (
     <>

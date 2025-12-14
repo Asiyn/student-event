@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, ChangeEvent, useRef } from "react";
+import { useState, ChangeEvent, useRef, useEffect } from "react";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
@@ -11,9 +11,10 @@ const MAX_SIZE_MB = 10;
 
 type ImageUploaderProps = {
   onFileChange?: (file: File | null, dataUrl: string | null) => void;
+  resetKey?: number;
 };
 
-export default function ImageUploader({ onFileChange }: ImageUploaderProps) {
+export default function ImageUploader({ onFileChange, resetKey}: ImageUploaderProps) {
   const [preview, setPreview] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -27,6 +28,13 @@ export default function ImageUploader({ onFileChange }: ImageUploaderProps) {
       fileInputRef.current.value = "";
     }
   };
+
+  useEffect(() => {
+    setPreview(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  }, [resetKey]);
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

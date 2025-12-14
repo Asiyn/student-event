@@ -33,7 +33,7 @@
   all: unset;
 
   border: 1px solid var(--border);
-  border-radius: 0.25rem;
+  border-radius: 6px;
   padding: 0.5rem;
 
   color: var(--text);

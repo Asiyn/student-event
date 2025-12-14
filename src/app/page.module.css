@@ -16,9 +16,3 @@ a.secondary {
   border-color: var(--gray-alpha-200);
   min-width: 158px;
 }
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
-}

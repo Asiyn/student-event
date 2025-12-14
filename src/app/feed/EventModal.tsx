@@ -60,7 +60,7 @@ export default function EventModal({ event, onClose }: EventModalProps) {
             </h3>
             <p>
               <FontAwesomeIcon icon={faCalendar} /> {event.day} {event.month}{" "}
-              {event.year ?? "nigg"}
+              {event.year ?? "2025"}
             </p>
 
             <p>
@@ -75,7 +75,7 @@ export default function EventModal({ event, onClose }: EventModalProps) {
             )}
 
             {event.beskrivning && (
-              <div>
+              <div className={styles['beskrivning']}>
                 <h4>Om eventet</h4>
                 <p>{event.beskrivning}</p>
               </div>
@@ -90,7 +90,8 @@ export default function EventModal({ event, onClose }: EventModalProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {event.organizerURL}
+                    {/* {event.organizerURL} */}
+                    Länk till {event.host}'s sida
                   </a>
                 </p>
               </div>
