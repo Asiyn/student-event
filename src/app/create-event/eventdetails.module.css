@@ -49,16 +49,27 @@
   transition: 0.2s all ease-in-out;
 }
 
-.field-container input:focus, .field-container textarea:focus {
+.field-container input:focus,
+.field-container textarea:focus {
   border-color: var(--primary);
   box-shadow: var(--box-shadow);
 }
 
-.field-container input::placeholder, .field-container textarea::placeholder {
+.field-container input::placeholder,
+.field-container textarea::placeholder {
   color: color-mix(in srgb, var(--text) 60%, transparent);
 }
 
-.field-container input:hover, .field-container textarea:hover {
+.field-container input:hover,
+.field-container textarea:hover {
   cursor: pointer;
   border-color: var(--primary);
+}
+.notice {
+  color: color-mix(in srgb, var(--text) 60%, transparent);
+  font-size: 1rem;
+  font-weight: bold;
+  display: flex;
+  align-self: flex-start;
+  justify-content: right;
 }

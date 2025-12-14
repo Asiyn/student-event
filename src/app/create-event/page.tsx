@@ -101,72 +101,66 @@ export default function CreateEventPage() {
     setShowConfirm(true);
   };
 
-  return (<>
-    <form
-      className={styles["form-container"]}
-      onSubmit={handleSubmit}
-      encType="multipart/form-data"
-      ref={formRef}
-    >
-      <div className={styles["upload-container"]}>
-        <ImageUploader
-          resetKey={resetKey}
-          onFileChange={(file, dataUrl) => {
-            setImageFile(file);
-            setImageData(dataUrl);
+  return (
+    <>
+      <form
+        className={styles["form-container"]}
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+        ref={formRef}
+      >
+        <div className={styles["upload-container"]}>
+          <ImageUploader
+            resetKey={resetKey}
+            onFileChange={(file, dataUrl) => {
+              setImageFile(file);
+              setImageData(dataUrl);
+            }}
+          />
+        </div>
+        <div className={styles["detail-submission"]}>
+          <EventDetails resetKey={resetKey} />
+          {/* <p className={styles["notice"]}>
+            <i>
+              <span className={"required-star"}>*</span> Obligatoriskt att fylla
+              i dessa fält
+            </i>
+          </p> */}
+          <button type="submit" className={styles["submit-btn"]}>
+            Skapa Event
+          </button>
+        </div>
+      </form>
+
+      {showConfirm && pendingEvent && (
+        <ConfirmCreationModal
+          onClose={() => setShowSuccess(false)}
+          onCancel={() => {
+            setShowConfirm(false);
+            setPendingEvent(null);
+          }}
+          onConfirm={() => {
+            if (!pendingEvent) return;
+
+            // spara
+            setEvents((prev) => [...prev, pendingEvent]);
+            saveEvent(pendingEvent);
+
+            // rensa form
+            formRef.current?.reset();
+            setImageFile(null);
+            setImageData(null);
+
+            // success
+            setCreatedEvent(pendingEvent);
+            setPendingEvent(null);
+            setShowConfirm(false);
+            setShowSuccess(true);
           }}
         />
-      </div>
-      <div className={styles["detail-submission"]}>
-        <EventDetails resetKey={resetKey} />
-        <p className={styles["notice"]}>
-          <i>
-            <span className={"required-star"}>*</span> Obligatoriskt att fylla i
-            dessa fält
-          </i>
-        </p>
-        <button type="submit" className={styles["submit-btn"]}>
-          Skapa Event
-        </button>
-      </div>
+      )}
 
-    </form>
-
-    {showConfirm && pendingEvent && (
-      <ConfirmCreationModal
-        onClose={() => setShowSuccess(false)}
-        onCancel={() => {
-          setShowConfirm(false);
-          setPendingEvent(null);
-        }}
-        onConfirm={() => {
-          if (!pendingEvent) return;
-
-          // spara
-          setEvents((prev) => [...prev, pendingEvent]);
-          saveEvent(pendingEvent);
-
-          // rensa form
-          formRef.current?.reset();
-          setImageFile(null);
-          setImageData(null);
-
-          // success
-          setCreatedEvent(pendingEvent);
-          setPendingEvent(null);
-          setShowConfirm(false);
-          setShowSuccess(true);
-        }}
-      />
-    )}
-
-
-    {showSuccess && (
-      <SuccessModal
-        onClose={() => setShowSuccess(false)}
-      />
-    )}
-
-  </>
+      {showSuccess && <SuccessModal onClose={() => setShowSuccess(false)} />}
+    </>
   );
 }

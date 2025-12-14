@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 
 type Props = {
   resetKey?: number;
-}
+};
 
 export default function EventDetails({ resetKey }: Props) {
   const sektionerOptions = buildGroupedOptions(sektionerDef, true);
@@ -28,8 +28,19 @@ export default function EventDetails({ resetKey }: Props) {
   return (
     <>
       <h2>Skapa event</h2>
+      <p className={styles["notice"]}>
+        <i>
+          <span className={"required-star"}>*</span> Obligatoriskt att fylla i
+          dessa fält
+        </i>
+      </p>
       <div className={styles["form"]}>
-        <CreateField label="Namn på event" name="event" inputType="text" required />
+        <CreateField
+          label="Namn på event"
+          name="event"
+          inputType="text"
+          required
+        />
         <CreateField
           label="Arrangör"
           name="arrangor"
@@ -39,7 +50,12 @@ export default function EventDetails({ resetKey }: Props) {
         />
         <CreateField label="Datum" name="date" inputType="date" required />
         <CreateField label="Plats" name="place" inputType="text" />
-        <CreateField label="Starttid" name="startTime" inputType="time" required />
+        <CreateField
+          label="Starttid"
+          name="startTime"
+          inputType="time"
+          required
+        />
         <CreateField label="Sluttid" name="endTime" inputType="time" required />
         <CreateField
           label="Beskrivning"
