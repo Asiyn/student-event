@@ -26,7 +26,7 @@ export default function CreateEventSuccessModal({
         <h2>🎉 Event skapat!</h2>
 
         <div className={styles.actions}>
-          <button className={styles['avbryt']} onClick={onClose}>Stäng</button>
+          <button className={styles['skapa']} onClick={onClose}>Stäng</button>
         </div>
       </div>
     </div>

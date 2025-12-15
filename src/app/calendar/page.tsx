@@ -23,22 +23,7 @@ import type { EventClickArg } from "@fullcalendar/core"; // klicka event
 import EventModal from "../feed/EventModal";
 import { EventFeedItem } from "../feed/FeedItem";
 
-
-
-function mapFormDataToFeedItem(ev: EventFormData): EventFeedItem {
-  const date = new Date(ev.date);
-
-  return {
-    id: ev.id,
-    event: ev.event,
-    host: ev.arrangor || "<okänd arrangör>",
-    month: date.toLocaleString("sv-SE", { month: "long" }),
-    day: date.getDate(),
-    startTime: ev.startTime || "",
-    endTime: ev.endTime || "",
-    img: ev.imageData ?? undefined,
-  };
-}
+import { formToFeed } from "../lib/mappers";
 
 export default function CalendarPage() {
   const [calendarEvents, setCalendarEvents] = useState<EventInput[]>([]);
@@ -72,11 +57,7 @@ export default function CalendarPage() {
       }
 
       // Enkel färg baserat på fakultet (valfritt)
-      let color = ev.color || "#000000"; // default
-      const fak = ev.fakultet?.toLowerCase() ?? "";
-      if (fak.includes("lintek")) color = "#00bfa5";
-      if (fak.includes("stuff")) color = "#4fc3f7";
-      if (fak.includes("consensus")) color = "#ce93d8";
+      const color = ev.color || "#000000"; // default
 
       return {
         id: String(index),
@@ -113,28 +94,26 @@ export default function CalendarPage() {
 
   // hantera klick
   const handleEventClick = (arg: EventClickArg) => {
-    const { event } = arg;
+  const e = arg.event;
 
-    const data: EventFormData = {
-      event: event.title,
-      arrangor: event.extendedProps.arrangor,
-      date: event.startStr.split("T")[0],
-      startTime: event.startStr.split("T")[1]?.slice(0, 5) ?? "",
-      endTime: event.endStr?.split("T")[1]?.slice(0, 5) ?? "",
-      place: event.extendedProps.place,
-      beskrivning: event.extendedProps.beskrivning,
-      organizerURL: event.extendedProps.organizerURL,
-      imageData: event.extendedProps.imageData,
-      fakultet: event.extendedProps.fakultet,
-      color: event.backgroundColor ?? null,
-      id: undefined,
-    };
-
-    console.log("CLICKED EVENT");
-
-    setSelectedEvent(mapFormDataToFeedItem(data));
-    setShowEventModal(true);
+  const formData: EventFormData = {
+    event: e.title,
+    arrangor: e.extendedProps.arrangor,
+    date: e.startStr.split("T")[0],
+    startTime: e.startStr.split("T")[1]?.slice(0, 5) ?? "",
+    endTime: e.endStr?.split("T")[1]?.slice(0, 5) ?? "",
+    place: e.extendedProps.place,
+    beskrivning: e.extendedProps.beskrivning,
+    organizerURL: e.extendedProps.organizerURL,
+    imageData: e.extendedProps.imageData,
+    fakultet: e.extendedProps.fakultet,
+    color: e.backgroundColor ?? null,
+    id: undefined
   };
+
+  setSelectedEvent(formToFeed(formData));
+  setShowEventModal(true);
+};
 
   return (
     <>

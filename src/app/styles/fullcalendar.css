@@ -202,13 +202,6 @@
 
 /**/
 
-/* tbody {
-    height: fit-content;
-}
-table {
-    height: fit-content;
-} */
-
 .fc-daygrid-day-frame {
   height: 8rem;
   overflow: hidden;
@@ -262,6 +255,8 @@ table {
   min-width: 0;
 
   transition: box-shadow 0.2s ease;
+
+  margin-bottom: 5px;
 }
 
 .fc-event div:first-child {
