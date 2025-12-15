@@ -1,4 +1,3 @@
-// app/page.tsx
 "use client";
 
 import styles from "./page.module.css";
@@ -7,7 +6,7 @@ import EventFeed from "./feed/EventFeed";
 import type { EventFeedItem } from "./feed/FeedItem";
 import { useEffect, useState } from "react";
 
-import { DEFAULT_EVENTS, type EventFormData } from "./lib/eventTypes";
+import type { EventFormData } from "./lib/eventTypes";
 import { loadEvents } from "./lib/eventStorage";
 
 const MONTHS = [
@@ -33,14 +32,10 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    // 1) Läs sparade events från sessionStorage
-    const saved: EventFormData[] = loadEvents();
+    // ✅ loadEvents() är enda sanningskällan
+    const allEvents: EventFormData[] = loadEvents();
 
-    // 2) Kombinera default + sparade
-    const allEvents: EventFormData[] = [...DEFAULT_EVENTS, ...saved];
-
-    // 3) Mappa till EventFeedItem
-    const mapped: EventFeedItem[] = allEvents.map((ev, index) => {
+    const mapped: EventFeedItem[] = allEvents.map((ev) => {
       let month = "Okänd";
       let day = 1;
       let year = 2025;
@@ -55,7 +50,7 @@ export default function Home() {
       }
 
       return {
-        id: index,
+        id: ev.id ?? Math.random(),
         host: ev.arrangor || "<missing>",
         event: ev.event || "<missing>",
         month,
@@ -70,7 +65,6 @@ export default function Home() {
       };
     });
 
-    // 4) Sortera på datum som tidigare
     const sorted = [...mapped].sort((a, b) => {
       const monthA = MONTHS.indexOf(a.month ?? "");
       const monthB = MONTHS.indexOf(b.month ?? "");
@@ -85,7 +79,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className={`${styles.page} ${styles.page}`}>
+    <div className={styles.page}>
       <h1>Kommande Event</h1>
       <EventFeed items={items} />
     </div>

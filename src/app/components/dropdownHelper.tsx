@@ -14,22 +14,22 @@ export const sektionerDef: OptionGroupDef[] = [
   {
     optgroup: "LinTek",
     items: [
-      { value: "legionen", label: "Legionen" },
-      { value: "skurkeriet", label: "Skurkeriet" },
-      { value: "kretsn", label: "Kretsn" },
-      { value: "familjen", label: "Familjen" },
+      { value: "Legionen", label: "Legionen" },
+      { value: "Skurkeriet", label: "Skurkeriet" },
+      { value: "Kretsn", label: "Kretsn" },
+      { value: "Familjen", label: "Familjen" },
       { value: "3cant", label: "3CANT" },
-      { value: "tryckbar", label: "Tryckbar" },
-      { value: "festn", label: "Fest-n" },
+      { value: "Tryckbar", label: "Tryckbar" },
+      { value: "Fest-n", label: "Fest-n" },
     ],
   },
   {
     optgroup: "Stuff",
-    items: [{ value: "skumpa", label: "Skumpa" }],
+    items: [{ value: "Skumpa", label: "Skumpa" }],
   },
   {
     optgroup: "Consensus",
-    items: [{ value: "skadat", label: "SSKADAT" }],
+    items: [{ value: "Skadat", label: "SSKADAT" }],
   },
 ];
 

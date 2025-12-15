@@ -4,7 +4,7 @@ import fullMoonSSkadat from "../../images/fullMoonSSkadat.jpg";
 import halloweenImg from "../../images/halloween.jpg";
 import MidnightImg from "../../images/midnight_tease_skumpa.jpg";
 
-export const STORAGE_KEY = "studentevent-events";
+export const STORAGE_KEY = "user_events";
 
 export type EventFormData = {
   id: number | undefined;
@@ -48,7 +48,7 @@ export const DEFAULT_EVENTS: EventFormData[] = [
     beskrivning: "Temasittning med tacos, underhållning och efterfest.",
     organizerURL: "https://stuff.liu.se",
     imageData: fullMoonSSkadat,
-    color: "#4CAF50",
+    color: "#5a2d5fff",
   },
   {
     id: 3,
@@ -62,7 +62,7 @@ export const DEFAULT_EVENTS: EventFormData[] = [
     beskrivning: "Temasittning med tacos, underhållning och efterfest.",
     organizerURL: "https://lintek.liu.se",
     imageData: halloweenImg,
-    color: "#4CAF50",
+    color: "#af4c9eff",
   },
   {
     id: 4,
@@ -76,6 +76,6 @@ export const DEFAULT_EVENTS: EventFormData[] = [
     beskrivning: "Temasittning med tacos, underhållning och efterfest.",
     organizerURL: "https://stuff.liu.se",
     imageData: MidnightImg,
-    color: "#4CAF50",
+    color: "#af4c4cff",
   },
 ];

@@ -1,21 +1,27 @@
-import { EventFormData, STORAGE_KEY } from "./eventTypes";
+import { EventFormData, STORAGE_KEY, DEFAULT_EVENTS } from "./eventTypes";
+
+const PLACEHOLDER_EVENTS = DEFAULT_EVENTS;
 
 export function loadEvents(): EventFormData[] {
-  if (typeof window === "undefined") return [];
-  try {
-    const raw = sessionStorage.getItem(STORAGE_KEY);
-    if (!raw) return [];
-    return JSON.parse(raw) as EventFormData[];
-  } catch {
-    return [];
-  }
+  if (typeof window === "undefined") return PLACEHOLDER_EVENTS;
+
+  const saved = localStorage.getItem(STORAGE_KEY);
+  const parsed: EventFormData[] = saved ? JSON.parse(saved) : [];
+
+  return [...PLACEHOLDER_EVENTS, ...parsed];
 }
 
-export function saveEvent(newEvent: EventFormData) {
+/* ===== SAVE ===== */
+export function saveEvent(event: EventFormData) {
   if (typeof window === "undefined") return;
-  try {
-    const current = loadEvents();
-    const updated = [...current, newEvent];
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
-  } catch {}
+
+  const saved = localStorage.getItem(STORAGE_KEY);
+  const parsed: EventFormData[] = saved ? JSON.parse(saved) : [];
+
+  const newEvent: EventFormData = {
+    ...event,
+    id: Date.now(),
+  };
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify([...parsed, newEvent]));
 }

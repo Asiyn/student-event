@@ -143,7 +143,7 @@ export default function CalendarPage() {
               dayGridMonth: "Månad",
               listWeek: "Vecka", // ← ändrar "Program" till "Vecka"
             }}
-            
+
             displayEventTime={false}
             events={calendarEvents}
             eventClick={handleEventClick}
@@ -153,7 +153,7 @@ export default function CalendarPage() {
             fixedWeekCount={true} // ← alla veckor lika höjd
             expandRows={true} // ← dela höjd jämnt
             dayMaxEvents={false} // ← aktiverar "+X till"
-            dayMaxEventRows={2}
+            dayMaxEventRows={1}
           />
         </div>
       </div>

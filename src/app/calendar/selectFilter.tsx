@@ -3,14 +3,11 @@
 import styles from "./filter.module.css";
 import Select, { StylesConfig, GroupBase } from "react-select";
 
-// 1. Define the shape of the option used by React Select
 export type SelectOption = {
   value: string;
   label: string;
 };
 
-// 2. Define the styles using strictly typed generics:
-// <OptionType, IsMulti (boolean to support both), GroupType>
 export const customStyles: StylesConfig<
   SelectOption,
   boolean,
@@ -100,7 +97,6 @@ export const customStyles: StylesConfig<
   }),
 };
 
-// The raw data structure passed via props
 type FilterPropOption = {
   value?: string;
   label?: string;
@@ -120,7 +116,6 @@ export default function SelectFilter({
   options,
 }: SelectFilterProps) {
   
-  // Transform raw props into a strict structure of Groups or Options
   const formattedOptions: (SelectOption | GroupBase<SelectOption>)[] = options.map((opt) => {
     if (opt.optgroup && opt.items) {
       return {
@@ -131,7 +126,7 @@ export default function SelectFilter({
         })),
       };
     }
-    // Fallback if value/label are missing, though ideally they shouldn't be
+    
     return { 
       value: opt.value ?? "", 
       label: opt.label ?? "" 
