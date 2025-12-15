@@ -35,7 +35,7 @@ export default function CreateField({
   required = false,
   fullWidth = false,
 }: EventDetailsProps) {
-  const [color, setColor] = useState("#ffffff");
+  const [color, setColor] = useState("#202353"); //ändra default färg
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
   const [customText, setCustomText] = useState("");
 
@@ -98,7 +98,6 @@ export default function CreateField({
           >
             <FontAwesomeIcon icon={faPalette} />
           </button>
-
           {/* Själva color-inputen som skickas med i formuläret */}
           <input
             ref={colorInputRef}
