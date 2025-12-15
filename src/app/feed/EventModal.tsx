@@ -75,7 +75,7 @@ export default function EventModal({ event, onClose }: EventModalProps) {
             )}
 
             {event.beskrivning && (
-              <div className={styles['beskrivning']}>
+              <div className={styles["beskrivning"]}>
                 <h4>Om eventet</h4>
                 <p>{event.beskrivning}</p>
               </div>
@@ -91,7 +91,7 @@ export default function EventModal({ event, onClose }: EventModalProps) {
                     rel="noopener noreferrer"
                   >
                     {/* {event.organizerURL} */}
-                    Länk till {event.host}'s sida
+                    Länk till {event.host}s sida
                   </a>
                 </p>
               </div>

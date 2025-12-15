@@ -11,4 +11,5 @@ export type EventFormData = {
   beskrivning: string;
   organizerURL: string;
   imageData?: string | null;
+  color?: string | null;
 };

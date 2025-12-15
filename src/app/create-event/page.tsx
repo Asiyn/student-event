@@ -43,42 +43,6 @@ export default function CreateEventPage() {
     console.log("events ändrades:", events);
   }, [events]);
 
-  // const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-
-  //   const formData = new FormData(e.currentTarget);
-
-  //   const payload: EventFormData = {
-  //     event: String(formData.get("event") ?? ""),
-  //     arrangor: String(formData.get("arrangor") ?? ""),
-  //     date: String(formData.get("date") ?? ""),
-  //     place: String(formData.get("place") ?? ""),
-  //     startTime: String(formData.get("startTime") ?? ""),
-  //     endTime: String(formData.get("endTime") ?? ""),
-  //     fakultet: String(formData.get("fakultet") ?? ""),
-  //     beskrivning: String(formData.get("beskrivning") ?? ""),
-  //     organizerURL: String(formData.get("organizerURL") ?? ""),
-  //     imageData: imageData ?? null,
-  //   };
-
-  //   // 1) uppdatera lokalt state (preview-kolumnen)
-  //   setEvents((prev) => {
-  //     const updated = [...prev, payload];
-  //     console.log("Uppdaterad event-lista i setState:", updated);
-  //     return updated;
-  //   });
-
-  //   // 2) spara via helpern (sessionStorage)
-  //   saveEvent(payload);
-
-  //   console.log("Form payload (enstaka event):", payload);
-  //   console.log("Image file:", imageFile);
-
-  //   e.currentTarget.reset();
-  //   setImageFile(null);
-  //   setImageData(null);
-  // };
-
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -95,6 +59,7 @@ export default function CreateEventPage() {
       beskrivning: String(formData.get("beskrivning") ?? ""),
       organizerURL: String(formData.get("organizerURL") ?? ""),
       imageData: imageData ?? null,
+      color: (formData.get("colorCalendar") as string) || null,
     };
 
     setPendingEvent(payload);
