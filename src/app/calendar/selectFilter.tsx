@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./filter.module.css";
-import Select, { StylesConfig, GroupBase } from "react-select";
+import Select, { StylesConfig, GroupBase, MultiValue } from "react-select";
 
 export type SelectOption = {
   value: string;
@@ -108,30 +108,32 @@ type SelectFilterProps = {
   label: string;
   id: string;
   options: FilterPropOption[];
+  onChange: (values: string[]) => void; // ✅ skicka upp valen
 };
 
 export default function SelectFilter({
   label,
   id,
   options,
+  onChange, // ✅ NU FINNS DEN I SCOPE
 }: SelectFilterProps) {
-  
-  const formattedOptions: (SelectOption | GroupBase<SelectOption>)[] = options.map((opt) => {
-    if (opt.optgroup && opt.items) {
+  const formattedOptions: (SelectOption | GroupBase<SelectOption>)[] =
+    options.map((opt) => {
+      if (opt.optgroup && opt.items) {
+        return {
+          label: opt.optgroup,
+          options: opt.items.map((item) => ({
+            value: item.value,
+            label: item.label,
+          })),
+        };
+      }
+
       return {
-        label: opt.optgroup,
-        options: opt.items.map((item) => ({
-          value: item.value,
-          label: item.label,
-        })),
+        value: opt.value ?? "",
+        label: opt.label ?? "",
       };
-    }
-    
-    return { 
-      value: opt.value ?? "", 
-      label: opt.label ?? "" 
-    };
-  });
+    });
 
   return (
     <div className={styles["filter-group"]}>
@@ -139,7 +141,7 @@ export default function SelectFilter({
         {label}
       </label>
 
-      <Select
+      <Select<SelectOption, true, GroupBase<SelectOption>>
         classNamePrefix="filterselect"
         inputId={id}
         isMulti
@@ -147,6 +149,9 @@ export default function SelectFilter({
         placeholder="Välj..."
         menuPlacement="auto"
         styles={customStyles}
+        onChange={(selected: MultiValue<SelectOption>) =>
+          onChange(selected.map((s) => s.value))
+        }
       />
     </div>
   );

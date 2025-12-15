@@ -34,6 +34,12 @@ export default function CalendarPage() {
   );
   const [showEventModal, setShowEventModal] = useState(false);
 
+  // filter
+  const [selectedFakulteter, setSelectedFakulteter] = useState<string[]>([]);
+  const [selectedArrangorer, setSelectedArrangorer] = useState<string[]>([]);
+
+  const [allEvents, setAllEvents] = useState<EventInput[]>([]);
+
   useEffect(() => {
     document.title = "Kalender | StudentEvent";
   }, []);
@@ -76,6 +82,7 @@ export default function CalendarPage() {
       } satisfies EventInput;
     });
 
+    setAllEvents(mapped);
     setCalendarEvents(mapped);
   }, []);
 
@@ -115,10 +122,32 @@ export default function CalendarPage() {
     setShowEventModal(true);
   };
 
+  useEffect(() => {
+  const filtered = allEvents.filter((e) => {
+    const fakultet = e.extendedProps?.fakultet?.toLowerCase();
+    const arrangor = e.extendedProps?.arrangor?.toLowerCase();
+
+    const fakultetMatch =
+      selectedFakulteter.length === 0 ||
+      (fakultet && selectedFakulteter.includes(fakultet));
+
+    const arrangorMatch =
+      selectedArrangorer.length === 0 ||
+      (arrangor && selectedArrangorer.includes(arrangor));
+
+    return fakultetMatch && arrangorMatch;
+  });
+
+  setCalendarEvents(filtered);
+}, [selectedFakulteter, selectedArrangorer, allEvents]);
+
   return (
     <>
       <div className={styles.page}>
-        <Filter />
+        <Filter
+          onFakultetChange={setSelectedFakulteter}
+          onArrangorChange={setSelectedArrangorer}
+        />
 
         <div className={calStyles["calendar-container"]}>
           <FullCalendar
@@ -138,12 +167,10 @@ export default function CalendarPage() {
             }}
             weekNumbers={true}
             weekText="v."
-
             buttonText={{
               dayGridMonth: "Månad",
               listWeek: "Vecka", // ← ändrar "Program" till "Vecka"
             }}
-
             displayEventTime={false}
             events={calendarEvents}
             eventClick={handleEventClick}

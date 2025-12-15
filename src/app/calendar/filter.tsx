@@ -17,14 +17,22 @@ export const sektionerOptions = [
       { value: "familjen", label: "Familjen" },
       { value: "3cant", label: "3CANT" },
       { value: "tryckbar", label: "Tryckbar" },
-      { value: "festn", label: "Fest-n" },
+      { value: "fest-n", label: "Fest-n" },
     ],
   },
   { optgroup: "Stuff", items: [{ value: "skumpa", label: "Skumpa" }] },
-  { optgroup: "Consensus", items: [{ value: "skadat", label: "SSKADAT" }] },
+  { optgroup: "Consensus", items: [{ value: "sskadat", label: "SSKADAT" }] },
 ];
 
-export default function Filter() {
+type FilterProps = {
+  onFakultetChange: (values: string[]) => void;
+  onArrangorChange: (values: string[]) => void;
+};
+
+export default function Filter({
+  onFakultetChange,
+  onArrangorChange,
+}: FilterProps) {
   return (
     <div className={styles["filter-container"]}>
       <div>
@@ -37,17 +45,13 @@ export default function Filter() {
           label="Välj fakultet:"
           id="fakultet"
           options={fakultetOptions}
+          onChange={onFakultetChange}
         />
         <SelectFilter
           label="Välj arrangör:"
           id="arrangor"
           options={sektionerOptions}
-        />
-
-        <input
-          className={styles["submit-filter"]}
-          type="submit"
-          value="Filtrera"
+          onChange={onArrangorChange}
         />
       </form>
     </div>
