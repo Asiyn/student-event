@@ -23,9 +23,10 @@ export type EventFormData = {
 
 export const DEFAULT_EVENTS: EventFormData[] = [
   {
+    id: 1,
     event: "VinterKravallen",
     arrangor: "Fest-n",
-    date: "2025-08-25",
+    date: "2025-12-25",
     place: "Kårhuset Kollektivet",
     startTime: "18:00",
     endTime: "23:00",
@@ -36,9 +37,10 @@ export const DEFAULT_EVENTS: EventFormData[] = [
     color: "#FF9800",
   },
   {
+    id: 2,
     event: "FullMoon",
     arrangor: "SSKADAT",
-    date: "2025-09-12",
+    date: "2025-12-13",
     place: "Kårhuset Örat",
     startTime: "19:00",
     endTime: "23:30",
@@ -49,9 +51,10 @@ export const DEFAULT_EVENTS: EventFormData[] = [
     color: "#4CAF50",
   },
   {
+    id: 3,
     event: "Halloween",
     arrangor: "3CANT",
-    date: "2025-09-12",
+    date: "2025-12-14",
     place: "Kårhuset Örat",
     startTime: "19:00",
     endTime: "23:30",
@@ -62,9 +65,10 @@ export const DEFAULT_EVENTS: EventFormData[] = [
     color: "#4CAF50",
   },
   {
+    id: 4,
     event: "Midnight Tease",
     arrangor: "skumpa",
-    date: "2025-09-12",
+    date: "2025-12-15",
     place: "Kårhuset Örat",
     startTime: "19:00",
     endTime: "23:30",
