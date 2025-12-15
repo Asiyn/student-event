@@ -6,3 +6,15 @@
   z-index: 1;
   height: fit-content;
 }
+
+@media (max-width: 768px) {
+  .calendar-container {
+    width: 70%;
+  }
+}
+
+@media (max-width: 468px) {
+  .calendar-container {
+    width: 80%;
+  }
+}

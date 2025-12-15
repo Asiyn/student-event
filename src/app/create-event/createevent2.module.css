@@ -184,3 +184,30 @@
 .color-icon-button button {
   all: unset;
 }
+
+@media (max-width: 768px) {
+  .form-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .detail-submission {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .detail-submission h2 {
+    display: none;
+  }
+
+  .detail-submission p {
+    align-self: center;
+  }
+
+  .upload-container {
+    order: 1;
+    width: 60%;
+    align-self: center;
+  }
+}

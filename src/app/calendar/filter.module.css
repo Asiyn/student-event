@@ -108,3 +108,20 @@
   transform: translateY(1px);
   opacity: 0.9;
 }
+
+@media (max-width: 768px) {
+  .filter-container {
+    width: 70%;
+  }
+
+  .filters {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 468px) {
+  .filter-container {
+    width: 80%;
+  }
+}

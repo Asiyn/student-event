@@ -123,3 +123,11 @@
   opacity: 0;
   pointer-events: none;
 }
+
+@media (max-width: 768px) {
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+  }
+}

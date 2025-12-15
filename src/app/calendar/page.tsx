@@ -1,20 +1,24 @@
 // app/calendar/page.tsx
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import styles from "../page.module.css";
+import calStyles from "./calendar.module.css";
 
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
-import type { EventContentArg, EventInput } from "@fullcalendar/core";
+import type {
+  CalendarApi,
+  EventContentArg,
+  EventInput,
+} from "@fullcalendar/core";
 import svLocale from "@fullcalendar/core/locales/sv";
 
 import Filter from "./filter";
-import calStyles from "./calendar.module.css";
 
 import type { EventFormData } from "../lib/eventTypes";
 import { loadEvents } from "../lib/eventStorage";
@@ -40,9 +44,37 @@ export default function CalendarPage() {
 
   const [allEvents, setAllEvents] = useState<EventInput[]>([]);
 
+  // mobil
+  const [isMobile, setIsMobile] = useState(false);
+  const calendarRef = useRef<FullCalendar | null>(null);
+
   useEffect(() => {
     document.title = "Kalender | StudentEvent";
   }, []);
+
+  // Detect mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  useEffect(() => {
+    const api: CalendarApi | undefined = calendarRef.current?.getApi();
+    if (!api) return;
+
+    const desiredView = isMobile ? "listWeek" : "dayGridMonth";
+    if (api.view.type !== desiredView) {
+      api.changeView(desiredView);
+    }
+  }, [isMobile]);
+
+  // -----------------------
 
   // Läs in event från storage när kalendersidan laddas
   useEffect(() => {
@@ -123,23 +155,23 @@ export default function CalendarPage() {
   };
 
   useEffect(() => {
-  const filtered = allEvents.filter((e) => {
-    const fakultet = e.extendedProps?.fakultet?.toLowerCase();
-    const arrangor = e.extendedProps?.arrangor?.toLowerCase();
+    const filtered = allEvents.filter((e) => {
+      const fakultet = e.extendedProps?.fakultet?.toLowerCase();
+      const arrangor = e.extendedProps?.arrangor?.toLowerCase();
 
-    const fakultetMatch =
-      selectedFakulteter.length === 0 ||
-      (fakultet && selectedFakulteter.includes(fakultet));
+      const fakultetMatch =
+        selectedFakulteter.length === 0 ||
+        (fakultet && selectedFakulteter.includes(fakultet));
 
-    const arrangorMatch =
-      selectedArrangorer.length === 0 ||
-      (arrangor && selectedArrangorer.includes(arrangor));
+      const arrangorMatch =
+        selectedArrangorer.length === 0 ||
+        (arrangor && selectedArrangorer.includes(arrangor));
 
-    return fakultetMatch && arrangorMatch;
-  });
+      return fakultetMatch && arrangorMatch;
+    });
 
-  setCalendarEvents(filtered);
-}, [selectedFakulteter, selectedArrangorer, allEvents]);
+    setCalendarEvents(filtered);
+  }, [selectedFakulteter, selectedArrangorer, allEvents]);
 
   return (
     <>
@@ -151,20 +183,38 @@ export default function CalendarPage() {
 
         <div className={calStyles["calendar-container"]}>
           <FullCalendar
+            ref={calendarRef}
             plugins={[
               dayGridPlugin,
               timeGridPlugin,
               interactionPlugin,
               listPlugin,
             ]}
-            initialView="dayGridMonth"
+            initialView={isMobile ? "listWeek" : "dayGridMonth"}
             locales={[svLocale]}
             locale="sv"
-            headerToolbar={{
-              left: "prev,next today",
-              center: "title",
-              right: "dayGridMonth,listWeek",
-            }}
+            headerToolbar={
+              isMobile
+                ? {
+                    left: "",
+                    center: "title",
+                    right: "",
+                  }
+                : {
+                    left: "prev,next today",
+                    center: "title",
+                    right: "dayGridMonth,listWeek",
+                  }
+            }
+            footerToolbar={
+              isMobile
+                ? {
+                    left: "prev,next today",
+                    center: "",
+                    right: "listWeek",
+                  }
+                : false
+            }
             weekNumbers={true}
             weekText="v."
             buttonText={{
