@@ -1,6 +1,7 @@
 export const STORAGE_KEY = "studentevent-events";
 
 export type EventFormData = {
+  id: number | undefined;
   event: string;
   arrangor: string;
   date: string;

@@ -21,12 +21,30 @@ import { loadEvents } from "../lib/eventStorage";
 
 import type { EventClickArg } from "@fullcalendar/core"; // klicka event
 import EventModal from "../feed/EventModal";
+import { EventFeedItem } from "../feed/FeedItem";
+
+
+
+function mapFormDataToFeedItem(ev: EventFormData): EventFeedItem {
+  const date = new Date(ev.date);
+
+  return {
+    id: ev.id,
+    event: ev.event,
+    host: ev.arrangor || "<okänd arrangör>",
+    month: date.toLocaleString("sv-SE", { month: "long" }),
+    day: date.getDate(),
+    startTime: ev.startTime || "",
+    endTime: ev.endTime || "",
+    img: ev.imageData ?? undefined,
+  };
+}
 
 export default function CalendarPage() {
   const [calendarEvents, setCalendarEvents] = useState<EventInput[]>([]);
 
   // Klicka på event
-  const [selectedEvent, setSelectedEvent] = useState<EventFormData | null>(
+  const [selectedEvent, setSelectedEvent] = useState<EventFeedItem | null>(
     null
   );
   const [showEventModal, setShowEventModal] = useState(false);
@@ -72,6 +90,7 @@ export default function CalendarPage() {
           fakultet: ev.fakultet,
           beskrivning: ev.beskrivning,
           organizerURL: ev.organizerURL,
+          imageData: ev.imageData, // ← måste finnas
         },
       } satisfies EventInput;
     });
@@ -108,11 +127,12 @@ export default function CalendarPage() {
       imageData: event.extendedProps.imageData,
       fakultet: event.extendedProps.fakultet,
       color: event.backgroundColor ?? null,
+      id: undefined,
     };
 
     console.log("CLICKED EVENT");
 
-    setSelectedEvent(data);
+    setSelectedEvent(mapFormDataToFeedItem(data));
     setShowEventModal(true);
   };
 

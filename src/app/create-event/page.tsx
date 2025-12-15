@@ -28,6 +28,7 @@ export default function CreateEventPage() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [createdEvent, setCreatedEvent] = useState<EventFormData | null>(null);
 
+
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
@@ -60,6 +61,7 @@ export default function CreateEventPage() {
       organizerURL: String(formData.get("organizerURL") ?? ""),
       imageData: imageData ?? null,
       color: (formData.get("colorCalendar") as string) || null,
+      id: undefined
     };
 
     setPendingEvent(payload);
