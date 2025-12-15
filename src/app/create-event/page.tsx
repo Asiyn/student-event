@@ -14,7 +14,7 @@ import SuccessModal from "./SuccessModal";
 export default function CreateEventPage() {
   const [formKey, setFormKey] = useState(0);
 
-  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [, setImageFile] = useState<File | null>(null);
   const [imageData, setImageData] = useState<string | null>(null);
 
   const [events, setEvents] = useState<EventFormData[]>([]);
@@ -23,7 +23,7 @@ export default function CreateEventPage() {
   const [pendingEvent, setPendingEvent] = useState<EventFormData | null>(null);
 
   const [showSuccess, setShowSuccess] = useState(false);
-  const [createdEvent, setCreatedEvent] = useState<EventFormData | null>(null);
+  const [, setCreatedEvent] = useState<EventFormData | null>(null);
 
   const formRef = useRef<HTMLFormElement>(null);
 

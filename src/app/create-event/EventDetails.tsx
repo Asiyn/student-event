@@ -17,8 +17,8 @@ export default function EventDetails({ resetKey }: Props) {
   const sektionerOptions = buildGroupedOptions(sektionerDef, true);
   const fakultetOptions = buildFlatOptions(fakultetDef, false);
 
-  const [arrangor, setArrangor] = useState("");
-  const [fakultet, setFakultet] = useState("");
+  const [, setArrangor] = useState("");
+  const [, setFakultet] = useState("");
 
   useEffect(() => {
     setArrangor("");

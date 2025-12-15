@@ -104,12 +104,13 @@
   font-weight: 600;
   font-family: Arial;
 
-  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
 }
 
 .submit-btn:hover {
   box-shadow: 0 -2px 20px color-mix(in srgb, var(--accent) 75%, transparent);
   background-color: var(--accent);
+  transform: translateY(-2px);
 }
 
 /* Bild ^^*/
@@ -178,4 +179,8 @@
 .upload-sub-container p {
   position: absolute;
   pointer-events: none;
+}
+
+.color-icon-button button {
+  all: unset;
 }
