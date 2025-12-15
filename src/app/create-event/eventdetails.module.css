@@ -64,6 +64,10 @@
   border-color: var(--primary);
 }
 
+.field-container input[type="time"]:hover {
+  cursor: pointer !important;
+}
+
 .notice {
   color: color-mix(in srgb, var(--text) 60%, transparent);
   font-size: 1rem;

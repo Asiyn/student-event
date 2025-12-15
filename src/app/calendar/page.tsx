@@ -138,6 +138,12 @@ export default function CalendarPage() {
             }}
             weekNumbers={true}
             weekText="v."
+
+            buttonText={{
+              dayGridMonth: "Månad",
+              listWeek: "Vecka", // ← ändrar "Program" till "Vecka"
+            }}
+            
             displayEventTime={false}
             events={calendarEvents}
             eventClick={handleEventClick}

@@ -21,7 +21,6 @@ type EventModalProps = {
 };
 
 export default function EventModal({ event, onClose }: EventModalProps) {
-
   useEffect(() => {
     const html = document.documentElement;
     const body = document.body;
@@ -78,21 +77,21 @@ export default function EventModal({ event, onClose }: EventModalProps) {
             {event.beskrivning && (
               <div className={styles["beskrivning"]}>
                 <h4>Om eventet</h4>
-                <p className={styles['beskr-text']}>{event.beskrivning}</p>
+                <p className={styles["beskr-text"]}>{event.beskrivning}</p>
               </div>
             )}
 
             {event.organizerURL && (
               <div>
-                <FontAwesomeIcon icon={faLink} />
                 <p>
+                  <FontAwesomeIcon icon={faLink} />
                   <a
                     href={event.organizerURL}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {/* {event.organizerURL} */}
-                    Länk till {event.host}s sida
+                    	&nbsp;Länk till {event.host}&#39;s sida 
+                      {/* Fixar apostrof ' och mellanslag framför */}
                   </a>
                 </p>
               </div>
