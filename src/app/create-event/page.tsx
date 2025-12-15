@@ -15,9 +15,10 @@ import ConfirmCreationModal from "./ConfirmCreationModal";
 import SuccessModal from "./SuccessModal";
 
 export default function CreateEventPage() {
+  const [formKey, setFormKey] = useState(0);
+
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageData, setImageData] = useState<string | null>(null);
-  const [resetKey, setResetKey] = useState(0);
 
   const [events, setEvents] = useState<EventFormData[]>([]);
 
@@ -26,7 +27,6 @@ export default function CreateEventPage() {
 
   const [showSuccess, setShowSuccess] = useState(false);
   const [createdEvent, setCreatedEvent] = useState<EventFormData | null>(null);
-  const [showEventModal, setShowEventModal] = useState(false);
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -73,10 +73,11 @@ export default function CreateEventPage() {
         onSubmit={handleSubmit}
         encType="multipart/form-data"
         ref={formRef}
+        key={formKey}
       >
         <div className={styles["upload-container"]}>
           <ImageUploader
-            resetKey={resetKey}
+            resetKey={formKey}
             onFileChange={(file, dataUrl) => {
               setImageFile(file);
               setImageData(dataUrl);
@@ -84,13 +85,15 @@ export default function CreateEventPage() {
           />
         </div>
         <div className={styles["detail-submission"]}>
-          <EventDetails resetKey={resetKey} />
-          {/* <p className={styles["notice"]}>
+
+          <EventDetails resetKey={formKey} />
+          
+          <p className={styles["notice"]}>
             <i>
               <span className={"required-star"}>*</span> Obligatoriskt att fylla
               i dessa fält
             </i>
-          </p> */}
+          </p>
           <button type="submit" className={styles["submit-btn"]}>
             Skapa Event
           </button>
@@ -115,6 +118,7 @@ export default function CreateEventPage() {
             formRef.current?.reset();
             setImageFile(null);
             setImageData(null);
+            setFormKey((prev) => prev + 1);
 
             // success
             setCreatedEvent(pendingEvent);

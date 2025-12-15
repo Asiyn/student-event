@@ -12,7 +12,6 @@
   text-wrap-mode: nowrap;
 }
 
-/* Create Field styles */
 .field-container {
   display: flex;
   flex-direction: column;
@@ -109,4 +108,12 @@
   height: 0;
   border: 0;
   padding: 0;
+}
+
+.field-container .color-input {
+  width: 50%;
+}
+
+.field-container .color-hidden {
+  opacity: 0;
 }

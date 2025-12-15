@@ -7,6 +7,8 @@ import styles from "./eventdetails.module.css";
 import { faPalette } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import CreatableSelect from "react-select/creatable";
+
 export type Option = {
   value: string;
   label: string;
@@ -49,6 +51,12 @@ export default function CreateField({
     if (option?.value !== "__custom__") setCustomText("");
   };
 
+  const handleCreate = (inputValue: string) => {
+  const v = inputValue.trim();
+  const opt = { value: v, label: v };
+  setSelectedOption(opt);
+};
+
   const onColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setColor(e.target.value);
   };
@@ -84,7 +92,7 @@ export default function CreateField({
           />
           <input
             type="text"
-            className={styles["colorPreview"]}
+            className={styles["color-input"]}
             value={color}
             onChange={(e) => setColor(e.target.value)}
             maxLength={7}
@@ -126,39 +134,26 @@ export default function CreateField({
       {/* DROPDOWN */}
       {dropdown && (
         <>
-          <Select
+          <CreatableSelect
             inputId={name}
             options={dropdownOptions}
             placeholder={placeholder ?? label}
             styles={customStyles}
             value={selectedOption}
-            onChange={handleSelectChange}
+            onChange={(opt) => setSelectedOption(opt ?? null)}
+            onCreateOption={handleCreate}
+            formatCreateLabel={(input) => `Skriv själv: "${input}"`}
           />
 
-          {/* (valfri) custom text om värdet är "__custom__" */}
-          {isCustom && (
-            <input
-              type="text"
-              id={name}
-              name={name}
-              required={required}
-              placeholder="Skriv eget namn…"
-              value={customText}
-              onChange={(e) => setCustomText(e.target.value)}
-              className={styles["custom-input"]}
-            />
-          )}
-
-          {/* Hidden input så att required funkar när man väljer i Select */}
-          {!isCustom && (
-            <input
-              type="hidden"
-              name={name}
-              required={required}
-              value={selectedOption?.value ?? ""}
-            />
-          )}
+          {/* DETTA ÄR DET SOM FORMEN SKICKAR */}
+          <input
+            type="hidden"
+            name={name}
+            value={selectedOption?.value ?? ""}
+            required={required}
+          />
         </>
+      
       )}
     </div>
   );
