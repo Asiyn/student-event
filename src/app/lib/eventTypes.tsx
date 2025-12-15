@@ -1,3 +1,8 @@
+import type { StaticImageData } from "next/image";
+import vkImg from "../../images/02_VK.png";
+import fullMoonSSkadat from "../../images/fullMoonSSkadat.jpg";
+import halloweenImg from "../../images/halloween.jpg";
+
 export const STORAGE_KEY = "studentevent-events";
 
 export type EventFormData = {
@@ -10,8 +15,8 @@ export type EventFormData = {
   fakultet: string;
   beskrivning: string;
   organizerURL: string;
-  imageData?: string | null;
   color?: string | null;
+  imageData?: string | StaticImageData | null;
 };
 
 export const DEFAULT_EVENTS: EventFormData[] = [
@@ -25,7 +30,7 @@ export const DEFAULT_EVENTS: EventFormData[] = [
     fakultet: "LinTek",
     beskrivning: "VinterKravall hela veckan!",
     organizerURL: "https://lintek.liu.se",
-    imageData: "../images/02_VK.PNG",
+    imageData: vkImg,
     color: "#FF9800",
   },
   {
@@ -38,7 +43,7 @@ export const DEFAULT_EVENTS: EventFormData[] = [
     fakultet: "Consensus",
     beskrivning: "Temasittning med tacos, underhållning och efterfest.",
     organizerURL: "https://stuff.liu.se",
-    imageData: "../images/fullMoonSSkadat.jpg",
+    imageData: fullMoonSSkadat,
     color: "#4CAF50",
   },
   {
@@ -51,7 +56,7 @@ export const DEFAULT_EVENTS: EventFormData[] = [
     fakultet: "LinTek",
     beskrivning: "Temasittning med tacos, underhållning och efterfest.",
     organizerURL: "https://lintek.liu.se",
-    imageData: "../images/halloween.jpg",
+    imageData: halloweenImg,
     color: "#4CAF50",
   },
 ];
