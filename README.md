@@ -1,92 +1,71 @@
-tudent Event
+# Student Event
 
-Student Event är ett prototypprojekt som syftar till att undersöka hur ett användargränssnitt kan utformas för att ge studenter en samlad och överskådlig bild av kommande evenemang, samt erbjuda arrangörer ett enkelt sätt att skapa och publicera aktiviteter.
+Student Event är ett prototypprojekt som undersöker hur ett användargränssnitt kan utformas för att ge studenter en samlad och överskådlig bild av kommande evenemang, samt erbjuda arrangörer ett enkelt sätt att skapa och publicera aktiviteter.
 
-Projektet har utvecklats inom ramen för kursen Kommunikation och användargränssnitt och fokuserar främst på användarupplevelse, interaktion och gränssnittsdesign.
+Projektet har utvecklats inom ramen för kursen **Kommunikation och användargränssnitt** och har ett tydligt fokus på användarupplevelse, interaktion och gränssnittsdesign.
 
-Projektets syfte
+---
 
-Information om studentevent sprids ofta över flera olika plattformar, vilket gör det svårt för studenter att få en tydlig överblick över vad som händer. Student Event undersöker hur denna information kan samlas i ett gemensamt gränssnitt som är lätt att förstå, navigera och använda.
+## Projektets syfte
 
-Projektets mål är att:
+Information om studentevent sprids ofta över flera olika plattformar, vilket gör det svårt för studenter att få en tydlig överblick över vad som händer. Student Event syftar till att samla denna information i ett gemensamt gränssnitt som är lätt att förstå, navigera och använda.
 
-ge studenter ett tydligt sätt att hitta kommande event
+Målet med projektet är att:
+- ge studenter ett tydligt sätt att hitta kommande event
+- ge arrangörer ett enkelt flöde för att skapa nya event
+- utforska hur designprinciper kan användas för att skapa förutsägbara och lättanvända interaktioner
 
-ge arrangörer ett enkelt flöde för att skapa nya event
+---
 
-utforska hur designprinciper kan användas för att skapa förutsägbara och lättanvända interaktioner
+## Funktionalitet
 
-Funktionalitet
+Projektet består i nuläget av en frontend-prototyp med följande funktioner:
 
-Projektet består i nuläget av en fungerande frontend-prototyp med följande funktioner:
+- Ett kronologiskt eventflöde som visar kommande event  
+- En kalendervy med både månads- och veckovy  
+- Filtrering av event baserat på fakultet och arrangör  
+- Visning av detaljerad eventinformation i popup  
+- Skapande av event genom ett strukturerat flöde med popup-baserad bekräftelse  
 
-Eventflöde
-Ett kronologiskt flöde som visar kommande event i kortform.
+---
 
-Kalendervy
-En kalender med både månads- och veckovy för långsiktig överblick.
+## Designfokus
 
-Filtrering
-Möjlighet att filtrera event baserat på fakultet och arrangör.
+Projektet har ett tydligt fokus på användarupplevelse och bygger på etablerade designprinciper, bland annat **Normans designprinciper**. Centrala teman i designen är:
 
-Eventvy (popup)
-Detaljerad information om ett event visas i en popup utan att användaren lämnar sin nuvarande vy.
+- tydlig struktur  
+- konsekvent återkoppling  
+- förutsägbara användarflöden  
 
-Skapa event
-Ett formulär där arrangörer kan skapa nya event genom ett tydligt flöde med popup-baserad bekräftelse.
+Popup-baserade vyer används för att presentera information utan att användaren behöver lämna sin nuvarande vy, vilket bidrar till ett mer sammanhängande användarflöde.
 
-Designfokus
+---
 
-Projektet har ett tydligt fokus på användarupplevelse och bygger på etablerade designprinciper, bland annat Normans designprinciper. Centrala teman i designen är:
+## Begränsningar
 
-tydlig struktur och överskådlighet
+Projektet saknar i nuläget backend-funktionalitet och är därför att betrakta som en prototyp. Layouten är ännu inte fullt mobilanpassad och någon fullständig grafisk profil har inte tagits fram.
 
-konsekvent återkoppling vid interaktion
+---
 
-minimering av onödiga steg
-
-bevarande av användarens sammanhang genom popup-baserade vyer
-
-Projektet är främst att betrakta som en prototyp och saknar i nuläget backend-funktionalitet.
-
-Begränsningar
-
-Ingen backend är implementerad
-
-Data är statisk eller mockad
-
-Layouten är ännu inte fullt mobilanpassad
-
-Ingen fullständig grafisk profil har tagits fram
-
-Dessa avgränsningar har gjorts för att kunna fokusera på gränssnitt, interaktion och design inom ramen för kursen.
-
-Teknik
+## Teknik
 
 Projektet är byggt med:
+- React  
+- HTML  
+- CSS  
+- JavaScript  
 
-React
+---
 
-HTML
-
-CSS
-
-JavaScript
-
-(Fyll på eller justera vid behov beroende på exakt setup.)
-
-Vidare utveckling
+## Vidare utveckling
 
 Möjliga framtida förbättringar inkluderar:
+- implementering av backend och databas  
+- full responsiv anpassning  
+- vidareutveckling av visuell identitet  
+- fler användartester och iterativa förbättringar  
 
-implementering av backend och databas
+---
 
-full responsiv anpassning
-
-vidareutveckling av visuell identitet
-
-fler användartester och iterativa förbättringar
-
-Kursinformation
-
-Projektet är genomfört inom kursen Kommunikation och användargränssnitt vid Linköpings universitet.
+## Kursinform
+Projektet är genomfört inom kursen **Kommunikation och användargränssnitt** vid Linköpings universitet.
