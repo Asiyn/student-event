@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+tudent Event
 
-## Getting Started
+Student Event är ett prototypprojekt som syftar till att undersöka hur ett användargränssnitt kan utformas för att ge studenter en samlad och överskådlig bild av kommande evenemang, samt erbjuda arrangörer ett enkelt sätt att skapa och publicera aktiviteter.
 
-First, run the development server:
+Projektet har utvecklats inom ramen för kursen Kommunikation och användargränssnitt och fokuserar främst på användarupplevelse, interaktion och gränssnittsdesign.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Projektets syfte
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Information om studentevent sprids ofta över flera olika plattformar, vilket gör det svårt för studenter att få en tydlig överblick över vad som händer. Student Event undersöker hur denna information kan samlas i ett gemensamt gränssnitt som är lätt att förstå, navigera och använda.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Projektets mål är att:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+ge studenter ett tydligt sätt att hitta kommande event
 
-## Learn More
+ge arrangörer ett enkelt flöde för att skapa nya event
 
-To learn more about Next.js, take a look at the following resources:
+utforska hur designprinciper kan användas för att skapa förutsägbara och lättanvända interaktioner
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Funktionalitet
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Projektet består i nuläget av en fungerande frontend-prototyp med följande funktioner:
 
-## Deploy on Vercel
+Eventflöde
+Ett kronologiskt flöde som visar kommande event i kortform.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Kalendervy
+En kalender med både månads- och veckovy för långsiktig överblick.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Filtrering
+Möjlighet att filtrera event baserat på fakultet och arrangör.
+
+Eventvy (popup)
+Detaljerad information om ett event visas i en popup utan att användaren lämnar sin nuvarande vy.
+
+Skapa event
+Ett formulär där arrangörer kan skapa nya event genom ett tydligt flöde med popup-baserad bekräftelse.
+
+Designfokus
+
+Projektet har ett tydligt fokus på användarupplevelse och bygger på etablerade designprinciper, bland annat Normans designprinciper. Centrala teman i designen är:
+
+tydlig struktur och överskådlighet
+
+konsekvent återkoppling vid interaktion
+
+minimering av onödiga steg
+
+bevarande av användarens sammanhang genom popup-baserade vyer
+
+Projektet är främst att betrakta som en prototyp och saknar i nuläget backend-funktionalitet.
+
+Begränsningar
+
+Ingen backend är implementerad
+
+Data är statisk eller mockad
+
+Layouten är ännu inte fullt mobilanpassad
+
+Ingen fullständig grafisk profil har tagits fram
+
+Dessa avgränsningar har gjorts för att kunna fokusera på gränssnitt, interaktion och design inom ramen för kursen.
+
+Teknik
+
+Projektet är byggt med:
+
+React
+
+HTML
+
+CSS
+
+JavaScript
+
+(Fyll på eller justera vid behov beroende på exakt setup.)
+
+Vidare utveckling
+
+Möjliga framtida förbättringar inkluderar:
+
+implementering av backend och databas
+
+full responsiv anpassning
+
+vidareutveckling av visuell identitet
+
+fler användartester och iterativa förbättringar
+
+Kursinformation
+
+Projektet är genomfört inom kursen Kommunikation och användargränssnitt vid Linköpings universitet.
