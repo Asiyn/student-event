@@ -21,6 +21,7 @@ type EventModalProps = {
 };
 
 export default function EventModal({ event, onClose }: EventModalProps) {
+
   useEffect(() => {
     const html = document.documentElement;
     const body = document.body;
@@ -77,7 +78,7 @@ export default function EventModal({ event, onClose }: EventModalProps) {
             {event.beskrivning && (
               <div className={styles["beskrivning"]}>
                 <h4>Om eventet</h4>
-                <p>{event.beskrivning}</p>
+                <p className={styles['beskr-text']}>{event.beskrivning}</p>
               </div>
             )}
 

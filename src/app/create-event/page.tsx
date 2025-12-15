@@ -8,9 +8,6 @@ import { FormEvent, useEffect, useRef, useState } from "react";
 
 import type { EventFormData } from "../lib/eventTypes";
 import { saveEvent, loadEvents } from "../lib/eventStorage";
-import router from "next/router";
-import CreateEventSuccessModal from "./SuccessModal";
-import EventModal from "../feed/EventModal";
 import ConfirmCreationModal from "./ConfirmCreationModal";
 import SuccessModal from "./SuccessModal";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import Select, { SingleValue, GroupBase, OptionsOrGroups } from "react-select";
+import { SingleValue, GroupBase, OptionsOrGroups } from "react-select";
 import { customStyles } from "../calendar/selectFilter";
 import styles from "./eventdetails.module.css";
 import { faPalette } from "@fortawesome/free-solid-svg-icons";
@@ -39,17 +39,11 @@ export default function CreateField({
 }: EventDetailsProps) {
   const [color, setColor] = useState("#202353"); //ändra default färg
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
-  const [customText, setCustomText] = useState("");
 
   const isColorInput = !dropdown && inputType === "color";
   const isTextarea = !dropdown && inputType === "textarea";
-  const isCustom = selectedOption?.value === "__custom__";
+  
   const colorInputRef = useRef<HTMLInputElement | null>(null);
-
-  const handleSelectChange = (option: SingleValue<Option>) => {
-    setSelectedOption(option ?? null);
-    if (option?.value !== "__custom__") setCustomText("");
-  };
 
   const handleCreate = (inputValue: string) => {
   const v = inputValue.trim();
