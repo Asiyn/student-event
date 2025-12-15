@@ -8,7 +8,7 @@ import EventFeed from "./feed/EventFeed";
 import type { EventFeedItem } from "./feed/FeedItem";
 import { useEffect, useState } from "react";
 
-import type { EventFormData } from "./lib/eventTypes";
+import { DEFAULT_EVENTS, type EventFormData } from "./lib/eventTypes";
 import { loadEvents } from "./lib/eventStorage";
 
 const MONTHS = [
@@ -33,10 +33,15 @@ export default function Home() {
     document.title = "StudentEvent";
   }, []);
 
-  // läs in events från storage när startsidan laddas
   useEffect(() => {
+    // 1) Läs sparade events från sessionStorage
     const saved: EventFormData[] = loadEvents();
-    const mapped: EventFeedItem[] = saved.map((ev, index) => {
+
+    // 2) Kombinera default + sparade
+    const allEvents: EventFormData[] = [...DEFAULT_EVENTS, ...saved];
+
+    // 3) Mappa till EventFeedItem
+    const mapped: EventFeedItem[] = allEvents.map((ev, index) => {
       let month = "Okänd";
       let day = 1;
       let year = 2025;
@@ -62,10 +67,11 @@ export default function Home() {
         endTime: ev.endTime || " ",
         beskrivning: ev.beskrivning || undefined,
         organizerURL: ev.organizerURL || undefined,
-        img: ev.imageData ?? undefined, // här kan du senare stoppa in bild-url
+        img: ev.imageData ?? undefined,
       };
     });
 
+    // 4) Sortera på datum som tidigare
     const sorted = [...mapped].sort((a, b) => {
       const monthA = MONTHS.indexOf(a.month ?? "");
       const monthB = MONTHS.indexOf(b.month ?? "");
