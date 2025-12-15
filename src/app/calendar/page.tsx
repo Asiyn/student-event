@@ -94,26 +94,26 @@ export default function CalendarPage() {
 
   // hantera klick
   const handleEventClick = (arg: EventClickArg) => {
-  const e = arg.event;
+    const e = arg.event;
 
-  const formData: EventFormData = {
-    event: e.title,
-    arrangor: e.extendedProps.arrangor,
-    date: e.startStr.split("T")[0],
-    startTime: e.startStr.split("T")[1]?.slice(0, 5) ?? "",
-    endTime: e.endStr?.split("T")[1]?.slice(0, 5) ?? "",
-    place: e.extendedProps.place,
-    beskrivning: e.extendedProps.beskrivning,
-    organizerURL: e.extendedProps.organizerURL,
-    imageData: e.extendedProps.imageData,
-    fakultet: e.extendedProps.fakultet,
-    color: e.backgroundColor ?? null,
-    id: undefined
+    const formData: EventFormData = {
+      event: e.title,
+      arrangor: e.extendedProps.arrangor,
+      date: e.startStr.split("T")[0],
+      startTime: e.startStr.split("T")[1]?.slice(0, 5) ?? "",
+      endTime: e.endStr?.split("T")[1]?.slice(0, 5) ?? "",
+      place: e.extendedProps.place,
+      beskrivning: e.extendedProps.beskrivning,
+      organizerURL: e.extendedProps.organizerURL,
+      imageData: e.extendedProps.imageData,
+      fakultet: e.extendedProps.fakultet,
+      color: e.backgroundColor ?? null,
+      id: undefined,
+    };
+
+    setSelectedEvent(formToFeed(formData));
+    setShowEventModal(true);
   };
-
-  setSelectedEvent(formToFeed(formData));
-  setShowEventModal(true);
-};
 
   return (
     <>
