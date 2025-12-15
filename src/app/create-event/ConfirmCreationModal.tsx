@@ -35,7 +35,7 @@ export default function CreateEventConfirmModal({
             Avbryt
           </button>
           <button className={styles["skapa"]} onClick={onConfirm}>
-            Skapa event
+            Skapa event bitch
           </button>
         </div>
       </div>

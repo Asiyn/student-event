@@ -83,6 +83,21 @@
   opacity: 1;
 }
 
+.submit-btn {
+  width: 100%;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border);
+  background-color: var(--accent);
+
+  /* text styling */
+  color: var(--text);
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-family: Arial;
+  text-transform: uppercase;
+}
+
 /* Bild ^^*/
 
 .upload-container {
