@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { GroupBase, OptionsOrGroups } from "react-select";
+import type { SingleValue, GroupBase, OptionsOrGroups } from "react-select";
 import { customStyles } from "../calendar/selectFilter";
 import styles from "./eventdetails.module.css";
 import { faPalette } from "@fortawesome/free-solid-svg-icons";
@@ -46,10 +46,10 @@ export default function CreateField({
   const colorInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleCreate = (inputValue: string) => {
-  const v = inputValue.trim();
-  const opt = { value: v, label: v };
-  setSelectedOption(opt);
-};
+    const v = inputValue.trim();
+    const opt: Option = { value: v, label: v };
+    setSelectedOption(opt);
+  };
 
   const onColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setColor(e.target.value);
@@ -128,18 +128,19 @@ export default function CreateField({
       {/* DROPDOWN */}
       {dropdown && (
         <>
-          <CreatableSelect
+          <CreatableSelect<Option, false, GroupBase<Option>>
             inputId={name}
             options={dropdownOptions}
             placeholder={placeholder ?? label}
             styles={customStyles}
             value={selectedOption}
-            onChange={(opt) => setSelectedOption(opt ?? null)}
+            onChange={(opt: SingleValue<Option>) =>
+              setSelectedOption(opt ?? null)
+            }
             onCreateOption={handleCreate}
             formatCreateLabel={(input) => `Skriv själv: "${input}"`}
           />
 
-          {/* DETTA ÄR DET SOM FORMEN SKICKAR */}
           <input
             type="hidden"
             name={name}
@@ -147,7 +148,6 @@ export default function CreateField({
             required={required}
           />
         </>
-      
       )}
     </div>
   );

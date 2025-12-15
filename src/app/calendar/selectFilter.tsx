@@ -1,11 +1,22 @@
 "use client";
 
 import styles from "./filter.module.css";
-import Select from "react-select";
-// import { useState } from "react";
+import Select, { StylesConfig, GroupBase } from "react-select";
 
-export const customStyles = {
-  control: (base: any, state: { isFocused: any }) => ({
+// 1. Define the shape of the option used by React Select
+export type SelectOption = {
+  value: string;
+  label: string;
+};
+
+// 2. Define the styles using strictly typed generics:
+// <OptionType, IsMulti (boolean to support both), GroupType>
+export const customStyles: StylesConfig<
+  SelectOption,
+  boolean,
+  GroupBase<SelectOption>
+> = {
+  control: (base, state) => ({
     ...base,
     backgroundColor:
       "color-mix(in srgb, var(--nav-background) 60%, transparent)",
@@ -22,21 +33,21 @@ export const customStyles = {
       borderColor: "var(--primary)",
     },
   }),
-  placeholder: (base: any) => ({
+  placeholder: (base) => ({
     ...base,
     color: "color-mix(in srgb, var(--text) 60%, transparent)",
   }),
-  multiValue: (base: any) => ({
+  multiValue: (base) => ({
     ...base,
     backgroundColor: "color-mix(in srgb, var(--primary) 25%, transparent)",
     borderRadius: "4px",
   }),
-  multiValueLabel: (base: any) => ({
+  multiValueLabel: (base) => ({
     ...base,
     color: "var(--text)",
     fontWeight: 500,
   }),
-  multiValueRemove: (base: any) => ({
+  multiValueRemove: (base) => ({
     ...base,
     color: "var(--text)",
     ":hover": {
@@ -44,11 +55,11 @@ export const customStyles = {
       color: "var(--background)",
     },
   }),
-  singleValue: (base: any) => ({
+  singleValue: (base) => ({
     ...base,
     color: "var(--text)",
   }),
-  menu: (base: any) => ({
+  menu: (base) => ({
     ...base,
     backgroundColor:
       "color-mix(in srgb, var(--nav-background) 85%, transparent)",
@@ -58,14 +69,14 @@ export const customStyles = {
     backdropFilter: "blur(10px)",
     WebkitBackdropFilter: "blur(10px)",
   }),
-  menuList: (base: any) => ({
+  menuList: (base) => ({
     ...base,
     maxHeight: "200px",
     overflowY: "auto",
     zIndex: 1000,
     backdropFilter: "blur(20px)",
   }),
-  option: (base: any, { isFocused, isSelected }: any) => ({
+  option: (base, { isFocused, isSelected }) => ({
     ...base,
     backgroundColor: isSelected
       ? "color-mix(in srgb, var(--primary) 60%, transparent)"
@@ -75,7 +86,7 @@ export const customStyles = {
     color: "var(--text)",
     cursor: "pointer",
   }),
-  dropdownIndicator: (base: any, state: { isFocused: any }) => ({
+  dropdownIndicator: (base, state) => ({
     ...base,
     color: state.isFocused ? "var(--primary)" : "var(--text)",
     transition: "color 0.15s ease",
@@ -83,13 +94,14 @@ export const customStyles = {
       color: "var(--primary)",
     },
   }),
-  input: (base: any) => ({
+  input: (base) => ({
     ...base,
     color: "var(--text)",
   }),
 };
 
-type Option = {
+// The raw data structure passed via props
+type FilterPropOption = {
   value?: string;
   label?: string;
   optgroup?: string;
@@ -99,7 +111,7 @@ type Option = {
 type SelectFilterProps = {
   label: string;
   id: string;
-  options: Option[];
+  options: FilterPropOption[];
 };
 
 export default function SelectFilter({
@@ -107,17 +119,24 @@ export default function SelectFilter({
   id,
   options,
 }: SelectFilterProps) {
-  const formattedOptions = options.map((opt) =>
-    opt.optgroup
-      ? {
-          label: opt.optgroup,
-          options: opt.items?.map((item) => ({
-            value: item.value,
-            label: item.label,
-          })),
-        }
-      : { value: opt.value, label: opt.label }
-  );
+  
+  // Transform raw props into a strict structure of Groups or Options
+  const formattedOptions: (SelectOption | GroupBase<SelectOption>)[] = options.map((opt) => {
+    if (opt.optgroup && opt.items) {
+      return {
+        label: opt.optgroup,
+        options: opt.items.map((item) => ({
+          value: item.value,
+          label: item.label,
+        })),
+      };
+    }
+    // Fallback if value/label are missing, though ideally they shouldn't be
+    return { 
+      value: opt.value ?? "", 
+      label: opt.label ?? "" 
+    };
+  });
 
   return (
     <div className={styles["filter-group"]}>
