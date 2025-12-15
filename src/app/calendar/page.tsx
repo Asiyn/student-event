@@ -10,8 +10,17 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
+<<<<<<< Updated upstream
 //import { EventInput } from "@fullcalendar/core";
 import svLocale from "@fullcalendar/core/locales/sv"; // svensk kalender
+=======
+import type {
+  EventContentArg,
+  EventInput,
+  EventClickArg,
+} from "@fullcalendar/core";
+import svLocale from "@fullcalendar/core/locales/sv";
+>>>>>>> Stashed changes
 
 import Filter from "./filter";
 
@@ -21,11 +30,12 @@ import calStyles from "./calendar.module.css";
 export default function CalendarPage() {
 =======
 import type { EventFormData } from "../lib/eventTypes";
+import { DEFAULT_EVENTS } from "../lib/eventTypes";
 import { loadEvents } from "../lib/eventStorage";
 import { DEFAULT_EVENTS } from "../lib/eventTypes";
 
-import type { EventClickArg } from "@fullcalendar/core"; // klicka event
 import EventModal from "../feed/EventModal";
+<<<<<<< Updated upstream
 import { EventFeedItem } from "../feed/FeedItem";
 
 function mapFormDataToFeedItem(ev: EventFormData): EventFeedItem {
@@ -42,6 +52,10 @@ function mapFormDataToFeedItem(ev: EventFormData): EventFeedItem {
     img: ev.imageData ?? undefined,
   };
 }
+=======
+import type { EventFeedItem } from "../feed/FeedItem";
+import { formToFeed } from "../lib/mappers";
+>>>>>>> Stashed changes
 
 export default function CalendarPage() {
   const [calendarEvents, setCalendarEvents] = useState<EventInput[]>([]);
@@ -59,19 +73,30 @@ export default function CalendarPage() {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
 >>>>>>> Stashed changes
 =======
+>>>>>>> Stashed changes
+=======
+  // Läs in event från storage + defaults när kalendersidan laddas
 >>>>>>> Stashed changes
   useEffect(() => {
     const saved: EventFormData[] = loadEvents();
 
     const allEvents: EventFormData[] = [...DEFAULT_EVENTS, ...saved];
+<<<<<<< Updated upstream
 
     console.log("Läste events till kalendern:", allEvents);
 
     const mapped: EventInput[] = allEvents.map((ev, index) => {
+=======
+    console.log("Läste events till kalendern:", allEvents);
+
+    const mapped: EventInput[] = allEvents.map((ev, index) => {
+      // Bygg start/slut
+>>>>>>> Stashed changes
       let start: string | undefined = ev.date || undefined;
       let end: string | undefined = undefined;
 
@@ -82,6 +107,10 @@ export default function CalendarPage() {
         end = `${ev.date}T${ev.endTime}`;
       }
 
+<<<<<<< Updated upstream
+=======
+      // Färg: använd vald color eller fallback
+>>>>>>> Stashed changes
       let color = ev.color || "#000000";
       const fak = ev.fakultet?.toLowerCase() ?? "";
       if (!ev.color) {
@@ -92,7 +121,11 @@ export default function CalendarPage() {
 
       return {
         id: String(ev.id ?? index),
+<<<<<<< Updated upstream
         title: ev.event || "Event utan namn",
+=======
+        title: ev.event,
+>>>>>>> Stashed changes
         start,
         end,
         color,
@@ -128,6 +161,10 @@ export default function CalendarPage() {
     const { event } = arg;
 
     const data: EventFormData = {
+<<<<<<< Updated upstream
+=======
+      id: event.id ? Number(event.id) : undefined,
+>>>>>>> Stashed changes
       event: event.title,
       arrangor: event.extendedProps.arrangor,
       date: event.startStr.split("T")[0],
@@ -139,12 +176,19 @@ export default function CalendarPage() {
       imageData: event.extendedProps.imageData,
       fakultet: event.extendedProps.fakultet,
       color: event.backgroundColor ?? null,
+<<<<<<< Updated upstream
       id: undefined,
     };
 
     console.log("CLICKED EVENT");
 
     setSelectedEvent(mapFormDataToFeedItem(data));
+=======
+    };
+
+    // använd helpern du importerar
+    setSelectedEvent(formToFeed(data));
+>>>>>>> Stashed changes
     setShowEventModal(true);
   };
 
@@ -197,7 +241,16 @@ export default function CalendarPage() {
               },
             ]}
             eventDisplay="block"
+<<<<<<< Updated upstream
             dayMaxEvents={true}
+=======
+            eventContent={renderEventContent}
+            height="auto"
+            fixedWeekCount={true}
+            expandRows={true}
+            dayMaxEvents={false}
+            dayMaxEventRows={2}
+>>>>>>> Stashed changes
           />
         </div>
       </div>
