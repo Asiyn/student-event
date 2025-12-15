@@ -45,7 +45,7 @@ export default function CalendarPage() {
       }
 
       // Enkel färg baserat på fakultet (valfritt)
-      let color = ev.color || "#613325"; // default
+      let color = ev.color || "#000000"; // default
       const fak = ev.fakultet?.toLowerCase() ?? "";
       if (fak.includes("lintek")) color = "#00bfa5";
       if (fak.includes("stuff")) color = "#4fc3f7";

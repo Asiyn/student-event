@@ -17,7 +17,5 @@ export function saveEvent(newEvent: EventFormData) {
     const current = loadEvents();
     const updated = [...current, newEvent];
     sessionStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
-  } catch {
-    // ev. logga
-  }
+  } catch {}
 }
