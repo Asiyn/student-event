@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Select, { SingleValue, GroupBase, OptionsOrGroups } from "react-select";
 import { customStyles } from "../calendar/selectFilter";
 import styles from "./eventdetails.module.css";
+import { faPalette } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export type Option = {
   value: string;
@@ -40,6 +42,7 @@ export default function CreateField({
   const isColorInput = !dropdown && inputType === "color";
   const isTextarea = !dropdown && inputType === "textarea";
   const isCustom = selectedOption?.value === "__custom__";
+  const colorInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleSelectChange = (option: SingleValue<Option>) => {
     setSelectedOption(option ?? null);
@@ -81,18 +84,29 @@ export default function CreateField({
           />
           <input
             type="text"
-            className={styles["color-text"]}
+            className={styles["colorPreview"]}
             value={color}
             onChange={(e) => setColor(e.target.value)}
             maxLength={7}
           />
+
+          {/* Ikonen som öppnar färgväljaren */}
+          <button
+            type="button"
+            className={styles["color-icon-button"]}
+            onClick={() => colorInputRef.current?.click()}
+          >
+            <FontAwesomeIcon icon={faPalette} />
+          </button>
+
+          {/* Själva color-inputen som skickas med i formuläret */}
           <input
+            ref={colorInputRef}
             type="color"
             id={name}
-            name={name}
+            name={name} // t.ex. "colorCalendar"
             value={color}
             onChange={onColorChange}
-            required={required}
             className={styles["color-hidden"]}
           />
         </div>

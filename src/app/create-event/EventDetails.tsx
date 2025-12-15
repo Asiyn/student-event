@@ -73,6 +73,11 @@ export default function EventDetails({ resetKey }: Props) {
           name="organizerURL"
           inputType="url"
         />
+        <CreateField
+          label="Färg på event i kalendern"
+          name="colorCalendar"
+          inputType="color"
+        />
       </div>
     </>
   );

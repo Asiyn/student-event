@@ -31,8 +31,12 @@ export default function CreateEventConfirmModal({
         <p>Vill du bekräfta att eventet ska skapas?</p>
 
         <div className={styles.actions}>
-          <button className={styles['avbryt']} onClick={onCancel}>Avbryt</button>
-          <button className={styles['skapa']} onClick={onConfirm}>Skapa event</button>
+          <button className={styles["avbryt"]} onClick={onCancel}>
+            Avbryt
+          </button>
+          <button className={styles["skapa"]} onClick={onConfirm}>
+            Skapa event
+          </button>
         </div>
       </div>
     </div>
