@@ -2,7 +2,6 @@
 "use client";
 
 import styles from "./page.module.css";
-import feedStyles from "./start.module.css";
 
 import EventFeed from "./feed/EventFeed";
 import type { EventFeedItem } from "./feed/FeedItem";
@@ -86,7 +85,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className={`${styles.page} ${feedStyles.page}`}>
+    <div className={`${styles.page} ${styles.page}`}>
       <h1>Kommande Event</h1>
       <EventFeed items={items} />
     </div>
