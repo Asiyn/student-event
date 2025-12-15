@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styles from "./modal.module.css";
 
 type Props = {
@@ -24,7 +24,7 @@ export default function CreateEventSuccessModal({
     <div className={styles.backdrop} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <h2>🎉 Event skapat!</h2>
-
+        <p>Du kan nu stänga detta fönster.</p>
         <div className={styles.actions}>
           <button className={styles['skapa']} onClick={onClose}>Stäng</button>
         </div>
