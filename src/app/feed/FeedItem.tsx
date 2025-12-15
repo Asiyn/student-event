@@ -41,8 +41,8 @@ export default function FeedItem({
       tabIndex={0}
     >
       <div className={styles["text-container"]}>
-        <p className={styles["text-host"]}>{host ?? "<missing>"}</p>
         <p className={styles["text-event"]}>{event ?? "<missing>"}</p>
+        <p className={styles["text-host"]}>{host ?? "<missing>"}</p>
       </div>
 
       <div className={styles["date"]}>

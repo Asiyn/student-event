@@ -1,118 +1,133 @@
 * {
-    color: var(--back);
+  color: var(--back);
 }
 
 :disabled {
-    cursor: not-allowed !important;
+  cursor: not-allowed !important;
 }
 
 .fc {
-    background-color: color-mix(in srgb, var(--nav-background) 60%, transparent);
-    border: 1px solid var(--border);
+  background-color: color-mix(in srgb, var(--nav-background) 60%, transparent);
+  border: 1px solid var(--border);
 
-    padding: 1rem;
-    border-radius: 10px;
+  padding: 1rem;
+  border-radius: 10px;
 
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    background-clip: padding-box;
-    box-shadow: 0 1px 10px color-mix(in srgb, var(--border) 60%, transparent);
+  height: fit-content;
+
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  background-clip: padding-box;
+  box-shadow: 0 1px 10px color-mix(in srgb, var(--border) 60%, transparent);
+}
+
+.fc-list-empty {
+    background-color: transparent !important;
 }
 
 /* TITLE BAR*/
 .fc-toolbar-title {
-    text-transform: capitalize;
+  text-transform: capitalize;
 }
 
 /* BUTTONS */
 .fc-toolbar .fc-toolbar-chunk .fc-button {
-    /*all: unset;*/
+  /*all: unset;*/
 
-    background-color: var(--primary);
-    color: var(--background);
+  background-color: var(--primary);
+  color: var(--background);
 
-    font-weight: 600;
-    text-align: center;
+  font-weight: 600;
+  text-align: center;
 
-    padding: 0.6rem 1rem;
-    border-radius: 6px;
-    border: 2px solid transparent;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  border: 2px solid transparent;
 
-    cursor: pointer;
-    transition: all 0.15s ease-in-out;
-    box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 50%, transparent);
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 50%, transparent);
 
-    transition: 0.25s all ease;
+  transition: 0.25s all ease;
 }
 
 .fc-toolbar .fc-toolbar-chunk .fc-button:hover {
-    filter: brightness(0.9);
-
+  filter: brightness(0.9);
 }
 
-.fc-toolbar .fc-toolbar-chunk .fc-button.fc-button-active, .fc-toolbar .fc-toolbar-chunk .fc-button.fc-button-active:focus:hover {
-    background-color: var(--secondary);
-    color: var(--background);
+.fc-toolbar .fc-toolbar-chunk .fc-button.fc-button-active,
+.fc-toolbar .fc-toolbar-chunk .fc-button.fc-button-active:focus:hover {
+  background-color: var(--secondary);
+  color: var(--background);
 
-    font-weight: 600;
-    text-align: center;
+  font-weight: 600;
+  text-align: center;
 
-    padding: 0.6rem 1rem;
-    border: 2px solid transparent;
+  padding: 0.6rem 1rem;
+  border: 2px solid transparent;
 
-    cursor: pointer;
-    transition: all 0.15s ease-in-out;
-    box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 50%, transparent);
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 50%, transparent);
 
-    cursor: not-allowed
+  cursor: not-allowed;
 }
 
 .fc-toolbar .fc-toolbar-chunk .fc-button[disabled],
 .fc-toolbar .fc-toolbar-chunk .fc-button:disabled {
-    transition: 0.25s all ease !important;
-    opacity: 0.5;
+  transition: 0.25s all ease !important;
+  opacity: 0.5;
 }
 
 .fc-toolbar .fc-toolbar-chunk .fc-button:disabled:active {
-    transition: 0.25s all ease !important;
-    opacity: 0.4;
+  transition: 0.25s all ease !important;
+  opacity: 0.4;
 }
 
 .fc-toolbar .fc-toolbar-chunk .fc-button:active {
-    opacity: 0.8;
-    color: var(--background);
-    background-color: var(--primary);
-    border: 2px solid transparent;
+  opacity: 0.8;
+  color: var(--background);
+  background-color: var(--primary);
+  border: 2px solid transparent;
 }
 
 .fc-toolbar .fc-toolbar-chunk .fc-button.fc-button-active:active {
-    opacity: 0.8;
-    background-color: var(--secondary);
-    box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 50%, transparent);
+  opacity: 0.8;
+  background-color: var(--secondary);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 50%, transparent);
 }
 
 .fc-toolbar .fc-toolbar-chunk .fc-button.fc-button-active:focus {
-    box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 50%, transparent);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 50%, transparent);
 }
 
 /* DAY SPECIFIC */
 .fc .fc-day-today {
-    background-color: color-mix(in srgb, var(--secondary) 40%, transparent) !important;
+  background-color: color-mix(
+    in srgb,
+    var(--secondary) 40%,
+    transparent
+  ) !important;
 }
 
 .fc table {
-    border-radius: 6px !important;
-    border: 1px solid var(--border);
-    border-collapse: collapse;
-    background-color: color-mix(in srgb, var(--secondary) 5%, transparent) !important;
+  border-radius: 6px !important;
+  border: 1px solid var(--border);
+  border-collapse: collapse;
+  background-color: color-mix(
+    in srgb,
+    var(--secondary) 5%,
+    transparent
+  ) !important;
 }
 
 .fc table .fc-day {
-    border: 1px solid var(--border);
+  border: 1px solid var(--border);
 }
 
 .fc-view {
-    border-radius: 6px !important;
+  border-radius: 6px !important;
+  overflow: hidden;
 }
 
 .fc-theme-standard .fc-scrollgrid {
@@ -131,8 +146,8 @@
 
 .fc-theme-standard .fc-scrollgrid td:last-child,
 .fc-theme-standard .fc-scrollgrid th:last-child {
-    border-right: 0px !important;
-    border-bottom: 0px !important;
+  border-right: 0px !important;
+  border-bottom: 0px !important;
 }
 
 /* just in case something weird on columns */
@@ -142,35 +157,117 @@
 }
 
 .fc-daygrid-week-number.fc-daygrid-week-number {
-    background-color: var(--primary);
-    color: var(--background);
+  background-color: var(--primary);
+  color: var(--background);
 }
 
 /* PROGRAM */
 
 .fc-list {
-    background-color: color-mix(in srgb, var(--secondary) 5%, transparent) !important;
-    border-color: var(--border) !important;
+  background-color: color-mix(
+    in srgb,
+    var(--secondary) 5%,
+    transparent
+  ) !important;
+  border-color: var(--border) !important;
 }
 
 .fc-list > * {
-    border-radius: inherit;
+  border-radius: inherit;
 }
 
 .fc-list tr {
-    color: var(--text);
+  color: var(--text);
 }
 
 .fc-list .fc-cell-shaded {
-    background: transparent !important;
+  background: transparent !important;
 }
 
-tbody .fc-event:hover {
-    cursor: pointer !important;
+.fc-event:hover {
+  cursor: pointer !important;
+  box-shadow: var(--box-shadow);
+  transition: box-shadow 0.2s ease;
 }
 
 :root {
-    --fc-list-event-hover-bg-color: color-mix(in srgb, var(--primary) 50%, transparent);
-    --fc-page-bg-color: color-mix(in srgb, var(--primary) 10%, transparent);
-    --fc-border-color: var(--border);
+  --fc-list-event-hover-bg-color: color-mix(
+    in srgb,
+    var(--primary) 50%,
+    transparent
+  );
+  --fc-page-bg-color: color-mix(in srgb, var(--primary) 10%, transparent);
+  --fc-border-color: var(--border);
+}
+
+/**/
+
+/* tbody {
+    height: fit-content;
+}
+table {
+    height: fit-content;
+} */
+
+.fc-daygrid-day-frame {
+  height: 8rem;
+  overflow: hidden;
+}
+
+.fc-daygrid-day-bottom a {
+  background-color: color-mix(in srgb, var(--primary) 50%, transparent);
+  width: 100%;
+  transition: 0.2s all ease;
+}
+
+.fc-daygrid-day-bottom a:hover {
+  background-color: color-mix(in srgb, var(--primary) 20%, transparent) !important;
+}
+
+/*popup*/
+.fc-popover {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: var(--box-shadow) !important;
+}
+
+.fc-popover-header {
+  background-color: var(--primary) !important;
+}
+
+.fc-popover-title {
+  color: var(--background);
+}
+
+.fc-popover-close {
+  color: var(--background);
+  transition: 0.2s all ease;
+}
+
+.fc-popover-close:hover {
+  color: var(--accent);
+}
+
+.fc-popover-body {
+  background-color: var(--nav-background);
+  box-shadow: var(--box-shadow) !important;
+}
+
+.fc-event {
+  padding: 0.5rem 0.2rem;
+  position: relative;
+  word-wrap: break-word;
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  min-width: 0;
+
+  transition: box-shadow 0.2s ease;
+}
+
+.fc-event div:first-child {
+    font-size: 1rem;
+}
+
+.fc-event div:last-child {
+    font-size: 1rem;
 }

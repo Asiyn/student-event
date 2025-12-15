@@ -116,4 +116,5 @@
 
 .field-container .color-hidden {
   opacity: 0;
+  pointer-events: none;
 }

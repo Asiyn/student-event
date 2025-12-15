@@ -10,7 +10,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
-import type { EventInput } from "@fullcalendar/core";
+import type { EventContentArg, EventInput } from "@fullcalendar/core";
 import svLocale from "@fullcalendar/core/locales/sv";
 
 import Filter from "./filter";
@@ -19,8 +19,17 @@ import calStyles from "./calendar.module.css";
 import type { EventFormData } from "../lib/eventTypes";
 import { loadEvents } from "../lib/eventStorage";
 
+import type { EventClickArg } from "@fullcalendar/core"; // klicka event
+import EventModal from "../feed/EventModal";
+
 export default function CalendarPage() {
   const [calendarEvents, setCalendarEvents] = useState<EventInput[]>([]);
+
+  // Klicka på event
+  const [selectedEvent, setSelectedEvent] = useState<EventFormData | null>(
+    null
+  );
+  const [showEventModal, setShowEventModal] = useState(false);
 
   useEffect(() => {
     document.title = "Kalender | StudentEvent";
@@ -53,7 +62,7 @@ export default function CalendarPage() {
 
       return {
         id: String(index),
-        title: ev.event || "Event utan namn",
+        title: ev.event,
         start,
         end,
         color,
@@ -70,33 +79,89 @@ export default function CalendarPage() {
     setCalendarEvents(mapped);
   }, []);
 
-  return (
-    <div className={styles.page}>
-      <Filter />
+  const renderEventContent = (arg: EventContentArg) => {
+    const arrangor = arg.event.extendedProps.arrangor as string | undefined;
 
-      <div className={calStyles["calendar-container"]}>
-        <FullCalendar
-          plugins={[
-            dayGridPlugin,
-            timeGridPlugin,
-            interactionPlugin,
-            listPlugin,
-          ]}
-          initialView="dayGridMonth"
-          locales={[svLocale]}
-          locale="sv"
-          headerToolbar={{
-            left: "prev,next today",
-            center: "title",
-            right: "dayGridMonth,listWeek",
-          }}
-          weekNumbers={true}
-          weekText="v."
-          events={calendarEvents}
-          eventDisplay="block"
-          dayMaxEvents={true}
-        />
+    return (
+      <div>
+        <div style={{ fontWeight: 600 }}>{arg.event.title}</div>
+        {arrangor && (
+          <div style={{ fontSize: "0.75em", opacity: 0.85 }}>{arrangor}</div>
+        )}
       </div>
-    </div>
+    );
+  };
+
+  // hantera klick
+  const handleEventClick = (arg: EventClickArg) => {
+    const { event } = arg;
+
+    const data: EventFormData = {
+      event: event.title,
+      arrangor: event.extendedProps.arrangor,
+      date: event.startStr.split("T")[0],
+      startTime: event.startStr.split("T")[1]?.slice(0, 5) ?? "",
+      endTime: event.endStr?.split("T")[1]?.slice(0, 5) ?? "",
+      place: event.extendedProps.place,
+      beskrivning: event.extendedProps.beskrivning,
+      organizerURL: event.extendedProps.organizerURL,
+      imageData: event.extendedProps.imageData,
+      fakultet: event.extendedProps.fakultet,
+      color: event.backgroundColor ?? null,
+    };
+
+    console.log("CLICKED EVENT");
+
+    setSelectedEvent(data);
+    setShowEventModal(true);
+  };
+
+  return (
+    <>
+      <div className={styles.page}>
+        <Filter />
+
+        <div className={calStyles["calendar-container"]}>
+          <FullCalendar
+            plugins={[
+              dayGridPlugin,
+              timeGridPlugin,
+              interactionPlugin,
+              listPlugin,
+            ]}
+            initialView="dayGridMonth"
+            locales={[svLocale]}
+            locale="sv"
+            headerToolbar={{
+              left: "prev,next today",
+              center: "title",
+              right: "dayGridMonth,listWeek",
+            }}
+            weekNumbers={true}
+            weekText="v."
+            displayEventTime={false}
+            events={calendarEvents}
+            eventClick={handleEventClick}
+            eventDisplay="block"
+            eventContent={renderEventContent}
+            height="auto"
+            fixedWeekCount={true} // ← alla veckor lika höjd
+            expandRows={true} // ← dela höjd jämnt
+            dayMaxEvents={false} // ← aktiverar "+X till"
+            dayMaxEventRows={2}
+          />
+        </div>
+      </div>
+
+      {showEventModal && selectedEvent && (
+        <EventModal
+          event={selectedEvent}
+          onClose={() => {
+            setShowEventModal(false);
+            setSelectedEvent(null);
+          }}
+        />
+      )}
+    </>
   );
 }
