@@ -90,7 +90,7 @@
   border: 1px solid var(--border);
 }
 
-/* Ikonen som används som färg-knapp */
+
 .color-icon-button {
   all: unset;
   cursor: pointer;
@@ -105,7 +105,7 @@
   transform: translateY(-1px);
 }
 
-/* Själva <input type="color"> – helt osynlig */
+
 .color-hidden {
   position: absolute;
   opacity: 0;

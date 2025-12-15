@@ -2,6 +2,7 @@ import { EventFormData, STORAGE_KEY, DEFAULT_EVENTS } from "./eventTypes";
 
 const PLACEHOLDER_EVENTS = DEFAULT_EVENTS;
 
+// ladda in
 export function loadEvents(): EventFormData[] {
   if (typeof window === "undefined") return PLACEHOLDER_EVENTS;
 
@@ -11,7 +12,7 @@ export function loadEvents(): EventFormData[] {
   return [...PLACEHOLDER_EVENTS, ...parsed];
 }
 
-/* ===== SAVE ===== */
+/*spara*/
 export function saveEvent(event: EventFormData) {
   if (typeof window === "undefined") return;
 

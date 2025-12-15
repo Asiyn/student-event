@@ -108,14 +108,14 @@ type SelectFilterProps = {
   label: string;
   id: string;
   options: FilterPropOption[];
-  onChange: (values: string[]) => void; // ✅ skicka upp valen
+  onChange: (values: string[]) => void;
 };
 
 export default function SelectFilter({
   label,
   id,
   options,
-  onChange, // ✅ NU FINNS DEN I SCOPE
+  onChange,
 }: SelectFilterProps) {
   const formattedOptions: (SelectOption | GroupBase<SelectOption>)[] =
     options.map((opt) => {

@@ -92,7 +92,7 @@ export default function CreateField({
             maxLength={7}
           />
 
-          {/* Ikonen som öppnar färgväljaren */}
+          {/* Ikonen som öppnar colorpickern */}
           <button
             type="button"
             className={styles["color-icon-button"]}
@@ -100,12 +100,12 @@ export default function CreateField({
           >
             <FontAwesomeIcon icon={faPalette} />
           </button>
-          {/* Själva color-inputen som skickas med i formuläret */}
+          {/* hex som skickas med */}
           <input
             ref={colorInputRef}
             type="color"
             id={name}
-            name={name} // t.ex. "colorCalendar"
+            name={name}
             value={color}
             onChange={onColorChange}
             className={styles["color-hidden"]}

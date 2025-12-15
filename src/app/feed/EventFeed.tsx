@@ -18,7 +18,7 @@ const defaultEvent: EventFeedItem = {
 };
 
 type EventFeedProps = {
-  items?: EventFeedItem[]; // gärna optional
+  items?: EventFeedItem[]; // optional
 };
 
 export default function EventFeed({ items = [] }: EventFeedProps) {

@@ -135,7 +135,7 @@
   border-radius: 8px;
 }
 
-/* all inner cell borders (headers + day cells) */
+
 .fc-theme-standard .fc-scrollgrid td,
 .fc-theme-standard .fc-scrollgrid th {
   border-left: 0px solid var(--border) !important;
@@ -150,7 +150,7 @@
   border-bottom: 0px !important;
 }
 
-/* just in case something weird on columns */
+
 .fc-theme-standard .fc-scrollgrid colgroup,
 .fc-theme-standard .fc-scrollgrid col {
   border: 0 !important;

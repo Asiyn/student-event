@@ -32,7 +32,6 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    // ✅ loadEvents() är enda sanningskällan
     const allEvents: EventFormData[] = loadEvents();
 
     const mapped: EventFeedItem[] = allEvents.map((ev) => {

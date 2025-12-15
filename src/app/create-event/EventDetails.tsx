@@ -28,12 +28,6 @@ export default function EventDetails({ resetKey }: Props) {
   return (
     <>
       <h2>Skapa event</h2>
-      {/* <p className={styles["notice"]}>
-        <i>
-          <span className={"required-star"}>*</span> Obligatoriskt att fylla i
-          dessa fält
-        </i>
-      </p> */}
       <div className={styles["form"]}>
         <CreateField
           label="Namn på event"

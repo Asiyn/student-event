@@ -46,7 +46,7 @@
 .preview-img:hover {
   cursor: pointer;
 }
-/* move ::after from .preview-img to .preview */
+
 .preview-img-wrapper::after {
   content: "Klicka för att ta bort bild";
   position: absolute;

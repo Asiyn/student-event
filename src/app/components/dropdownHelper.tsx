@@ -8,8 +8,6 @@ export type OptionGroupDef = {
   items: Option[];
 };
 
-// --- raw data ---
-
 export const sektionerDef: OptionGroupDef[] = [
   {
     optgroup: "LinTek",

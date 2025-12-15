@@ -1,4 +1,4 @@
-:root {
+/* :root {
   --text: #010d28;
   --background: #ecf1fe;
   --primary: #053294;
@@ -32,7 +32,29 @@
     --warning: #7a191e;
     --success: #16932b;
   }
-}
+} */
+
+:root {
+    --text: #d9e4fe;
+    --background: #010714;
+    --primary: #6b98fa;
+    --secondary: #1f3e85;
+    --accent: #f820c6;
+    --nav-background: #010d25;
+
+    --component-background: color-mix(
+      in srgb,
+      var(--nav-background) 60%,
+      transparent
+    );
+    --border: #1f283b;
+    --box-shadow: 0 1px 10px color-mix(in srgb, var(--border) 60%, transparent);
+
+    --warning: #7a191e;
+    --success: #16932b;
+
+    --border-radius: 0.8rem;
+  }
 
 ::selection {
   background: color-mix(in srgb, var(--primary) 50%, transparent);

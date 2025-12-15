@@ -77,7 +77,7 @@ export default function CalendarPage() {
           fakultet: ev.fakultet,
           beskrivning: ev.beskrivning,
           organizerURL: ev.organizerURL,
-          imageData: ev.imageData, // ← måste finnas
+          imageData: ev.imageData,
         },
       } satisfies EventInput;
     });
@@ -169,7 +169,7 @@ export default function CalendarPage() {
             weekText="v."
             buttonText={{
               dayGridMonth: "Månad",
-              listWeek: "Vecka", // ← ändrar "Program" till "Vecka"
+              listWeek: "Vecka",
             }}
             displayEventTime={false}
             events={calendarEvents}
@@ -177,9 +177,9 @@ export default function CalendarPage() {
             eventDisplay="block"
             eventContent={renderEventContent}
             height="auto"
-            fixedWeekCount={true} // ← alla veckor lika höjd
-            expandRows={true} // ← dela höjd jämnt
-            dayMaxEvents={false} // ← aktiverar "+X till"
+            fixedWeekCount={true}
+            expandRows={true}
+            dayMaxEvents={false}
             dayMaxEventRows={1}
           />
         </div>

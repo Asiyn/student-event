@@ -56,7 +56,6 @@ export default function ImageUploader({ onFileChange, resetKey}: ImageUploaderPr
 
     setError(null);
 
-    // Läs in som data-URL (kan sparas i storage + användas som <Image src>)
     const reader = new FileReader();
     reader.onloadend = () => {
       const result = reader.result as string;
