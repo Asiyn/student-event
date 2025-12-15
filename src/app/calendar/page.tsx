@@ -57,7 +57,10 @@ export default function CalendarPage() {
   }, []);
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
   useEffect(() => {
     const saved: EventFormData[] = loadEvents();
 
