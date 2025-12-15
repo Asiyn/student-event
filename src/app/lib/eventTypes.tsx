@@ -26,7 +26,7 @@ export const DEFAULT_EVENTS: EventFormData[] = [
     id: 1,
     event: "VinterKravallen",
     arrangor: "Fest-n",
-    date: "2025-12-25",
+    date: "2026-01-31",
     place: "Kårhuset Kollektivet",
     startTime: "18:00",
     endTime: "23:00",
