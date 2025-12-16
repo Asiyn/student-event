@@ -20,6 +20,10 @@ export default function Navbar() {
   };
 
   useEffect(() => {
+    setMenuOpen(false);
+  }, [pathName]);
+
+  useEffect(() => {
     if (!menuOpen) return;
 
     const handleClickOutside = (e: MouseEvent) => {
@@ -82,7 +86,7 @@ export default function Navbar() {
       <div
         ref={menuRef}
         className={`${styles["mobile-menu"]} ${menuOpen ? styles.open : ""}`}
-        onClick={() => setMenuOpen((v) => !v)}
+        onClick={(e) => e.stopPropagation()}
       >
         <Link
           href="/"
