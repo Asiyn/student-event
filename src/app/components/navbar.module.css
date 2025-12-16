@@ -105,8 +105,8 @@
   }
 
   .navbar {
-    width: 80%;
-    padding: 0.85rem 2rem;
+    width: 90%;
+    padding: 0.95rem 2rem;
   }
 
   .nav-img {
@@ -210,7 +210,7 @@
     position: absolute;
     top: calc(100% + 0.75rem);
     right: 2rem;
-    width: 50%;
+    width: 81.5%;
 
     display: flex;
     flex-direction: column;
@@ -221,11 +221,14 @@
 
     background-color: color-mix(
       in srgb,
-      var(--nav-background) 85%,
+      var(--nav-background) 70%,
       transparent
     );
     border: 1px solid var(--border);
-    backdrop-filter: blur(6px);
+
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    background-clip: padding-box;
 
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
     z-index: 1001;

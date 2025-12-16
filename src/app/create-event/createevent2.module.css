@@ -181,14 +181,13 @@
   pointer-events: none;
 }
 
-.color-icon-button button {
-  all: unset;
-}
+
 
 @media (max-width: 768px) {
   .form-container {
     display: flex;
     flex-direction: column;
+    width: 70%;
   }
 
   .detail-submission {
@@ -207,7 +206,12 @@
 
   .upload-container {
     order: 1;
-    width: 60%;
+    width: 80%;
     align-self: center;
+  }
+
+  .submit-btn {
+    width: 70%;
+    padding: 0.85rem 2rem;
   }
 }
