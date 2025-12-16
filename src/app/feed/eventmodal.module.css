@@ -147,3 +147,31 @@
       column-gap: 1rem;
     }
 }
+
+@media (max-width: 468px) {
+
+  .modal {
+    height: 70%;
+  }
+
+  .modal-items-container {
+    flex-direction: column;
+  }
+
+  .image {
+    align-self: center;
+  }
+
+  .modalHeader {
+    position: sticky;
+    top: 0;
+    height: 0;      /* 👈 does NOT take space */
+    z-index: 20;
+  }
+
+  .closeButton {
+    position: absolute;
+    top: -0.75rem;
+    right: -0.9rem;
+  }
+}

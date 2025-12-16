@@ -209,8 +209,8 @@ export default function CalendarPage() {
             footerToolbar={
               isMobile
                 ? {
-                    left: "prev,next today",
-                    center: "",
+                    left: "prev,next",
+                    center: "today",
                     right: "listWeek",
                   }
                 : false

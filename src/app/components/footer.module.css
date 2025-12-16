@@ -3,6 +3,7 @@
     margin-top: 3rem;
 
     /* background-color: var(--component-background); */
+    column-gap: 0.25rem;
 
     display: flex;
     justify-content: center;

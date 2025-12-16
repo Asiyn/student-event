@@ -221,7 +221,7 @@
 
     background-color: color-mix(
       in srgb,
-      var(--nav-background) 70%,
+      var(--nav-background) 90%,
       transparent
     );
     border: 1px solid var(--border);

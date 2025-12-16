@@ -37,9 +37,11 @@ export default function EventModal({ event, onClose }: EventModalProps) {
   return (
     <div className={styles.backdrop} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.closeButton} onClick={onClose}>
-          <FontAwesomeIcon icon={faXmark} />
-        </button>
+        <div className={styles.modalHeader}>
+          <button className={styles.closeButton} onClick={onClose}>
+            <FontAwesomeIcon icon={faXmark} />
+          </button>
+        </div>
 
         <div className={styles["modal-items-container"]}>
           <div className={styles["image"]}>
@@ -90,8 +92,8 @@ export default function EventModal({ event, onClose }: EventModalProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    	&nbsp;Länk till {event.host}&#39;s sida 
-                      {/* Fixar apostrof ' och mellanslag framför */}
+                    &nbsp;Länk till {event.host}&#39;s sida
+                    {/* Fixar apostrof ' och mellanslag framför */}
                   </a>
                 </p>
               </div>
