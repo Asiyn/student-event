@@ -8,7 +8,7 @@
 
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0rem;
 
   padding: 1rem;
   border-radius: 10px;
@@ -20,12 +20,39 @@
   backdrop-filter: blur(5px);
   background-clip: padding-box;
   box-shadow: 0 1px 10px color-mix(in srgb, var(--border) 60%, transparent);
+
+  transition: gap 0.3s ease;
+}
+
+.changeGap {
+  gap: 1.5rem;
 }
 
 .filters {
   display: grid;
+
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+
+  grid-template-rows: 0fr;
+  opacity: 0.1;
+  transition: grid-template-rows 0.3s ease, opacity 0.4s ease;
+
+  > div {
+    overflow: hidden;
+  }
+}
+
+.filtersInner {
+  overflow: hidden;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.filters.show {
+  opacity: 1;
+  grid-template-rows: 1fr;
 }
 
 .filter-group {
@@ -111,17 +138,58 @@
 
 /* Hide functionality things */
 
-.filterHeader {
-  position: sticky;
-  top: 0;
-  height: 0;
-  z-index: 20;
-}
-
 .closeButton {
   position: absolute;
-  top: -0.75rem;
-  right: -0.9rem;
+  top: 1.5rem;
+  right: 0.9rem;
+
+  z-index: 10;
+
+  color: color-mix(in srgb, var(--text) 70%, transparent);
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.2rem;
+
+  font-size: 1.5rem;
+  aspect-ratio: 1 / 1;
+
+  transition:
+    border 0.3s ease,
+    color 0.2s ease;
+}
+
+.closeButton:hover {
+  color: var(--primary);
+  border: 1px solid var(--border);
+  cursor: pointer;
+}
+
+.closeButton .toggle-icon {
+  transition: transform 0.3s ease;
+}
+
+.closeButton:hover .toggle-icon {
+  transform: rotate(0deg);
+}
+
+.toggle-icon {
+  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--text) 50%, transparent));
+  transform: rotate(-90deg);
+}
+
+.toggle-icon:hover {
+  filter: drop-shadow(
+    0 0 5px color-mix(in srgb, var(--primary) 100%, transparent)
+  );
+}
+
+.open {
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+}
+
+.filter-container .open:hover {
+  transform: rotate(180deg);
 }
 
 @media (max-width: 768px) {
@@ -129,10 +197,13 @@
     width: 70%;
   }
 
-  .filters {
-    display: flex;
-    flex-direction: column;
+  .filtersInner {
+    grid-template-columns: 1fr;
   }
+
+  /* .closeButton {
+    top: 0.7rem;
+  } */
 }
 
 @media (max-width: 468px) {

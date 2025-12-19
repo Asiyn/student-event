@@ -193,7 +193,7 @@ export default function CalendarPage() {
         <Filter
           onFakultetChange={setSelectedFakulteter}
           onArrangorChange={setSelectedArrangorer}
-          onClose={() => setSelectedEvent(null)}
+          // toggleFilterVisibility={() => setSelectedEvent()}
         />
 
         <div className={calStyles["calendar-container"]}>
