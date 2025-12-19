@@ -33,6 +33,9 @@ export default function CreateEventPage() {
   // mobil knapp för att ta bort bild
   const [showMobileDelete, setShowMobileDelete] = useState(false);
 
+  // prevent form progress lost
+  const [hasInfo, setHasInfo] = useState(false);
+
   useEffect(() => {
     document.title = "Skapa Event | StudentEvent";
   }, []);
@@ -70,11 +73,53 @@ export default function CreateEventPage() {
     setShowConfirm(true);
   };
 
+  // prevent progress lost ------------------------------------------------
+  useEffect(() => {
+    if (!hasInfo) return;
+
+    const handler = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      // e.returnValue = ""; // required for Chrome
+    };
+
+    window.addEventListener("beforeunload", handler);
+    return () => window.removeEventListener("beforeunload", handler);
+  }, [hasInfo]);
+
+  useEffect(() => {
+  if (!hasInfo) return;
+
+  const handler = (e: MouseEvent) => {
+    const target = e.target as HTMLElement;
+    const link = target.closest("a");
+
+    if (!link) return;
+    if (link.target === "_blank") return;
+
+    const href = link.getAttribute("href");
+    if (!href || href.startsWith("#")) return;
+
+    const ok = window.confirm(
+      "Är du säker på att du vill lämna sidan? Osparade ändringar kommer att försvinna."
+    );
+
+    if (!ok) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  };
+
+  document.addEventListener("click", handler, true);
+  return () => document.removeEventListener("click", handler, true);
+}, [hasInfo]);
+
+
   return (
     <>
       <form
         className={styles["form-container"]}
         onSubmit={handleSubmit}
+        onChange={() => setHasInfo(true)}
         encType="multipart/form-data"
         ref={formRef}
         key={formKey}
@@ -89,6 +134,7 @@ export default function CreateEventPage() {
             onFileChange={(file, dataUrl) => {
               setImageFile(file);
               setImageData(dataUrl);
+              setHasInfo(true);
             }}
             onMobileDeleteToggle={setShowMobileDelete}
           />
@@ -134,6 +180,7 @@ export default function CreateEventPage() {
               setPendingEvent(null);
               setShowConfirm(false);
               setShowSuccess(true);
+              setHasInfo(false);
             } catch {
               setShowConfirm(false);
               setShowError(true);

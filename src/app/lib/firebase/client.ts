@@ -9,12 +9,21 @@ import { initializeApp, getApp, getApps } from "firebase/app";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyBEkXQdbvPoMy5b6ozQ1wFBbJXGoZYNaY0",
+
   authDomain: "student-event-liu.firebaseapp.com",
+
+  databaseURL:
+    "https://student-event-liu-default-rtdb.europe-west1.firebasedatabase.app",
+
   projectId: "student-event-liu",
+
   storageBucket: "student-event-liu.firebasestorage.app",
+
   messagingSenderId: "591190866940",
-  appId: "1:591190866940:web:8badbf71eb11021bd09079",
-  measurementId: "G-63THMWF6XC"
+
+  appId: "1:591190866940:web:c1add9ccd12a3af0d09079",
+
+  measurementId: "G-B6QH498G5E",
 };
 
 // Initialize Firebase
