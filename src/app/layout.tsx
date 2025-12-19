@@ -35,7 +35,9 @@ export default function RootLayout({
       <body>
         <FirebaseAnalytics />
         <Navbar />
-        {children}
+        <div className="main">
+          {children}
+        </div>
         <SpeedInsights />
         <Footer />
       </body>
