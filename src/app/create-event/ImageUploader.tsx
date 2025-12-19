@@ -85,7 +85,6 @@ export default function ImageUploader({
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const showMobileDelete = Boolean(preview && isMobile);
   useEffect(() => {
     const visible = Boolean(preview && isMobile);
     onMobileDeleteToggle?.(visible);
