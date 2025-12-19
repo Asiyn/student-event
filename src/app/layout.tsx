@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import FirebaseAnalytics from "./components/FireBaseAnalytics";
 
 import "./styles/fullcalendar.css";
 import "./styles/globals.css";
@@ -30,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang="sv">
       <body>
+        <FirebaseAnalytics />
         <Navbar />
         {children}
         <Footer />

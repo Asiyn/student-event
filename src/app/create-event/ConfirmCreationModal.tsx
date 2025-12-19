@@ -27,7 +27,7 @@ export default function CreateEventConfirmModal({
   return (
     <div className={styles.backdrop} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <h2>Skapa event?</h2>
+        <h2 className={styles.h2}>Skapa event?</h2>
         <p>Vill du bekräfta att eventet ska skapas?</p>
 
         <div className={styles.actions}>

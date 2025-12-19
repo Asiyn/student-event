@@ -3,13 +3,13 @@
 import { useEffect } from "react";
 import styles from "./modal.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
   onClose: () => void;
 };
 
-export default function CreateEventSuccessModal({
+export default function ErrorModal({
   onClose,
 }: Props) {
   useEffect(() => {
@@ -25,12 +25,13 @@ export default function CreateEventSuccessModal({
   return (
     <div className={styles.backdrop} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <h2 className={styles['h2-succ']}><span className={styles.successModalIcon}><FontAwesomeIcon icon={faCircleCheck} /></span> Event skapat!</h2> 
-        {/* 🎉 */}
-        <p>Du kan nu stänga detta fönster.</p>
+        <h2 className={styles['h2-error']}><span className={styles.errorModalIcon}><FontAwesomeIcon icon={faTriangleExclamation} /></span> Något gick fel</h2>
+        <p>Försök igen eller vänta ett tag.</p>
         <div className={styles.actions}>
-          <button className={styles['succ-btn']} onClick={onClose}>Stäng</button>
+          <button className={styles['err-btn']} onClick={onClose}>Stäng</button>
         </div>
+        <p className={styles['err-hint-msg']}>*Ta bort bilden för att kunna skapa eventet. Developmentproblem med localstorage.</p>
+        {/* TEMP TEXT */}
       </div>
     </div>
   );

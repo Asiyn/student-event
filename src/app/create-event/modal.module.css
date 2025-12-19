@@ -24,17 +24,31 @@
 
 .modal {
   background: color-mix(in srgb, var(--nav-background) 100%, transparent);
-  padding: 1.5rem;
+  padding: 1.5rem 3rem;
   border-radius: var(--border-radius);
   border: 1px solid var(--border);
   box-shadow: var(--box-shadow);
   text-align: center;
-  max-width: 420px;
-  width: 90%;
+  min-width: 400px;
+  width: fit-content;
+  position: relative;
 }
 
 .modal h2 {
   color: var(--primary);
+  font-size: 1.7rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal p {
+  font-size: 1.05rem;
+  text-wrap: nowrap;
+  justify-self: center;
+}
+
+.modal .h2 {
+  text-shadow: 0px 0px 10px color-mix(in srgb, var(--primary) 50%, transparent);
+  filter: brightness(1.1);
 }
 
 .actions {
@@ -48,13 +62,15 @@
   all: unset;
   cursor: pointer;
   font-weight: 600;
-  color: var(--background);
+  color: var(--nav-background);
 
   text-align: center;
 
   padding: 0.6rem 1.3rem;
   border-radius: 6px;
   border: 2px solid transparent;
+
+  text-wrap: nowrap;
 
   cursor: pointer;
   transition: all 0.15s ease-in-out;
@@ -91,4 +107,98 @@
 .actions button:active {
   transform: translateY(1px);
   opacity: 0.9;
+}
+
+/* SUCCESS MODAL */
+
+.modal .h2-succ {
+  color: var(--success);
+  text-shadow: 0px 0px 10px color-mix(in srgb, var(--success) 75%, transparent);
+}
+
+.modal .succ-btn {
+  color: var(--nav-background);
+  font-size: 1.1rem;
+
+  background-color: var(--success);
+
+  box-shadow: 0 -2px 10px color-mix(in srgb, var(--success) 90%, transparent);
+
+  transition:
+    translate 0.2s ease,
+    background-color 0.4s ease,
+    box-shadow 0.3s ease;
+}
+
+.actions .succ-btn:hover {
+  translate: 0 -1px;
+  background-color: color-mix(in srgb, var(--success) 90%, black 10%);
+  box-shadow: 0 -4px 15px color-mix(in srgb, var(--success) 100%, transparent);
+}
+
+.successModalIcon {
+  filter: drop-shadow(
+    0 0 10px color-mix(in srgb, var(--success) 80%, transparent)
+  );
+}
+
+/* ERROR MODAL */
+
+.errorModalIcon {
+  color: var(--warning);
+  /* box-shadow: 0px 0px 10px color-mix(in srgb, var(--warning) 75%, transparent); */
+  filter: drop-shadow(
+    0 0 10px color-mix(in srgb, var(--warning) 100%, transparent)
+  );
+}
+
+.modal .h2-error {
+  color: var(--warning);
+  text-shadow: 0px 0px 10px color-mix(in srgb, var(--warning) 75%, transparent);
+  filter: brightness(1.75);
+}
+
+/* TEMP TEXT */
+.modal .err-hint-msg {
+  color: color-mix(in srgb, var(--text) 40%, transparent);
+  font-size: 0.75rem;
+  font-style: italic;
+  text-wrap: wrap;
+
+  bottom: 5px;
+  position: absolute;
+}
+
+.actions .err-btn {
+  background-color: var(--warning);
+  color: var(--nav-background);
+
+  font-size: 1.1rem;
+
+  box-shadow: 0 -2px 15px color-mix(in srgb, var(--warning) 90%, transparent);
+
+  transition:
+    translate 0.2s ease,
+    background-color 0.4s ease,
+    box-shadow 0.3s ease;
+
+  /* TEMP */
+  margin-bottom: 0.85rem;
+}
+
+.actions .err-btn:hover {
+  translate: 0 -1px;
+  background-color: color-mix(in srgb, var(--warning) 90%, black 10%);
+  box-shadow: 0 -4px 20px color-mix(in srgb, var(--warning) 100%, transparent);
+}
+
+@media (max-width: 468px) {
+  .modal {
+    max-width: 90%;
+  }
+
+  .modal p {
+    width: 100%;
+    text-wrap: wrap;
+  }
 }

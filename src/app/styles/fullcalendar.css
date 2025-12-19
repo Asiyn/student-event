@@ -184,10 +184,15 @@
   background: transparent !important;
 }
 
+.fc-event {
+  text-shadow: 0 0 1px rgba(0,0,0,0.3);
+}
+
 .fc-event:hover {
   cursor: pointer !important;
-  box-shadow: var(--box-shadow);
+  box-shadow: 0 0px 10px color-mix(in srgb, var(--border) 100%, transparent);
   transition: box-shadow 0.2s ease;
+  background-color: color-mix(in srgb, inherit 10%, transparent);
 }
 
 :root {

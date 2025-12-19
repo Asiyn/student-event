@@ -29,6 +29,16 @@ import { EventFeedItem } from "../feed/FeedItem";
 
 import { formToFeed } from "../lib/mappers";
 
+function getReadableTextColor(bg: string) {
+  const hex = bg.replace("#", "");
+  const r = parseInt(hex.slice(0, 2), 16);
+  const g = parseInt(hex.slice(2, 4), 16);
+  const b = parseInt(hex.slice(4, 6), 16);
+
+  const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+  return brightness > 150 ? "#010714" : "#d9e4fe";
+}
+
 export default function CalendarPage() {
   const [calendarEvents, setCalendarEvents] = useState<EventInput[]>([]);
 
@@ -119,17 +129,21 @@ export default function CalendarPage() {
   }, []);
 
   const renderEventContent = (arg: EventContentArg) => {
-    const arrangor = arg.event.extendedProps.arrangor as string | undefined;
+  const arrangor = arg.event.extendedProps.arrangor as string | undefined;
+  const bg = arg.event.backgroundColor || "#010714";
+  const textColor = getReadableTextColor(bg);
 
-    return (
-      <div>
-        <div style={{ fontWeight: 600 }}>{arg.event.title}</div>
-        {arrangor && (
-          <div style={{ fontSize: "0.75em", opacity: 0.85 }}>{arrangor}</div>
-        )}
-      </div>
-    );
-  };
+  return (
+    <div style={{ color: textColor }}>
+      <div style={{ fontWeight: 600 }}>{arg.event.title}</div>
+      {arrangor && (
+        <div style={{ fontSize: "0.75em", opacity: 0.9 }}>
+          {arrangor}
+        </div>
+      )}
+    </div>
+  );
+};
 
   // hantera klick
   const handleEventClick = (arg: EventClickArg) => {
@@ -179,6 +193,7 @@ export default function CalendarPage() {
         <Filter
           onFakultetChange={setSelectedFakulteter}
           onArrangorChange={setSelectedArrangorer}
+          // toggleFilterVisibility={() => setSelectedEvent()}
         />
 
         <div className={calStyles["calendar-container"]}>

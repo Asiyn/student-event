@@ -10,6 +10,7 @@ import type { EventFormData } from "../lib/eventTypes";
 import { saveEvent, loadEvents } from "../lib/eventStorage";
 import ConfirmCreationModal from "./ConfirmCreationModal";
 import SuccessModal from "./SuccessModal";
+import ErrorModal from "./ErrorModal";
 
 export default function CreateEventPage() {
   const [formKey, setFormKey] = useState(0);
@@ -26,6 +27,11 @@ export default function CreateEventPage() {
   const [, setCreatedEvent] = useState<EventFormData | null>(null);
 
   const formRef = useRef<HTMLFormElement>(null);
+  // felhantering
+  const [showError, setShowError] = useState(false);
+
+  // mobil knapp för att ta bort bild
+  const [showMobileDelete, setShowMobileDelete] = useState(false);
 
   useEffect(() => {
     document.title = "Skapa Event | StudentEvent";
@@ -73,13 +79,18 @@ export default function CreateEventPage() {
         ref={formRef}
         key={formKey}
       >
-        <div className={styles["upload-container"]}>
+        <div
+          className={`${styles["upload-container"]} ${
+            showMobileDelete ? styles.expanded : ""
+          }`}
+        >
           <ImageUploader
             resetKey={formKey}
             onFileChange={(file, dataUrl) => {
               setImageFile(file);
               setImageData(dataUrl);
             }}
+            onMobileDeleteToggle={setShowMobileDelete}
           />
         </div>
         <div className={styles["detail-submission"]}>
@@ -104,29 +115,36 @@ export default function CreateEventPage() {
             setShowConfirm(false);
             setPendingEvent(null);
           }}
-          onConfirm={() => {
+          onConfirm={async () => {
             if (!pendingEvent) return;
 
-            // spara
-            setEvents((prev) => [...prev, pendingEvent]);
-            saveEvent(pendingEvent);
+            try {
+              await saveEvent(pendingEvent);
 
-            // rensa form
-            formRef.current?.reset();
-            setImageFile(null);
-            setImageData(null);
-            setFormKey((prev) => prev + 1);
+              setEvents((prev) => [...prev, pendingEvent]);
 
-            // success
-            setCreatedEvent(pendingEvent);
-            setPendingEvent(null);
-            setShowConfirm(false);
-            setShowSuccess(true);
+              // rensa form
+              formRef.current?.reset();
+              setImageFile(null);
+              setImageData(null);
+              setFormKey((prev) => prev + 1);
+
+              // success
+              setCreatedEvent(pendingEvent);
+              setPendingEvent(null);
+              setShowConfirm(false);
+              setShowSuccess(true);
+            } catch {
+              setShowConfirm(false);
+              setShowError(true);
+            }
           }}
         />
       )}
 
       {showSuccess && <SuccessModal onClose={() => setShowSuccess(false)} />}
+
+      {showError && <ErrorModal onClose={() => setShowError(false)} />}
     </>
   );
 }

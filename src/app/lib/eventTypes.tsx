@@ -67,7 +67,7 @@ export const DEFAULT_EVENTS: EventFormData[] = [
   {
     id: 4,
     event: "Midnight Tease",
-    arrangor: "skumpa",
+    arrangor: "Skumpa",
     date: "2025-12-19",
     place: "Kårhuset Örat",
     startTime: "19:00",

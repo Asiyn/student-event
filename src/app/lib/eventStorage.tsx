@@ -14,9 +14,12 @@ export function loadEvents(): EventFormData[] {
 
 /*spara*/
 export function saveEvent(event: EventFormData) {
-  if (typeof window === "undefined") return;
+  if (typeof window === "undefined") {
+    throw new Error("Ett fel har inträffat");
+  }
 
-  const saved = localStorage.getItem(STORAGE_KEY);
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
   const parsed: EventFormData[] = saved ? JSON.parse(saved) : [];
 
   const newEvent: EventFormData = {
@@ -25,4 +28,7 @@ export function saveEvent(event: EventFormData) {
   };
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify([...parsed, newEvent]));
+  } catch {
+    throw new Error("Ett fel uppstod vid sparandet av eventet");
+  }
 }
