@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import styles from "./filter.module.css";
 import SelectFilter from "./selectFilter";
 
@@ -27,18 +29,27 @@ export const sektionerOptions = [
 type FilterProps = {
   onFakultetChange: (values: string[]) => void;
   onArrangorChange: (values: string[]) => void;
+  onClose: () => void;
 };
 
 export default function Filter({
   onFakultetChange,
   onArrangorChange,
+  onClose,
 }: FilterProps) {
   return (
     <div className={styles["filter-container"]}>
+      <div className={styles.filterHeader}>
+        <button className={styles.closeButton} onClick={onClose}>
+          <FontAwesomeIcon icon={faCaretDown} />
+        </button>
+      </div>
+      
       <div>
         <h2>Filtrera</h2>
         <p>Välj vilka event som ska visas i kalendern.</p>
       </div>
+
 
       <form className={styles.filters}>
         <SelectFilter

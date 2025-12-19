@@ -1,37 +1,37 @@
 .filter-container {
-    width: 60%;
+  width: 60%;
 
-    position: relative;
-    justify-self: center;
+  position: relative;
+  justify-self: center;
 
-    z-index: 10;
+  z-index: 10;
 
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 
-    padding: 1rem;
-    border-radius: 10px;
+  padding: 1rem;
+  border-radius: 10px;
 
-    background-color: var(--component-background);
-    border: 1px solid var(--border);
+  background-color: var(--component-background);
+  border: 1px solid var(--border);
 
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    background-clip: padding-box;
-    box-shadow: 0 1px 10px color-mix(in srgb, var(--border) 60%, transparent);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  background-clip: padding-box;
+  box-shadow: 0 1px 10px color-mix(in srgb, var(--border) 60%, transparent);
 }
 
 .filters {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
 .filter-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .select-wrapper {
@@ -62,13 +62,13 @@
 }
 
 .dropdown-icon {
-    position: absolute;
-    right: 0.7rem;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    color: var(--text);
-    font-size: 0.875rem;
+  position: absolute;
+  right: 0.7rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--text);
+  font-size: 0.875rem;
 }
 
 /* Submit button */
@@ -107,6 +107,21 @@
 .submit-filter:active {
   transform: translateY(1px);
   opacity: 0.9;
+}
+
+/* Hide functionality things */
+
+.filterHeader {
+  position: sticky;
+  top: 0;
+  height: 0;
+  z-index: 20;
+}
+
+.closeButton {
+  position: absolute;
+  top: -0.75rem;
+  right: -0.9rem;
 }
 
 @media (max-width: 768px) {
