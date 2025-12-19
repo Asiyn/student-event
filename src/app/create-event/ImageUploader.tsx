@@ -3,7 +3,10 @@
 import { useState, ChangeEvent, useRef, useEffect } from "react";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCloudArrowUp,
+  faSquareXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import styles from "./createevent2.module.css";
 
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];
@@ -12,9 +15,14 @@ const MAX_SIZE_MB = 10;
 type ImageUploaderProps = {
   onFileChange?: (file: File | null, dataUrl: string | null) => void;
   resetKey?: number;
+  onMobileDeleteToggle?: (value: boolean) => void;
 };
 
-export default function ImageUploader({ onFileChange, resetKey}: ImageUploaderProps) {
+export default function ImageUploader({
+  onFileChange,
+  resetKey,
+  onMobileDeleteToggle,
+}: ImageUploaderProps) {
   const [preview, setPreview] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -65,37 +73,63 @@ export default function ImageUploader({ onFileChange, resetKey}: ImageUploaderPr
     reader.readAsDataURL(file);
   };
 
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const showMobileDelete = Boolean(preview && isMobile);
+  useEffect(() => {
+    const visible = Boolean(preview && isMobile);
+    onMobileDeleteToggle?.(visible);
+  }, [preview, isMobile, onMobileDeleteToggle]);
+
   return (
-    <div className={styles["upload-sub-container"]}>
-      {error && <p style={{ color: "var(--warning)" }}>{error}</p>}
+    <>
+      <div className={styles["upload-sub-container"]}>
+        {error && <p style={{ color: "var(--warning)" }}>{error}</p>}
 
-      {!preview && (
-        <label className={styles["upload"]}>
-          <FontAwesomeIcon
-            icon={faCloudArrowUp}
-            className={styles["upload-icon"]}
-          />
-          Ladda upp bild
-          <input
-            type="file"
-            ref={fileInputRef}
-            accept=".jpg,.jpeg,.png,.webp,.gif,image/jpeg,image/png,image/webp,image/gif"
-            onChange={handleFileChange}
-          />
-        </label>
-      )}
+        {!preview && (
+          <label className={styles["upload"]}>
+            <FontAwesomeIcon
+              icon={faCloudArrowUp}
+              className={styles["upload-icon"]}
+            />
+            Ladda upp bild
+            <input
+              type="file"
+              ref={fileInputRef}
+              accept=".jpg,.jpeg,.png,.webp,.gif,image/jpeg,image/png,image/webp,image/gif"
+              onChange={handleFileChange}
+            />
+          </label>
+        )}
 
-      {preview && (
-        <div className={styles["preview-img-wrapper"]}>
-          <Image
-            src={preview}
-            alt="Preview"
-            fill
-            className={styles["preview-img"]}
-            onClick={removeImage}
-          />
-        </div>
+        {preview && (
+          <div className={styles["preview-img-wrapper"]}>
+            <Image
+              src={preview}
+              alt="Preview"
+              fill
+              className={styles["preview-img"]}
+              onClick={removeImage}
+            />
+          </div>
+        )}
+      </div>
+      {preview && isMobile && (
+        <button className={styles["delete-img-mobile"]} onClick={removeImage}>
+          <FontAwesomeIcon icon={faSquareXmark} className={styles.btnIcon} /> Ta
+          bort bild
+        </button>
       )}
-    </div>
+    </>
   );
 }

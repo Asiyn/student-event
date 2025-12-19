@@ -30,6 +30,9 @@ export default function CreateEventPage() {
   // felhantering
   const [showError, setShowError] = useState(false);
 
+  // mobil knapp för att ta bort bild
+  const [showMobileDelete, setShowMobileDelete] = useState(false);
+
   useEffect(() => {
     document.title = "Skapa Event | StudentEvent";
   }, []);
@@ -76,13 +79,18 @@ export default function CreateEventPage() {
         ref={formRef}
         key={formKey}
       >
-        <div className={styles["upload-container"]}>
+        <div
+          className={`${styles["upload-container"]} ${
+            showMobileDelete ? styles.expanded : ""
+          }`}
+        >
           <ImageUploader
             resetKey={formKey}
             onFileChange={(file, dataUrl) => {
               setImageFile(file);
               setImageData(dataUrl);
             }}
+            onMobileDeleteToggle={setShowMobileDelete}
           />
         </div>
         <div className={styles["detail-submission"]}>
