@@ -1,7 +1,7 @@
 {
   "hosting": {
     "public": "public",
-    "site": "student-event",
+    "site": "student-event-liu-da9d1",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
   }
 }
