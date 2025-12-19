@@ -129,21 +129,24 @@ export default function CalendarPage() {
   }, []);
 
   const renderEventContent = (arg: EventContentArg) => {
-  const arrangor = arg.event.extendedProps.arrangor as string | undefined;
-  const bg = arg.event.backgroundColor || "#010714";
-  const textColor = getReadableTextColor(bg);
+    const arrangor = arg.event.extendedProps.arrangor as string | undefined;
+    const bg = arg.event.backgroundColor || "#010714";
 
-  return (
-    <div style={{ color: textColor }}>
-      <div style={{ fontWeight: 600 }}>{arg.event.title}</div>
-      {arrangor && (
-        <div style={{ fontSize: "0.75em", opacity: 0.9 }}>
-          {arrangor}
-        </div>
-      )}
-    </div>
-  );
-};
+    const isWeekView = arg.view.type === "listWeek";
+
+    const textColor = isWeekView
+      ? "#d9e4fe" // always white in week view
+      : getReadableTextColor(bg); // dynamic in month view
+
+    return (
+      <div style={{ color: textColor }}>
+        <div style={{ fontWeight: 600 }}>{arg.event.title}</div>
+        {arrangor && (
+          <div style={{ fontSize: "0.75em", opacity: 0.9 }}>{arrangor}</div>
+        )}
+      </div>
+    );
+  };
 
   // hantera klick
   const handleEventClick = (arg: EventClickArg) => {

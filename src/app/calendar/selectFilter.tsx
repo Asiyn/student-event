@@ -143,7 +143,7 @@ export default function SelectFilter({
 
       <Select<SelectOption, true, GroupBase<SelectOption>>
         classNamePrefix="filterselect"
-        inputId={id}
+        // inputId={id}
         isMulti
         options={formattedOptions}
         placeholder="Välj..."

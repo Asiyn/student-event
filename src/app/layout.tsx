@@ -1,3 +1,5 @@
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import type { Metadata } from "next";
 import FirebaseAnalytics from "./components/FireBaseAnalytics";
 
@@ -34,6 +36,7 @@ export default function RootLayout({
         <FirebaseAnalytics />
         <Navbar />
         {children}
+        <SpeedInsights />
         <Footer />
       </body>
     </html>
