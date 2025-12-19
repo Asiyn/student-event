@@ -1,36 +1,21 @@
-import { initializeApp, getApp, getApps } from "firebase/app";
+import { initializeApp, getApp, getApps, type FirebaseApp } from "firebase/app";
 
-// Import the functions you need from the SDKs you need
-//import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+function mustGetEnv(name: string): string {
+  const v = process.env[name];
+  if (!v) throw new Error(`Missing environment variable: ${name}`);
+  return v;
+}
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBEkXQdbvPoMy5b6ozQ1wFBbJXGoZYNaY0",
-
-  authDomain: "student-event-liu.firebaseapp.com",
-
-  databaseURL:
-    "https://student-event-liu-default-rtdb.europe-west1.firebasedatabase.app",
-
-  projectId: "student-event-liu",
-
-  storageBucket: "student-event-liu.firebasestorage.app",
-
-  messagingSenderId: "591190866940",
-
-  appId: "1:591190866940:web:c1add9ccd12a3af0d09079",
-
-  measurementId: "G-B6QH498G5E",
+  apiKey: mustGetEnv("NEXT_PUBLIC_FIREBASE_API_KEY"),
+  authDomain: mustGetEnv("NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN"),
+  projectId: mustGetEnv("NEXT_PUBLIC_FIREBASE_PROJECT_ID"),
+  storageBucket: mustGetEnv("NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET"),
+  messagingSenderId: mustGetEnv("NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID"),
+  appId: mustGetEnv("NEXT_PUBLIC_FIREBASE_APP_ID"),
+  measurementId: mustGetEnv("NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID"),
 };
 
-// Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
-// console.log(analytics);
-
-export const firebaseApp = getApps().length
+export const firebaseApp: FirebaseApp = getApps().length
   ? getApp()
   : initializeApp(firebaseConfig);
