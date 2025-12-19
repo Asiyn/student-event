@@ -1,13 +1,19 @@
 import { initializeApp, getApp, getApps } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY!,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN!,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID!,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET!,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID!,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID!,
-  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID!,
+  apiKey: "AIzaSyDRQxQMbGWoS8bB--ru183-CkwtLaH6zTk",
+
+  authDomain: "lithe-event.firebaseapp.com",
+
+  projectId: "lithe-event",
+
+  storageBucket: "lithe-event.firebasestorage.app",
+
+  messagingSenderId: "474221934035",
+
+  appId: "1:474221934035:web:0a667a5ba3a81e483c6b26",
+
+  measurementId: "G-LDD4MJ4ZJW",
 };
 
 export const firebaseApp = getApps().length
