@@ -52,6 +52,7 @@ export default function EventModal({ event, onClose }: EventModalProps) {
               aria-hidden={true}
               priority
               fill
+              sizes="100%"
             />
           </div>
 

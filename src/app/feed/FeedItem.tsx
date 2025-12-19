@@ -62,7 +62,8 @@ export default function FeedItem({
         aria-hidden={true}
         priority
         fill
-        onLoadingComplete={() => setLoaded(true)}
+        sizes="100%"
+        onLoad={() => setLoaded(true)}
       />
       </div>
     </div>
