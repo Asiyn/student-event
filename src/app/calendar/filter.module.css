@@ -53,6 +53,10 @@
 .filters.show {
   opacity: 1;
   grid-template-rows: 1fr;
+
+  > div {
+    overflow: visible;
+  }
 }
 
 .filter-group {
@@ -201,9 +205,9 @@
     grid-template-columns: 1fr;
   }
 
-  /* .closeButton {
+  .closeButton {
     top: 0.7rem;
-  } */
+  }
 }
 
 @media (max-width: 468px) {
