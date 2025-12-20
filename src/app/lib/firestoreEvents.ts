@@ -8,6 +8,7 @@ import {
   serverTimestamp,
   updateDoc,
   type Unsubscribe,
+  type FirestoreError,
 } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
@@ -33,7 +34,6 @@ export async function createEvent(
 ) {
   const id = event.id ?? Date.now();
 
-  // 1) Create the Firestore document first (do NOT store base64 imageData)
   const docRef = await addDoc(collection(db, "events"), {
     ...event,
     id,
@@ -43,7 +43,7 @@ export async function createEvent(
     createdAt: serverTimestamp(),
   });
 
-  // 2) Upload to Storage (if provided), then write URL/path back to Firestore
+  // Ladda upp fil om nödvändigt
   if (imageFile) {
     const ext = fileExtension(imageFile);
     const path = `events/${docRef.id}/cover.${ext}`;
@@ -67,10 +67,21 @@ export function subscribeToEvents(
 ): Unsubscribe {
   const q = query(collection(db, "events"), orderBy("date", "asc"));
 
-  return onSnapshot(q, (snap) => {
-    const events: EventFormData[] = snap.docs.map(
-      (d) => d.data() as EventFormData
-    );
-    onEvents(events);
-  });
+  return onSnapshot(
+    q,
+    (snap) => {
+      const events: EventFormData[] = snap.docs.map(
+        (d) => d.data() as EventFormData
+      );
+      onEvents(events);
+    },
+    (err: FirestoreError) => {
+      console.error(
+        "Firestore subscribeToEvents error:",
+        err.code,
+        err.message
+      );
+      onEvents([]);
+    }
+  );
 }

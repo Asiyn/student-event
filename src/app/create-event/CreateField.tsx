@@ -130,6 +130,7 @@ export default function CreateField({
         <>
           <CreatableSelect<Option, false, GroupBase<Option>>
             inputId={name}
+            instanceId={name} //för att förhindra över-hydration, flera instancer av samma id
             options={dropdownOptions}
             placeholder={placeholder ?? label}
             styles={customStyles}

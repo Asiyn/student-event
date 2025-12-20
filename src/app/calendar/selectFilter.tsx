@@ -143,7 +143,9 @@ export default function SelectFilter({
 
       <Select<SelectOption, true, GroupBase<SelectOption>>
         classNamePrefix="filterselect"
-        // inputId={id}
+        // inputId och instanceId för att koppla label till select
+        inputId={id}
+        instanceId={id}
         isMulti
         options={formattedOptions}
         placeholder="Välj..."

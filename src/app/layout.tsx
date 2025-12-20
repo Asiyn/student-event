@@ -6,6 +6,8 @@ import "./styles/fullcalendar.css";
 import "./styles/globals.css";
 
 import favicon from "../images/student_event_logo_2.png";
+//Authentication för framtida buckets
+import EnsureAuth from "./components/EnsureAuth";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 
@@ -32,6 +34,7 @@ export default function RootLayout({
   return (
     <html lang="sv">
       <body>
+        <EnsureAuth /> {/*Authentication för framtida buckets*/}
         <Navbar />
         <div className="main">{children}</div>
         <SpeedInsights />
