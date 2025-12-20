@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "student-event-liu"
-  }
+    "default": "student-event-liu",
+    "Student Event": "student-event-liu"
+  },
+  "targets": {},
+  "etags": {}
 }
