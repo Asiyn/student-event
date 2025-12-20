@@ -2,8 +2,18 @@ import type { EventFormData } from "./eventTypes";
 import type { EventFeedItem } from "../feed/FeedItem";
 
 const MONTHS = [
-  "Januari","Februari","Mars","April","Maj","Juni",
-  "Juli","Augusti","September","Oktober","November","December",
+  "Januari",
+  "Februari",
+  "Mars",
+  "April",
+  "Maj",
+  "Juni",
+  "Juli",
+  "Augusti",
+  "September",
+  "Oktober",
+  "November",
+  "December",
 ];
 
 export function formToFeed(ev: EventFormData, id?: number): EventFeedItem {
@@ -32,6 +42,8 @@ export function formToFeed(ev: EventFormData, id?: number): EventFeedItem {
     endTime: ev.endTime || " ",
     beskrivning: ev.beskrivning || undefined,
     organizerURL: ev.organizerURL || undefined,
-    img: ev.imageData ?? undefined,
+
+    //imageUrl för att hantera firestore-biler
+    img: ev.imageUrl ?? ev.imageData ?? undefined,
   };
 }

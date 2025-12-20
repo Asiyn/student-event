@@ -7,22 +7,17 @@ import type { EventFeedItem } from "./feed/FeedItem";
 import { useEffect, useState } from "react";
 
 import type { EventFormData } from "./lib/eventTypes";
-import { loadEvents } from "./lib/eventStorage";
+import { DEFAULT_EVENTS } from "./lib/eventTypes";
+import { subscribeToEvents } from "./lib/firestoreEvents";
+import { formToFeed } from "./lib/mappers";
 
-const MONTHS = [
-  "Januari",
-  "Februari",
-  "Mars",
-  "April",
-  "Maj",
-  "Juni",
-  "Juli",
-  "Augusti",
-  "September",
-  "Oktober",
-  "November",
-  "December",
-];
+function sortKey(ev: EventFormData) {
+  if (!ev.date) return 0;
+  const time = ev.startTime ? ev.startTime : "00:00";
+  const dt = new Date(`${ev.date}T${time}`);
+  const t = dt.getTime();
+  return Number.isNaN(t) ? 0 : t;
+}
 
 export default function Home() {
   const [items, setItems] = useState<EventFeedItem[]>([]);
@@ -32,49 +27,17 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const allEvents: EventFormData[] = loadEvents();
+    const unsub = subscribeToEvents((firestoreEvents) => {
+      const all: EventFormData[] = [...DEFAULT_EVENTS, ...firestoreEvents];
 
-    const mapped: EventFeedItem[] = allEvents.map((ev) => {
-      let month = "Okänd";
-      let day = 1;
-      let year = 2025;
+      const sorted = [...all].sort((a, b) => sortKey(a) - sortKey(b));
 
-      if (ev.date) {
-        const parsed = new Date(ev.date);
-        if (!Number.isNaN(parsed.getTime())) {
-          month = MONTHS[parsed.getMonth()];
-          day = parsed.getDate();
-          year = parsed.getFullYear();
-        }
-      }
+      const mapped = sorted.map((ev, idx) => formToFeed(ev, ev.id ?? idx + 1));
 
-      return {
-        id: ev.id ?? Math.random(),
-        host: ev.arrangor || "<missing>",
-        event: ev.event || "<missing>",
-        month,
-        day,
-        year,
-        place: ev.place || undefined,
-        startTime: ev.startTime || " ",
-        endTime: ev.endTime || " ",
-        beskrivning: ev.beskrivning || undefined,
-        organizerURL: ev.organizerURL || undefined,
-        img: ev.imageData ?? undefined,
-      };
+      setItems(mapped);
     });
 
-    const sorted = [...mapped].sort((a, b) => {
-      const monthA = MONTHS.indexOf(a.month ?? "");
-      const monthB = MONTHS.indexOf(b.month ?? "");
-
-      const dateA = new Date(a.year!, monthA, a.day!);
-      const dateB = new Date(b.year!, monthB, b.day!);
-
-      return dateA.getTime() - dateB.getTime();
-    });
-
-    setItems(sorted);
+    return () => unsub();
   }, []);
 
   return (

@@ -18,9 +18,14 @@ export type EventFormData = {
   beskrivning: string;
   organizerURL: string;
   color?: string | null;
-  imageData?: string | StaticImageData | null;
-};
 
+  //för default bilder
+  imageData?: string | StaticImageData | null;
+
+  //för firestore
+  imageUrl?: string | null; // ladda ner url till bilden
+  imagePath?: string | null; //pathen i eventstore
+};
 export const DEFAULT_EVENTS: EventFormData[] = [
   {
     id: 1,

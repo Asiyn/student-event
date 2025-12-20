@@ -7,7 +7,7 @@ import EventDetails from "./EventDetails";
 import { FormEvent, useEffect, useRef, useState } from "react";
 
 import type { EventFormData } from "../lib/eventTypes";
-import { saveEvent, loadEvents } from "../lib/eventStorage";
+import { createEvent } from "../lib/firestoreEvents";
 import ConfirmCreationModal from "./ConfirmCreationModal";
 import SuccessModal from "./SuccessModal";
 import ErrorModal from "./ErrorModal";
@@ -17,8 +17,6 @@ export default function CreateEventPage() {
 
   const [, setImageFile] = useState<File | null>(null);
   const [imageData, setImageData] = useState<string | null>(null);
-
-  const [events, setEvents] = useState<EventFormData[]>([]);
 
   const [showConfirm, setShowConfirm] = useState(false);
   const [pendingEvent, setPendingEvent] = useState<EventFormData | null>(null);
@@ -39,15 +37,6 @@ export default function CreateEventPage() {
   useEffect(() => {
     document.title = "Skapa Event | StudentEvent";
   }, []);
-
-  useEffect(() => {
-    setEvents(loadEvents());
-  }, []);
-
-  useEffect(() => {
-    if (events.length === 0) return;
-    console.log("events ändrades:", events);
-  }, [events]);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -87,32 +76,31 @@ export default function CreateEventPage() {
   }, [hasInfo]);
 
   useEffect(() => {
-  if (!hasInfo) return;
+    if (!hasInfo) return;
 
-  const handler = (e: MouseEvent) => {
-    const target = e.target as HTMLElement;
-    const link = target.closest("a");
+    const handler = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const link = target.closest("a");
 
-    if (!link) return;
-    if (link.target === "_blank") return;
+      if (!link) return;
+      if (link.target === "_blank") return;
 
-    const href = link.getAttribute("href");
-    if (!href || href.startsWith("#")) return;
+      const href = link.getAttribute("href");
+      if (!href || href.startsWith("#")) return;
 
-    const ok = window.confirm(
-      "Är du säker på att du vill lämna sidan? Osparade ändringar kommer att försvinna."
-    );
+      const ok = window.confirm(
+        "Är du säker på att du vill lämna sidan? Osparade ändringar kommer att försvinna."
+      );
 
-    if (!ok) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-  };
+      if (!ok) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    };
 
-  document.addEventListener("click", handler, true);
-  return () => document.removeEventListener("click", handler, true);
-}, [hasInfo]);
-
+    document.addEventListener("click", handler, true);
+    return () => document.removeEventListener("click", handler, true);
+  }, [hasInfo]);
 
   return (
     <>
@@ -165,9 +153,7 @@ export default function CreateEventPage() {
             if (!pendingEvent) return;
 
             try {
-              await saveEvent(pendingEvent);
-
-              setEvents((prev) => [...prev, pendingEvent]);
+              await createEvent(pendingEvent);
 
               // rensa form
               formRef.current?.reset();

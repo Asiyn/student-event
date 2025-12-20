@@ -20,8 +20,8 @@ import svLocale from "@fullcalendar/core/locales/sv";
 
 import Filter from "./filter";
 
-import type { EventFormData } from "../lib/eventTypes";
-import { loadEvents } from "../lib/eventStorage";
+import { DEFAULT_EVENTS, type EventFormData } from "../lib/eventTypes";
+import { subscribeToEvents } from "../lib/firestoreEvents"; // firestore
 
 import type { EventClickArg } from "@fullcalendar/core"; // klicka event
 import EventModal from "../feed/EventModal";
@@ -88,44 +88,45 @@ export default function CalendarPage() {
 
   // Läs in event från storage när kalendersidan laddas
   useEffect(() => {
-    const saved: EventFormData[] = loadEvents();
-    console.log("Läste events till kalendern:", saved);
+    const unsub = subscribeToEvents((firestoreEvents) => {
+      const saved: EventFormData[] = [...DEFAULT_EVENTS, ...firestoreEvents];
+      console.log("Läste events till kalendern:", saved);
 
-    const mapped: EventInput[] = saved.map((ev, index) => {
-      // Bygg start/slut
-      // Om du bara har datum => heldagsevent
-      let start: string | undefined = ev.date || undefined;
-      let end: string | undefined = undefined;
+      const mapped: EventInput[] = saved.map((ev, index) => {
+        let start: string | undefined = ev.date || undefined;
+        let end: string | undefined = undefined;
 
-      if (ev.date && ev.startTime) {
-        start = `${ev.date}T${ev.startTime}`;
-      }
-      if (ev.date && ev.endTime) {
-        end = `${ev.date}T${ev.endTime}`;
-      }
+        if (ev.date && ev.startTime) {
+          start = `${ev.date}T${ev.startTime}`;
+        }
 
-      // Enkel färg baserat på fakultet (valfritt)
-      const color = ev.color || "#000000"; // default
+        if (ev.date && ev.endTime) {
+          end = `${ev.date}T${ev.endTime}`;
+        }
 
-      return {
-        id: String(index),
-        title: ev.event,
-        start,
-        end,
-        color,
-        extendedProps: {
-          arrangor: ev.arrangor,
-          place: ev.place,
-          fakultet: ev.fakultet,
-          beskrivning: ev.beskrivning,
-          organizerURL: ev.organizerURL,
-          imageData: ev.imageData,
-        },
-      } satisfies EventInput;
+        return {
+          id: String(ev.id ?? index),
+          title: ev.event,
+          start,
+          end,
+          backgroundColor: ev.color ?? "#0b1130",
+          borderColor: ev.color ?? "#0b1130",
+          extendedProps: {
+            arrangor: ev.arrangor,
+            place: ev.place,
+            fakultet: ev.fakultet,
+            beskrivning: ev.beskrivning,
+            organizerURL: ev.organizerURL,
+            imageData: ev.imageData,
+          },
+        } satisfies EventInput;
+      });
+
+      setAllEvents(mapped);
+      setCalendarEvents(mapped);
     });
 
-    setAllEvents(mapped);
-    setCalendarEvents(mapped);
+    return () => unsub();
   }, []);
 
   const renderEventContent = (arg: EventContentArg) => {
