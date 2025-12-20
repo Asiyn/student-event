@@ -7,35 +7,35 @@ type Props = {
   onCancel: () => void;
   onConfirm: () => void;
   onClose: () => void;
+  isLoading?: boolean;
 };
 
 export default function CreateEventConfirmModal({
   onCancel,
   onConfirm,
   onClose,
+  isLoading = false,
 }: Props) {
-  useEffect(() => {
-    document.documentElement.classList.add("no-scroll");
-    document.body.classList.add("no-scroll");
-
-    return () => {
-      document.documentElement.classList.remove("no-scroll");
-      document.body.classList.remove("no-scroll");
-    };
-  }, []);
-
   return (
-    <div className={styles.backdrop} onClick={onClose}>
+    <div className={styles.backdrop} onClick={isLoading ? undefined : onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <h2 className={styles.h2}>Skapa event?</h2>
         <p>Vill du bekräfta att eventet ska skapas?</p>
 
         <div className={styles.actions}>
-          <button className={styles["avbryt"]} onClick={onCancel}>
+          <button
+            className={styles["avbryt"]}
+            onClick={onCancel}
+            disabled={isLoading}
+          >
             Avbryt
           </button>
-          <button className={styles["skapa"]} onClick={onConfirm}>
-            Skapa event
+          <button
+            className={styles["skapa"]}
+            onClick={onConfirm}
+            disabled={isLoading}
+          >
+            {isLoading ? "Skapar..." : "Skapa event"}
           </button>
         </div>
       </div>

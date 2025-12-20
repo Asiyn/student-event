@@ -15,6 +15,8 @@ import ErrorModal from "./ErrorModal";
 export default function CreateEventPage() {
   const [formKey, setFormKey] = useState(0);
 
+  const [isCreating, setIsCreating] = useState(false);
+
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageData, setImageData] = useState<string | null>(null);
 
@@ -40,6 +42,8 @@ export default function CreateEventPage() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (isCreating || showConfirm) return; // prevents multiple opens
 
     const formData = new FormData(e.currentTarget);
 
@@ -136,7 +140,11 @@ export default function CreateEventPage() {
               i dessa fält
             </i>
           </p>
-          <button type="submit" className={styles["submit-btn"]}>
+          <button
+            type="submit"
+            className={styles["submit-btn"]}
+            disabled={isCreating || showConfirm}
+          >
             Skapa Event
           </button>
         </div>
@@ -144,24 +152,28 @@ export default function CreateEventPage() {
 
       {showConfirm && pendingEvent && (
         <ConfirmCreationModal
-          onClose={() => setShowSuccess(false)}
+          isLoading={isCreating}
+          onClose={() => {
+            setShowConfirm(false);
+            setPendingEvent(null);
+          }}
           onCancel={() => {
             setShowConfirm(false);
             setPendingEvent(null);
           }}
           onConfirm={async () => {
             if (!pendingEvent) return;
+            if (isCreating) return;
 
+            setIsCreating(true);
             try {
               await createEvent(pendingEvent, imageFile);
 
-              // rensa form
               formRef.current?.reset();
               setImageFile(null);
               setImageData(null);
               setFormKey((prev) => prev + 1);
 
-              // success
               setCreatedEvent(pendingEvent);
               setPendingEvent(null);
               setShowConfirm(false);
@@ -170,6 +182,8 @@ export default function CreateEventPage() {
             } catch {
               setShowConfirm(false);
               setShowError(true);
+            } finally {
+              setIsCreating(false);
             }
           }}
         />
