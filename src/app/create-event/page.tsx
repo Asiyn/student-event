@@ -15,7 +15,7 @@ import ErrorModal from "./ErrorModal";
 export default function CreateEventPage() {
   const [formKey, setFormKey] = useState(0);
 
-  const [, setImageFile] = useState<File | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageData, setImageData] = useState<string | null>(null);
 
   const [showConfirm, setShowConfirm] = useState(false);
@@ -153,7 +153,7 @@ export default function CreateEventPage() {
             if (!pendingEvent) return;
 
             try {
-              await createEvent(pendingEvent);
+              await createEvent(pendingEvent, imageFile);
 
               // rensa form
               formRef.current?.reset();
