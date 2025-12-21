@@ -7,6 +7,7 @@ import MidnightImg from "../../images/midnight_tease_skumpa.jpg";
 export const STORAGE_KEY = "user_events";
 
 export type EventFormData = {
+  //"undefined" för events som inte är sparade i firestore tror jag, som default events
   id: number | undefined;
   event: string;
   arrangor: string;

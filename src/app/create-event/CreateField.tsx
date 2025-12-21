@@ -39,6 +39,8 @@ export default function CreateField({
 }: EventDetailsProps) {
   const [color, setColor] = useState("#202353"); //ändra default färg
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
+  const [isCustom, setIsCustom] = useState(false);
+  const [customValue, setCustomValue] = useState("");
 
   const isColorInput = !dropdown && inputType === "color";
   const isTextarea = !dropdown && inputType === "textarea";
@@ -49,6 +51,8 @@ export default function CreateField({
     const v = inputValue.trim();
     const opt: Option = { value: v, label: v };
     setSelectedOption(opt);
+    setIsCustom(false);
+    setCustomValue("");
   };
 
   const onColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -130,22 +134,39 @@ export default function CreateField({
         <>
           <CreatableSelect<Option, false, GroupBase<Option>>
             inputId={name}
-            instanceId={name} //för att förhindra över-hydration, flera instancer av samma id
+            instanceId={name} //för att förhindra över-hydration, flera instanser av samma id
             options={dropdownOptions}
             placeholder={placeholder ?? label}
             styles={customStyles}
             value={selectedOption}
-            onChange={(opt: SingleValue<Option>) =>
-              setSelectedOption(opt ?? null)
-            }
+            onChange={(opt) => {
+              const picked = opt ?? null;
+              setSelectedOption(picked);
+
+              if (picked?.value === "__custom__") {
+                setIsCustom(true);
+                setCustomValue("");
+              } else {
+                setIsCustom(false);
+                setCustomValue("");
+              }
+            }}
             onCreateOption={handleCreate}
             formatCreateLabel={(input) => `Skriv själv: "${input}"`}
           />
+          {isCustom && (
+            <input
+              type="text"
+              value={customValue}
+              onChange={(e) => setCustomValue(e.target.value)}
+              placeholder="Skriv arrangörens namn…"
+            />
+          )}
 
           <input
             type="hidden"
             name={name}
-            value={selectedOption?.value ?? ""}
+            value={isCustom ? customValue : (selectedOption?.value ?? "")}
             required={required}
           />
         </>
