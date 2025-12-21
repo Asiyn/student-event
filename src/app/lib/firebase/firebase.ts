@@ -22,7 +22,7 @@ export const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app); // Firestore i europe-north2
 export const rtdb = getDatabase(app);
-export const storage = getStorage(app); // Storage i Firebase
+export const storage = getStorage(app); // Storage i Firebase, buckets etc.
 
 // Only call in the browser (client components)
 export async function initAnalytics() {

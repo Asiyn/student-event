@@ -30,6 +30,12 @@ export function formToFeed(ev: EventFormData, id?: number): EventFeedItem {
     }
   }
 
+  const img =
+    typeof ev.imageData === "string" &&
+    ev.imageData.startsWith("https://firebasestorage.googleapis.com/")
+      ? undefined
+      : (ev.imageData ?? undefined);
+
   return {
     id: id ?? ev.id ?? 0,
     host: ev.arrangor || "<missing>",
@@ -44,6 +50,6 @@ export function formToFeed(ev: EventFormData, id?: number): EventFeedItem {
     organizerURL: ev.organizerURL || undefined,
 
     //imageUrl för att hantera firestore-biler
-    img: ev.imageUrl ?? ev.imageData ?? undefined,
+    img /*: ev.imageUrl ?? ev.imageData ?? undefined,*/,
   };
 }

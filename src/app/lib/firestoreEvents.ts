@@ -12,7 +12,7 @@ import {
 } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
-import { db, storage } from "./firebase/firebase";
+import { db /*storage*/ } from "./firebase/firebase";
 import type { EventFormData } from "./eventTypes";
 
 function fileExtension(file: File): string {
@@ -44,12 +44,12 @@ export async function createEvent(
   });
 
   // Ladda upp fil om nödvändigt
-  if (imageFile) {
+  /*if (imageFile) {
     const ext = fileExtension(imageFile);
     const path = `events/${docRef.id}/cover.${ext}`;
 
-    const storageRef = ref(storage, path);
-    await uploadBytes(storageRef, imageFile);
+    /*const storageRef = ref(storage, path);*/
+  /* await uploadBytes(storageRef, imageFile);
 
     const url = await getDownloadURL(storageRef);
 
@@ -57,7 +57,7 @@ export async function createEvent(
       imageUrl: url,
       imagePath: path,
     });
-  }
+  }*/
 
   return id;
 }

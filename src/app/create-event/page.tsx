@@ -167,7 +167,9 @@ export default function CreateEventPage() {
 
             setIsCreating(true);
             try {
-              await createEvent(pendingEvent, imageFile);
+              console.log("before createEvent");
+              await createEvent(pendingEvent /*imageFile*/); //om vi ska använda buckets med bilderna till servern
+              console.log("after createEvent");
 
               formRef.current?.reset();
               setImageFile(null);
@@ -179,7 +181,8 @@ export default function CreateEventPage() {
               setShowConfirm(false);
               setShowSuccess(true);
               setHasInfo(false);
-            } catch {
+            } catch (e) {
+              console.error("Error creating event:", e);
               setShowConfirm(false);
               setShowError(true);
             } finally {
