@@ -3,6 +3,7 @@ import vkImg from "../../images/02_VK.png";
 import fullMoonSSkadat from "../../images/fullMoonSSkadat.jpg";
 import halloweenImg from "../../images/halloween.jpg";
 import MidnightImg from "../../images/midnight_tease_skumpa.jpg";
+import { Timestamp } from "firebase/firestore";
 
 export const STORAGE_KEY = "user_events";
 
@@ -19,14 +20,16 @@ export type EventFormData = {
   beskrivning: string;
   organizerURL: string;
   color?: string | null;
-
   //för default bilder
   imageData?: string | StaticImageData | null;
 
   //för firestore
   imageUrl?: string | null; // ladda ner url till bilden
-  imagePath?: string | null; //pathen i eventstore
+  imagePath?: string | null; //psathen i eventstore
+  reatedAt?: Timestamp | null;
 };
+
+//Temporära event med bildfiler lokalt
 export const DEFAULT_EVENTS: EventFormData[] = [
   {
     id: 1,
