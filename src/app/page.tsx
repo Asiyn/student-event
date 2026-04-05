@@ -20,8 +20,7 @@ function sortKey(ev: EventFormData) {
 }
 
 export default function Home() {
-  const [items, setItems] = useState<EventFeedItem[]>([]);
-
+  const [items, setItems] = useState<EventFeedItem[]>([]); 
   useEffect(() => {
     document.title = "StudentEvent";
   }, []);

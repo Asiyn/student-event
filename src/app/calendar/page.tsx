@@ -27,7 +27,10 @@ import type { EventClickArg } from "@fullcalendar/core"; // klicka event
 import EventModal from "../feed/EventModal";
 import { EventFeedItem } from "../feed/FeedItem";
 
+//kör event-check varje gång man öppnar kalender-componentn
+
 import { formToFeed } from "../lib/mappers";
+
 
 function getReadableTextColor(bg: string) {
   const hex = bg.replace("#", "");
