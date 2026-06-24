@@ -1,4 +1,4 @@
-// src/app/lib/firebase/firebase.tsx
+// src/app/lib/firebase/firebase.ts
 import { initializeApp, getApp, getApps } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
@@ -21,7 +21,7 @@ export const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 export const db = getFirestore(app); // Firestore i europe-north2
-export const rtdb = getDatabase(app);
+export const rtdb = getDatabase(app); 
 export const storage = getStorage(app); // Storage i Firebase, buckets etc.
 
 // Only call in the browser (client components)
