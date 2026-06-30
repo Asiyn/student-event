@@ -1,34 +1,43 @@
 import nodeSchedule from 'node-schedule';
-import { doc, deleteDoc, getDocs, collection } from "firebase/firestore";
-import { db } from "./firebase/firebase";
+// Importera hela paketet som ett unikt namespace för att undvika krockar
+import * as firebaseAdmin from 'firebase-admin';
 
+import serviceAccount from '../../../serviceAccountKey.json' assert { type: 'json' };
 
-const today = new Date();
+// Initiera appen med de importerade funktionerna
+firebaseAdmin.initializeApp({
+  credential: firebaseAdmin.Credential.cert(serviceAccount)
+});
 
-const testDate = new Date(2027,5,24);
+// Hämta databasinstansen
+const db = firebaseAdmin.firestore();
+const testDate = new Date(2027, 5, 24);
 
+console.log("Scheduler started with Admin SDK (Modular)");
 
-console.log("Scheduler started");
-console.log(today);
+nodeSchedule.scheduleJob('*/15 * * * * *', async () => {
+  try {
+    const snapshot = await db.collection('events').get();
+    const promises: Promise<void>[] = [];
 
-nodeSchedule.scheduleJob('*/15 * * * * *', async() => { // every day at 23:00; https://www.npmjs.com/package/node-schedule
- const querySnapshot = await getDocs(collection(db, 'events'));
- querySnapshot.forEach(async (doc) => {
-   const data = doc.data();
+    snapshot.forEach((doc) => {
+      const data = doc.data();
+      const eventDate = new Date(data.date);
 
-   const eventDate = new Date(data.date);
+      if (eventDate < testDate) {
+        const deletePromise = doc.ref.delete()
+          .then(() => console.log(`Event ${doc.id} successfully deleted!`))
+          .catch(err => console.error(`Error deleting ${doc.id}:`, err));
+        
+        promises.push(deletePromise);
+      } else {
+        console.log(`Event ${doc.id} is in the future!`);
+      }
+    });
 
-   console.log(data.date);
-   if(eventDate < testDate){
-    try{
-      await deleteDoc(doc.ref);
-      console.log("Document successfully deleted!");
-    } 
-    catch (error) {
-      console.error("Error removing document: ", error);
-    }
-   }else{
-    console.log("This event is in the future!");
-   }
- });
+    await Promise.all(promises);
+
+  } catch (error) {
+    console.error("Kunde inte hämta dokument: ", error);
+  }
 });
