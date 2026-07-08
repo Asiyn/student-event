@@ -11,8 +11,10 @@ import { createEvent } from "../lib/firestoreEvents";
 import ConfirmCreationModal from "./ConfirmCreationModal";
 import SuccessModal from "./SuccessModal";
 import ErrorModal from "./ErrorModal";
+import LoginModal from "./LoginModal";
 
 export default function CreateEventPage() {
+
   const [formKey, setFormKey] = useState(0);
 
   const [isCreating, setIsCreating] = useState(false);
@@ -25,6 +27,8 @@ export default function CreateEventPage() {
 
   const [showSuccess, setShowSuccess] = useState(false);
   const [, setCreatedEvent] = useState<EventFormData | null>(null);
+
+  const [showLogin, setShowLogin] = useState(true);
 
   const formRef = useRef<HTMLFormElement>(null);
   // felhantering
@@ -108,6 +112,9 @@ export default function CreateEventPage() {
 
   return (
     <>
+      {showLogin && (
+        <LoginModal onClose={() => setShowLogin(false)} />
+      )}
       <form
         className={styles["form-container"]}
         onSubmit={handleSubmit}
